@@ -63,7 +63,7 @@ create_xml_container <- function(pages){
 #                                                          #
 ##%######################################################%##
 
-# create styles and default values in a dataset (some parameter might be eliminated altogether, for example arrow width)
+# create styles and default values in multiple datasets (some parameter might be eliminated altogether, for example arrow width)
 create_page_styles_df <- function() {
   temp_df <- tribble(
     ~name_style,   ~dx,  ~dy,~grid,~gridSize,~guides,~tooltips,~connect,~arrows,~fold,~page,~pageScale,~pageWidth,~pageHeight,~math,~shadow,
@@ -89,17 +89,28 @@ create_cell_styles_df <- function() {
   )
 }
 
-get_styles_dfs <- function(variables) {
+# original dataset have the style attribute divide in multple columns for easier access
+# create the style attribute which is a combination of the columns divided by ";"
+columns_to_style <- function(start_df) {
   
+  # Drop final columns and retain the ones to combine. suppressWarnings otherwise one_of() throws a warning.
+  suppressWarnings(temp_df <- start_df %>% select(-c(name_style, label, style, parent, one_of("vertex", "edge"))))
+  # Split the df in a list of row
+  temp_list <- split(temp_df, seq(nrow(temp_df)))
+  
+  # Combine the column values and names in a string. Put the strings in a vector.
+  vect_temp <- c()
+  for (row_temp in temp_list) {
+    row_temp <- row_temp %>%
+      select(which(row_temp != ""))
+    vect_temp <- append(vect_temp, paste0(paste0(names(row_temp), "=", row_temp, collapse = ";"), ";"))
+  }
+  
+  # Keep only the column we need and modify the style with the values from the vector created above.
+  start_df <- suppressWarnings(start_df %>%
+                                 select(name_style, label, style, parent, one_of("vertex", "edge")) %>%
+                                 mutate(style = vect_temp))
 }
-
-test_cell <- create_cell_styles_df()
-test_arrow <- create_arrow_styles_df()
-
-test <- suppressWarnings(create_arrow_styles_df() %>%
-                           select(-c(name_style, label, style, parent, -one_of("vertex", "edge"))))
-
-paste0(paste0(names(test), "=", test, collapse = ";"), ";")
 
 ##%######################################################%##
 #                                                          #
@@ -108,6 +119,12 @@ paste0(paste0(names(test), "=", test, collapse = ";"), ";")
 ##%######################################################%##
 
 test_xml <- create_xml_container(2)
+
+test_cell <- create_cell_styles_df()
+test_arrow <- create_arrow_styles_df()
+
+test_cell <- test_cell %>% columns_to_style()
+test_arrow <- test_arrow %>% columns_to_style()
 
 # create a dataset with nodes/arrows relations (or two distinct dfs)
 # create a second dataset for the order of "layers" or create the one with relationships map already ordered

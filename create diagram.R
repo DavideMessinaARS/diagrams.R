@@ -122,6 +122,13 @@ create_arrow_cell_attrs_tbl <- function() {
   
 }
 
+arrow_cell_attrs_list <- function(tbl_row) {
+  tbl_row
+  temp_vect <- as.character(as.vector(tbl_row))
+  names(temp_vect) <- names(tbl_row)
+  return(temp_vect)
+}
+cell_arrows_attrs_tbl[1,]
 # Create new document and root. Number of pages is a variable defined in the parameters.
 # TODO support for deciding styles
 # TODO support for different style for each page
@@ -132,7 +139,7 @@ create_xml_container <- function(pages){
   id_page <- create_id_page()
   vect_vars_diagram <- c("id", "name")
   
-  df_tags2 <- create_vector_param_page()
+  vector_param_page <- create_vector_param_page()
   
   for (page in 1:pages) {
     
@@ -142,10 +149,16 @@ create_xml_container <- function(pages){
     xml_set_attrs(xml_children(test_xml)[length(xml_children(test_xml))], vect_values_diagram)
     
     xml_add_child(xml_children(test_xml), "mxGraphModel")
-    xml_set_attrs(xml_children(xml_children(test_xml))[length(xml_children(xml_children(test_xml)))], df_tags2)
+    xml_set_attrs(xml_children(xml_children(test_xml))[length(xml_children(xml_children(test_xml)))], vector_param_page)
     xml_add_child(xml_children(xml_children(test_xml)), "root")
     
     create_xml_container(xml_children(xml_children(xml_children(test_xml))))
+    
+    arrow_cell_attrs_tbl <- create_arrow_cell_attrs_tbl()
+    
+    for (object in arrow_cell_attrs_tbl) {
+      
+    }
   }
   return(test_xml)
 }
@@ -169,33 +182,6 @@ create_arrow_attributes <- function(cstyles, astyles) {
                     source=character(),
                     target=character())
 }
-
-
-
-
-
-create_xml_container <- function(root){
-  id_page <- create_id_page()
-  vect_vars_diagram <- c("id", "name")
-  
-  df_tags2 <- create_vector_param_page()
-  
-  for (page in 1:pages) {
-    
-    xml_add_child(test_xml, "diagram")
-    vect_values_diagram <- c(id_page[page], paste0("Page-", page))
-    names(vect_values_diagram) <- vect_vars_diagram
-    xml_set_attrs(xml_children(test_xml)[length(xml_children(test_xml))], vect_values_diagram)
-    
-    xml_add_child(xml_children(test_xml), "mxGraphModel")
-    xml_set_attrs(xml_children(xml_children(test_xml))[length(xml_children(xml_children(test_xml)))], df_tags2)
-    xml_add_child(xml_children(xml_children(test_xml)), "root")
-    
-  }
-  return(test_xml)
-}
-
-
 
 ##%######################################################%##
 #                                                          #
@@ -247,11 +233,16 @@ columns_to_style <- function(start_df) {
     # If row already have a style do not overwrite it with the other value from dfs
     # TODO overwrite style in case of value given by user directly in command (probably later with str_detect)
     if (has_style[[i]])  {
-      vect_temp <- start_df$style[[i]]
+      vect_temp <- append(vect_temp, start_df$style[[i]])
     } else {
       temp_list[[i]] <- temp_list[[i]] %>%
         select(which(temp_list[[i]] != ""))
-      vect_temp <- append(vect_temp, paste0(paste0(names(temp_list[[i]]), "=", temp_list[[i]], collapse = ";"), ";"))
+      collapse_string = paste0(names(temp_list[[i]]), "=", temp_list[[i]], collapse = ";")
+      if (collapse_string != "=") {
+        vect_temp <- append(vect_temp, paste0(collapse_string, ";"))
+      } else {
+        vect_temp <- append(vect_temp, start_df$style[[i]])
+      }
     }
   } 
   # Keep only the column we need and modify the style with the values from the vector created above.

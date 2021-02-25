@@ -122,13 +122,14 @@ create_arrow_cell_attrs_tbl <- function() {
   
 }
 
-arrow_cell_attrs_list <- function(tbl_row) {
-  tbl_row
+create_arrow_cell_attrs_list <- function(tbl_row) {
+  tbl_row %>%
+    select(which(tbl_row != ""))
   temp_vect <- as.character(as.vector(tbl_row))
   names(temp_vect) <- names(tbl_row)
   return(temp_vect)
 }
-cell_arrows_attrs_tbl[1,]
+
 # Create new document and root. Number of pages is a variable defined in the parameters.
 # TODO support for deciding styles
 # TODO support for different style for each page
@@ -152,11 +153,17 @@ create_xml_container <- function(pages){
     xml_set_attrs(xml_children(xml_children(test_xml))[length(xml_children(xml_children(test_xml)))], vector_param_page)
     xml_add_child(xml_children(xml_children(test_xml)), "root")
     
-    create_xml_container(xml_children(xml_children(xml_children(test_xml))))
-    
     arrow_cell_attrs_tbl <- create_arrow_cell_attrs_tbl()
+    arrow_cell_attrs_rows <- split(arrow_cell_attrs_tbl, seq(nrow(arrow_cell_attrs_tbl)))
     
-    for (object in arrow_cell_attrs_tbl) {
+    # TODO divide object and cell attributes, maybe inside create_arrow_cell_attrs_tbl()
+    
+    for (object in arrow_cell_attrs_rows) {
+      arrow_cell_attrs_list <- create_arrow_cell_attrs_list(object)
+      xml_add_child(xml_children(xml_children(xml_children(test_xml))), "object")
+      xml_set_attrs(xml_children(xml_children(xml_children(xml_children(test_xml))))[length(xml_children(xml_children(xml_children(xml_children(test_xml)))))], arrow_cell_attrs_list)
+      xml_add_child(xml_children(xml_children(xml_children(xml_children(test_xml)))), "mxCell")
+      xml_set_attrs(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml)))))[length(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml))))))], arrow_cell_attrs_list)
       
     }
   }

@@ -9,10 +9,58 @@ library(dplyr)
 #                                                          #
 ##%######################################################%##
 
+# Function useful for recoding all values of a column. The dataframe to join NEED to have just 1 column outside of keys!
+# Condition specified as ex:c("a" = "b")
+left_join_and_substitute <- function(df1, df2, old_name = T, by.cond = NULL) {
+  
+  if (is.null(by.cond)){ # If we have the same key on the two dfs
+    # Find the name of the column with the new values and key for which to join
+    new_values_var <- setdiff(names(df2), names(df1))
+    old_name_var <- intersect(names(df2), names(df1))
+    finaldf <- df1 %>%
+      left_join(df2)
+    
+    # Join and substitute the value of the key with the values of the column of the joined df.
+    # Drop the duplicate column.
+    helper_left_join_and_substitute(finaldf, old_name, new_values_var, old_name_var)
+    
+  } else {
+    # Find the name of the column with the new values and key of df1 for which to join
+    new_values_var <- setdiff(names(test2), by.cond[[1]])
+    old_name_var <- names(by.cond)
+    finaldf <- df1 %>%
+      left_join(df2, by = by.cond)
+    
+    helper_left_join_and_substitute(finaldf, old_name, new_values_var, old_name_var)
+  }
+}
+
+helper_left_join_and_substitute <- function(df_temp, keep_name, new_var, old_var) {
+  # Join and substitute the value of the key with the values of the column of the joined df.
+  # Drop the duplicate column.
+  if (keep_name){ #Keep the original variable name
+    df_temp %>%
+      mutate({{old_var}} := eval(parse(text = new_var)))%>%
+      select(-new_var)
+  } else { #Use df2 variable name
+    df_temp %>%
+      mutate({{new_var}} := eval(parse(text = new_var)))%>%
+      select(-old_var)
+  }
+}
+
 # Create vector of ids for the pages
 create_id_page <- function() {
   pokemon <- rcorpora::corpora("games/pokemon")$pokemon
   pokemon <- tolower(pokemon[pokemon$generation_id == "1",]$name)
+  moods <- tolower(rcorpora::corpora("humans/moods")$moods)
+  return(unique(ids::ids(200, moods, pokemon))[0:100])
+}
+
+# Create vector of ids for the objects/cells
+create_id_cells <- function() {
+  pokemon <- rcorpora::corpora("games/pokemon")$pokemon
+  pokemon <- tolower(pokemon[pokemon$generation_id == "2",]$name)
   moods <- tolower(rcorpora::corpora("humans/moods")$moods)
   return(unique(ids::ids(200, moods, pokemon))[0:100])
 }
@@ -27,6 +75,34 @@ create_vector_param_page <- function() {
   temp_vect <- as.character(as.vector(temp_df))
   names(temp_vect) <- names(temp_df)
   return(temp_vect)
+}
+
+create_complete_cell_attrs <- function() {
+  
+  cell_styles <- create_cell_styles_df() %>%
+    columns_to_style()
+  
+  arrow_styles <- create_arrow_styles_df() %>%
+    columns_to_style()
+  
+  object_arrow_attributes <- object_arrow_attributes %>%
+    left_join(arrow_styles, by = c("arrow_style" = "name_style")) %>%
+    select(-arrow_style )
+  
+  object_cell_attributes <- object_cell_attributes %>%
+    left_join(cell_styles, by = c("cell_style" = "name_style")) %>%
+    select(-cell_style )
+  
+  cell_arrows_attrs_tbl <- bind_rows(object_cell_attributes, object_arrow_attributes)
+  tbl_name_to_id <- cell_arrows_attrs_tbl %>%
+    select()
+  
+  
+  
+  id_page <- create_id_cells()
+  
+  return(temp_vect)
+  
 }
 
 # Create new document and root. Number of pages is a variable defined in the parameters.
@@ -52,9 +128,56 @@ create_xml_container <- function(pages){
     xml_set_attrs(xml_children(xml_children(test_xml))[length(xml_children(xml_children(test_xml)))], df_tags2)
     xml_add_child(xml_children(xml_children(test_xml)), "root")
     
+    create_xml_container(xml_children(xml_children(xml_children(test_xml))))
   }
   return(test_xml)
 }
+
+# Create the tibble for the cells attributes. It is initialize with two empty cells as foundation(requirements?)
+create_cell_attributes <- function(cstyles, astyles) {
+  temp_df <- tribble(
+    ~cell_name, ~destinations, ~cell_style,~label,~tags,~link,~placeholders,~tooltip,~shape,
+    #---------|--------------|------------|------|-----|-----|-------------|--------|------|
+        "base",            "",     "empty",    "",   "",   "",           "",      "",    "",
+       "start",            "",     "start",    "",   "",   "",           "",      "",    "",
+  )
+}
+
+# Create the tibble for the arrows attributes. Initialize empty
+create_arrow_attributes <- function(cstyles, astyles) {
+  temp_df <- tibble(label=character(),
+                    tags=character(),
+                    tooltip=character(),
+                    arrow_style=character(),
+                    source=character(),
+                    target=character())
+}
+
+
+
+
+
+create_xml_container <- function(root){
+  id_page <- create_id_page()
+  vect_vars_diagram <- c("id", "name")
+  
+  df_tags2 <- create_vector_param_page()
+  
+  for (page in 1:pages) {
+    
+    xml_add_child(test_xml, "diagram")
+    vect_values_diagram <- c(id_page[page], paste0("Page-", page))
+    names(vect_values_diagram) <- vect_vars_diagram
+    xml_set_attrs(xml_children(test_xml)[length(xml_children(test_xml))], vect_values_diagram)
+    
+    xml_add_child(xml_children(test_xml), "mxGraphModel")
+    xml_set_attrs(xml_children(xml_children(test_xml))[length(xml_children(xml_children(test_xml)))], df_tags2)
+    xml_add_child(xml_children(xml_children(test_xml)), "root")
+    
+  }
+  return(test_xml)
+}
+
 
 
 ##%######################################################%##
@@ -74,18 +197,20 @@ create_page_styles_df <- function() {
 
 create_arrow_styles_df <- function() {
   temp_df <- tribble(
-       ~name_style,~label,~style,~parent,~vertex,~html,~verticalAlign,~startArrow,~startFill,~endArrow,~startSize,~exitX,~exitY,~exitDx,~exitDy,~entryX,~entryY,~entryDx,~entryDy,           ~edgeStyle,    ~elbow,~curved,
-    #-------------|------|------|-------|-------|-----|--------------|-----------|----------|---------|----------|------|------|-------|-------|-------|-------|--------|--------|---------------------|----------|-------
-    "circle arrow",    "",    "",    "1",    "1",  "1",      "bottom",     "oval",         1,  "block",         8,     1,   0.5,      0,      0,      0,    0.5,       0,       0,"orthogonalEdgeStyle","vertical",      1
+       ~name_style,~style,~parent,~edge,~html,~verticalAlign,~startArrow,~startFill,~endArrow,~startSize,~exitX,~exitY,~exitDx,~exitDy,~entryX,~entryY,~entryDx,~entryDy,           ~edgeStyle,    ~elbow,~curved,
+    #-------------|------|-------|-----|-----|--------------|-----------|----------|---------|----------|------|------|-------|-------|-------|-------|--------|--------|---------------------|----------|-------
+    "circle arrow",    "",    "1",  "1",  "1",      "bottom",     "oval",         1,  "block",         8,     1,   0.5,      0,      0,      0,    0.5,       0,       0,"orthogonalEdgeStyle","vertical",      1
   )
 }
 
 create_cell_styles_df <- function() {
   temp_df <- tribble(
-    ~name_style,~label,~style,~parent,~edge,~html,~rounded,~whiteSpace,~fillColor,~strokeColor,~strokeWidth,~dashed,
-    #----------|------|------|-------|-----|--------|-----------|-----|----------|------------|------------|-------
-    "orange"   ,    "",    "",    "1",  "1",  "1",     "0",     "wrap", "#ffcc99",   "#36393d",          "",     "",
-    "yellow"   ,    "",    "",    "1",  "1",  "1",     "0",     "wrap", "#ffff88",   "#36393d",          "",     ""
+    ~name_style,~style,~parent,~vertex,~html,~rounded,~whiteSpace,~fillColor,~strokeColor,~strokeWidth,~dashed,
+    #----------|------|-------|-------|-----|--------|-----------|----------|------------|------------|-------
+        "empty",    "",     "",     "",   "",      "",         "",        "",          "",          "",     "",
+        "start",    "",    "0",     "",   "",      "",         "",        "",          "",          "",     "",
+       "orange",    "",    "1",    "1",  "1",     "0",     "wrap", "#ffcc99",   "#36393d",          "",     "",
+       "yellow",    "",    "1",    "1",  "1",     "0",     "wrap", "#ffff88",   "#36393d",          "",     ""
   )
 }
 
@@ -93,7 +218,7 @@ create_cell_styles_df <- function() {
 # create the style attribute which is a combination of the columns divided by ";"
 columns_to_style <- function(start_df) {
   # Drop final columns and retain the ones to combine. suppressWarnings otherwise one_of() throws a warning.
-  suppressWarnings(temp_df <- start_df %>% select(-c(name_style, label, style, parent, one_of("vertex", "edge"))))
+  suppressWarnings(temp_df <- start_df %>% select(-c(name_style, style, parent, one_of("vertex", "edge"))))
   # Split the df in a list of row
   temp_list <- split(temp_df, seq(nrow(temp_df)))
   # check which styles we need to keep
@@ -114,9 +239,18 @@ columns_to_style <- function(start_df) {
   } 
   # Keep only the column we need and modify the style with the values from the vector created above.
   start_df <- suppressWarnings(start_df %>%
-                                 select(name_style, label, style, parent, one_of("vertex", "edge")) %>%
+                                 select(name_style, style, parent, one_of("vertex", "edge")) %>%
                                  mutate(style = vect_temp))
 }
+
+object_cell_attributes <- create_cell_attributes() %>%
+  add_row(cell_name = "1cella", cell_style = "orange", label = "cella_arancione", tags = "cell1", link = "",
+          tooltip = "hey, this is the first tooltip", shape = "oval") %>%
+  add_row(cell_name = "2cella", cell_style = "yellow", label = "cella_gialla", tags = "cell2", link = "",
+          tooltip = "Now is the second tooltip", shape = "oval")
+
+object_arrow_attributes <- create_arrow_attributes() %>%
+  add_row(tags = "1tag 2tag", arrow_style = "circle arrow", source = "1cella", target = "2cella")
 
 ##%######################################################%##
 #                                                          #
@@ -126,11 +260,9 @@ columns_to_style <- function(start_df) {
 
 test_xml <- create_xml_container(2)
 
-test_cell <- create_cell_styles_df()
-test_arrow <- create_arrow_styles_df()
+# TODO apply the attribute in the datasets to the xml document
 
-test_cell <- test_cell %>% columns_to_style()
-test_arrow <- test_arrow %>% columns_to_style()
+
 
 # create a dataset with nodes/arrows relations (or two distinct dfs)
 # create a second dataset for the order of "layers" or create the one with relationships map already ordered

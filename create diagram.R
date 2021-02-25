@@ -65,7 +65,7 @@ create_id_cells <- function() {
 }
 
 # Call the creation of the df containing the styles of pages,
-# take the default (for now), exclude the name of the style
+# take the default style (for now), exclude the name of the style
 # transform the output to named character vector
 create_vector_param_page <- function() {
   temp_df <- create_page_styles_df() %>%
@@ -76,38 +76,46 @@ create_vector_param_page <- function() {
   return(temp_vect)
 }
 
-create_complete_cell_attrs <- function() {
+# Call the creation of the df containing the styles of cells and arrows,
+create_arrow_cell_attrs_tbl <- function() {
   
+  # Create the stiles df for both cells and arrows. Collapse the column to create the variable style
   cell_styles <- create_cell_styles_df() %>%
     columns_to_style()
-  
   arrow_styles <- create_arrow_styles_df() %>%
     columns_to_style()
   
+  # Substitute the style name from the user-defined cells/arrows with the variable associated with them
   object_arrow_attributes <- object_arrow_attributes %>%
     left_join(arrow_styles, by = c("arrow_style" = "name_style")) %>%
     select(-arrow_style )
-  
   object_cell_attributes <- object_cell_attributes %>%
     left_join(cell_styles, by = c("cell_style" = "name_style")) %>%
     select(-cell_style )
   
+  # Create vectors of ids for both cells and arrows 
   id_cell <- create_id_cells()
   nrow_obj_cell = nrow(object_cell_attributes)
+  id_cells <- id_cell[1:nrow_obj_cell]
   id_arrows <- id_cell[(nrow_obj_cell+1):(nrow_obj_cell+nrow(object_arrow_attributes))]
   
+  # Create a tbl. Take the user-defined cell name and link the cell-id to them
   tbl_name_to_id <- object_cell_attributes %>%
     select(cell_name) %>%
-    mutate(id = id_cell[1:nrow_obj_cell])
+    mutate(id = id_cells)
   
+  # Substitute the variable with the user-defined cell name with corresponding ids
   object_cell_attributes <- object_cell_attributes %>%
     left_join_and_substitute(tbl_name_to_id, old_name = F)
   
+  # Substitute the value, not the name, of the variables "source" and "target" with corresponding ids
+  # Add the ids for the arrows
   object_arrow_attributes <- object_arrow_attributes %>%
     left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("source" = "cell_name")) %>%
     left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("target" = "cell_name")) %>%
     mutate(id = id_arrows)
   
+  # Combine the two tbl
   cell_arrows_attrs_tbl <- bind_rows(object_cell_attributes, object_arrow_attributes)
   
   return(cell_arrows_attrs_tbl)

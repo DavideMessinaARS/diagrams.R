@@ -12,7 +12,6 @@ library(dplyr)
 # Function useful for recoding all values of a column. The dataframe to join NEED to have just 1 column outside of keys!
 # Condition specified as ex:c("a" = "b")
 left_join_and_substitute <- function(df1, df2, old_name = T, by.cond = NULL) {
-  
   if (is.null(by.cond)){ # If we have the same key on the two dfs
     # Find the name of the column with the new values and key for which to join
     new_values_var <- setdiff(names(df2), names(df1))
@@ -22,16 +21,16 @@ left_join_and_substitute <- function(df1, df2, old_name = T, by.cond = NULL) {
     
     # Join and substitute the value of the key with the values of the column of the joined df.
     # Drop the duplicate column.
-    helper_left_join_and_substitute(finaldf, old_name, new_values_var, old_name_var)
+    helper_left_join_and_substitute(finaldf, old_name, {{new_values_var}}, {{old_name_var}})
     
   } else {
     # Find the name of the column with the new values and key of df1 for which to join
-    new_values_var <- setdiff(names(test2), by.cond[[1]])
+    new_values_var <- setdiff(names(df2), by.cond[[1]])
     old_name_var <- names(by.cond)
     finaldf <- df1 %>%
       left_join(df2, by = by.cond)
     
-    helper_left_join_and_substitute(finaldf, old_name, new_values_var, old_name_var)
+    helper_left_join_and_substitute(finaldf, old_name, {{new_values_var}}, {{old_name_var}})
   }
 }
 
@@ -93,15 +92,25 @@ create_complete_cell_attrs <- function() {
     left_join(cell_styles, by = c("cell_style" = "name_style")) %>%
     select(-cell_style )
   
+  id_cell <- create_id_cells()
+  nrow_obj_cell = nrow(object_cell_attributes)
+  id_arrows <- id_cell[(nrow_obj_cell+1):(nrow_obj_cell+nrow(object_arrow_attributes))]
+  
+  tbl_name_to_id <- object_cell_attributes %>%
+    select(cell_name) %>%
+    mutate(id = id_cell[1:nrow_obj_cell])
+  
+  object_cell_attributes <- object_cell_attributes %>%
+    left_join_and_substitute(tbl_name_to_id, old_name = F)
+  
+  object_arrow_attributes <- object_arrow_attributes %>%
+    left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("source" = "cell_name")) %>%
+    left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("target" = "cell_name")) %>%
+    mutate(id = id_arrows)
+  
   cell_arrows_attrs_tbl <- bind_rows(object_cell_attributes, object_arrow_attributes)
-  tbl_name_to_id <- cell_arrows_attrs_tbl %>%
-    select()
   
-  
-  
-  id_page <- create_id_cells()
-  
-  return(temp_vect)
+  return(cell_arrows_attrs_tbl)
   
 }
 
@@ -258,7 +267,7 @@ object_arrow_attributes <- create_arrow_attributes() %>%
 #                                                          #
 ##%######################################################%##
 
-test_xml <- create_xml_container(2)
+# test_xml <- create_xml_container(2)
 
 # TODO apply the attribute in the datasets to the xml document
 
@@ -269,4 +278,4 @@ test_xml <- create_xml_container(2)
 
 # create a dataset containing links, tags, tooltip and other attributes (placeholders, shape, ...)
 
-write_xml(test_xml, "test r.xml")
+# write_xml(test_xml, "test r.xml")

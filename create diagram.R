@@ -112,6 +112,7 @@ create_arrow_cell_attrs_tbl <- function() {
   # Substitute the value, not the name, of the variables "source" and "target" with corresponding ids
   # Add the ids for the arrows
   object_arrow_attributes <- object_arrow_attributes %>%
+    left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("parent" = "cell_name")) %>%
     left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("source" = "cell_name")) %>%
     left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("target" = "cell_name")) %>%
     mutate(id = id_arrows)
@@ -169,6 +170,14 @@ create_xml_container <- function(pages){
       mxCell_attrs_named_row_filtered <- mxCell_attrs_tbl[i,] %>%
         select(which(mxCell_attrs_tbl[i,] != ""))
       mxCell_attrs_named_vector <- create_arrow_cell_attrs_list(mxCell_attrs_named_row_filtered)
+      
+      if (i %in% c(1,2)) {
+        combined_attributes <- c(object_attrs_named_vector, mxCell_attrs_named_vector)
+        xml_add_child(xml_children(xml_children(xml_children(test_xml))), "mxCell")
+        xml_set_attrs(xml_children(xml_children(xml_children(xml_children(test_xml))))[length(xml_children(xml_children(xml_children(xml_children(test_xml)))))], combined_attributes)
+        next
+      }
+      
       xml_add_child(xml_children(xml_children(xml_children(test_xml))), "object")
       xml_set_attrs(xml_children(xml_children(xml_children(xml_children(test_xml))))[length(xml_children(xml_children(xml_children(xml_children(test_xml)))))], object_attrs_named_vector)
       xml_add_child(xml_children(xml_children(xml_children(xml_children(test_xml))))[length(xml_children(xml_children(xml_children(xml_children(test_xml)))))], "mxCell")

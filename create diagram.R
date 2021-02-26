@@ -144,6 +144,7 @@ create_xml_container <- function(pages){
   
   vector_param_page <- create_vector_param_page()
   
+  # TODO need fix for page > 1
   for (page in 1:pages) {
     
     xml_add_child(test_xml, "diagram")
@@ -156,13 +157,15 @@ create_xml_container <- function(pages){
     xml_add_child(xml_children(xml_children(test_xml)), "root")
     
     arrow_cell_attrs_tbl <- create_arrow_cell_attrs_tbl()
-    
+
     object_attrs_tbl <- arrow_cell_attrs_tbl %>%
       select(any_of(c("label", "tags", "link", "placeholders", "tooltip", "shape", "id")))
+    mxGeometry_attrs_tbl <- arrow_cell_attrs_tbl %>%
+      select(any_of(c("x", "y", "width", "height", "relative", "as")))
     mxCell_attrs_tbl <- arrow_cell_attrs_tbl %>%
-      select(-any_of(c("label", "tags", "link", "placeholders", "tooltip", "shape", "id")))
+      select(-any_of(c("label", "tags", "link", "placeholders", "tooltip", "shape", "id",
+                       "x", "y", "width", "height", "relative", "as")))
     
-    # TODO divide object and cell attributes, maybe inside create_arrow_cell_attrs_tbl()
     for (i in 1:nrow(object_attrs_tbl)) {
       object_attrs_named_row_filtered <- object_attrs_tbl[i,] %>%
         select(which(object_attrs_tbl[i,] != ""))
@@ -170,6 +173,9 @@ create_xml_container <- function(pages){
       mxCell_attrs_named_row_filtered <- mxCell_attrs_tbl[i,] %>%
         select(which(mxCell_attrs_tbl[i,] != ""))
       mxCell_attrs_named_vector <- create_arrow_cell_attrs_list(mxCell_attrs_named_row_filtered)
+      mxGeometry_attrs_named_row_filtered <- mxGeometry_attrs_tbl[i,] %>%
+        select(which(mxGeometry_attrs_tbl[i,] != ""))
+      mxGeometry_attrs_named_vector <- create_arrow_cell_attrs_list(mxGeometry_attrs_named_row_filtered)
       
       if (i %in% c(1,2)) {
         combined_attributes <- c(object_attrs_named_vector, mxCell_attrs_named_vector)
@@ -182,6 +188,8 @@ create_xml_container <- function(pages){
       xml_set_attrs(xml_children(xml_children(xml_children(xml_children(test_xml))))[length(xml_children(xml_children(xml_children(xml_children(test_xml)))))], object_attrs_named_vector)
       xml_add_child(xml_children(xml_children(xml_children(xml_children(test_xml))))[length(xml_children(xml_children(xml_children(xml_children(test_xml)))))], "mxCell")
       xml_set_attrs(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml)))))[length(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml))))))], mxCell_attrs_named_vector)
+      xml_add_child(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml)))))[length(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml))))))], "mxGeometry")
+      xml_set_attrs(xml_children(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml))))))[length(xml_children(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml)))))))], mxGeometry_attrs_named_vector)
       
     }
   }
@@ -191,21 +199,24 @@ create_xml_container <- function(pages){
 # Create the tibble for the cells attributes. It is initialize with two empty cells as foundation(requirements?)
 create_cell_attributes <- function(cstyles, astyles) {
   temp_df <- tribble(
-    ~cell_name, ~cell_style,~label,~tags,~link,~placeholders,~tooltip,~shape,
-    #---------|------------|------|-----|-----|-------------|--------|------|
-           "0",     "empty",    "",   "",   "",           "",      "",    "",
-           "1",     "start",    "",   "",   "",           "",      "",    "",
+    ~cell_name, ~cell_style,~label,~tags,~link,~placeholders,~tooltip,~shape,~x,~y,~width,~height,~as,
+    #---------|------------|------|-----|-----|-------------|--------|------|--|--|------|-------|---|
+           "0",     "empty",    "",   "",   "",           "",      "",    "","","",    "",     "", "",
+           "1",     "start",    "",   "",   "",           "",      "",    "","","",    "",     "", ""
   )
 }
 
 # Create the tibble for the arrows attributes. Initialize empty
 create_arrow_attributes <- function(cstyles, astyles) {
-  temp_df <- tibble(label=character(),
-                    tags=character(),
-                    tooltip=character(),
-                    arrow_style=character(),
-                    source=character(),
-                    target=character())
+  temp_df <- tibble(label = character(),
+                    tags = character(),
+                    tooltip = character(),
+                    arrow_style = character(),
+                    source = character(),
+                    target = character(),
+                    width = character(),
+                    relative = character(),
+                    as = character())
 }
 
 ##%######################################################%##
@@ -278,14 +289,19 @@ columns_to_style <- function(start_df) {
                                  mutate(style = vect_temp))
 }
 
+# TODO add a default standard in case not specified style or a style_name
+
 object_cell_attributes <- create_cell_attributes() %>%
   add_row(cell_name = "1cella", cell_style = "orange", label = "cella_arancione", tags = "cell1", link = "",
-          tooltip = "hey, this is the first tooltip", shape = "oval") %>%
+          tooltip = "hey, this is the first tooltip", shape = "oval",
+          x = "80", y = "120", width = "120", height = "60", as = "geometry") %>%
   add_row(cell_name = "2cella", cell_style = "yellow", label = "cella_gialla", tags = "cell2", link = "",
-          tooltip = "Now is the second tooltip", shape = "oval")
+          tooltip = "Now is the second tooltip", shape = "oval",
+          x = "320", y = "40", width = "120", height = "60", as = "geometry")
 
 object_arrow_attributes <- create_arrow_attributes() %>%
-  add_row(tags = "1tag 2tag", arrow_style = "circle arrow", source = "1cella", target = "2cella")
+  add_row(tags = "1tag 2tag", arrow_style = "circle arrow", source = "1cella", target = "2cella",
+          width = "60", relative = "1", as = "geometry")
 
 ##%######################################################%##
 #                                                          #

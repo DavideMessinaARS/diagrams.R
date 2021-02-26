@@ -106,6 +106,7 @@ create_arrow_cell_attrs_tbl <- function() {
   
   # Substitute the variable with the user-defined cell name with corresponding ids
   object_cell_attributes <- object_cell_attributes %>%
+    left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("parent" = "cell_name")) %>%
     left_join_and_substitute(tbl_name_to_id, old_name = F)
   
   # Substitute the value, not the name, of the variables "source" and "target" with corresponding ids
@@ -154,16 +155,24 @@ create_xml_container <- function(pages){
     xml_add_child(xml_children(xml_children(test_xml)), "root")
     
     arrow_cell_attrs_tbl <- create_arrow_cell_attrs_tbl()
-    arrow_cell_attrs_rows <- split(arrow_cell_attrs_tbl, seq(nrow(arrow_cell_attrs_tbl)))
+    
+    object_attrs_tbl <- arrow_cell_attrs_tbl %>%
+      select(any_of(c("label", "tags", "link", "placeholders", "tooltip", "shape", "id")))
+    mxCell_attrs_tbl <- arrow_cell_attrs_tbl %>%
+      select(-any_of(c("label", "tags", "link", "placeholders", "tooltip", "shape", "id")))
     
     # TODO divide object and cell attributes, maybe inside create_arrow_cell_attrs_tbl()
-    
-    for (object in arrow_cell_attrs_rows) {
-      arrow_cell_attrs_list <- create_arrow_cell_attrs_list(object)
+    for (i in 1:nrow(object_attrs_tbl)) {
+      object_attrs_named_row_filtered <- object_attrs_tbl[i,] %>%
+        select(which(object_attrs_tbl[i,] != ""))
+      object_attrs_named_vector <- create_arrow_cell_attrs_list(object_attrs_named_row_filtered)
+      mxCell_attrs_named_row_filtered <- mxCell_attrs_tbl[i,] %>%
+        select(which(mxCell_attrs_tbl[i,] != ""))
+      mxCell_attrs_named_vector <- create_arrow_cell_attrs_list(mxCell_attrs_named_row_filtered)
       xml_add_child(xml_children(xml_children(xml_children(test_xml))), "object")
-      xml_set_attrs(xml_children(xml_children(xml_children(xml_children(test_xml))))[length(xml_children(xml_children(xml_children(xml_children(test_xml)))))], arrow_cell_attrs_list)
-      xml_add_child(xml_children(xml_children(xml_children(xml_children(test_xml)))), "mxCell")
-      xml_set_attrs(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml)))))[length(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml))))))], arrow_cell_attrs_list)
+      xml_set_attrs(xml_children(xml_children(xml_children(xml_children(test_xml))))[length(xml_children(xml_children(xml_children(xml_children(test_xml)))))], object_attrs_named_vector)
+      xml_add_child(xml_children(xml_children(xml_children(xml_children(test_xml))))[length(xml_children(xml_children(xml_children(xml_children(test_xml)))))], "mxCell")
+      xml_set_attrs(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml)))))[length(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml))))))], mxCell_attrs_named_vector)
       
     }
   }
@@ -173,10 +182,10 @@ create_xml_container <- function(pages){
 # Create the tibble for the cells attributes. It is initialize with two empty cells as foundation(requirements?)
 create_cell_attributes <- function(cstyles, astyles) {
   temp_df <- tribble(
-    ~cell_name, ~destinations, ~cell_style,~label,~tags,~link,~placeholders,~tooltip,~shape,
-    #---------|--------------|------------|------|-----|-----|-------------|--------|------|
-        "base",            "",     "empty",    "",   "",   "",           "",      "",    "",
-       "start",            "",     "start",    "",   "",   "",           "",      "",    "",
+    ~cell_name, ~cell_style,~label,~tags,~link,~placeholders,~tooltip,~shape,
+    #---------|------------|------|-----|-----|-------------|--------|------|
+           "0",     "empty",    "",   "",   "",           "",      "",    "",
+           "1",     "start",    "",   "",   "",           "",      "",    "",
   )
 }
 
@@ -227,6 +236,7 @@ create_cell_styles_df <- function() {
 # original dataset have the style attribute divide in multple columns for easier access
 # create the style attribute which is a combination of the columns divided by ";"
 columns_to_style <- function(start_df) {
+  
   # Drop final columns and retain the ones to combine. suppressWarnings otherwise one_of() throws a warning.
   suppressWarnings(temp_df <- start_df %>% select(-c(name_style, style, parent, one_of("vertex", "edge"))))
   # Split the df in a list of row
@@ -252,6 +262,7 @@ columns_to_style <- function(start_df) {
       }
     }
   } 
+  
   # Keep only the column we need and modify the style with the values from the vector created above.
   start_df <- suppressWarnings(start_df %>%
                                  select(name_style, style, parent, one_of("vertex", "edge")) %>%
@@ -273,7 +284,7 @@ object_arrow_attributes <- create_arrow_attributes() %>%
 #                                                          #
 ##%######################################################%##
 
-# test_xml <- create_xml_container(2)
+test_xml <- create_xml_container(1)
 
 # TODO apply the attribute in the datasets to the xml document
 
@@ -284,4 +295,4 @@ object_arrow_attributes <- create_arrow_attributes() %>%
 
 # create a dataset containing links, tags, tooltip and other attributes (placeholders, shape, ...)
 
-# write_xml(test_xml, "test r.xml")
+write_xml(test_xml, "test r.xml")

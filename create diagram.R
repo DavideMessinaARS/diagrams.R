@@ -77,7 +77,7 @@ create_vector_param_page <- function() {
 }
 
 # Call the creation of the df containing the styles of cells and arrows,
-create_arrow_cell_attrs_tbl <- function() {
+create_arrow_cell_attrs_tbl <- function(object_arrow_attributes, object_cell_attributes) {
   
   # Create the stiles df for both cells and arrows. Collapse the column to create the variable style
   cell_styles <- create_cell_styles_df() %>%
@@ -135,7 +135,24 @@ create_arrow_cell_attrs_list <- function(tbl_row) {
 # Create new document and root. Number of pages is a variable defined in the parameters.
 # TODO support for deciding styles
 # TODO support for different style for each page
-create_xml_container <- function(pages){
+create_diagram <- function(pages, ...){
+  
+  elements_list <- list(...)
+  object_cell_attributes <- create_cell_attributes()
+  object_arrow_attributes <- create_arrow_attributes()
+  for (i in seq_along(elements_list)) {
+    name_cell <- names(elements_list)
+    if (name_cell[i] != "") {
+      object_cell_attributes <- object_cell_attributes %>%
+        add_row(as_tibble(c(elements_list[[i]], "cell_name" = name_cell[i])))
+    } else {
+      object_arrow_attributes <- object_arrow_attributes %>%
+        add_row(as_tibble(elements_list[[i]]))
+    }
+    print(object_cell_attributes)
+    print(object_arrow_attributes)
+  }
+  
   test_xml <- xml_new_root("mxfile", host="Electron", modified="2021-02-12T20:24:28.529Z",
                            agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.1.8 Chrome/87.0.4280.88 Electron/11.1.1 Safari/537.36",
                            etag="fHMIuIajccZ_3DrzuGlE", version="14.1.8", type="device", pages = as.character(1))
@@ -156,7 +173,7 @@ create_xml_container <- function(pages){
     xml_set_attrs(xml_children(xml_children(test_xml))[length(xml_children(xml_children(test_xml)))], vector_param_page)
     xml_add_child(xml_children(xml_children(test_xml)), "root")
     
-    arrow_cell_attrs_tbl <- create_arrow_cell_attrs_tbl()
+    arrow_cell_attrs_tbl <- create_arrow_cell_attrs_tbl(object_arrow_attributes, object_cell_attributes)
 
     object_attrs_tbl <- arrow_cell_attrs_tbl %>%
       select(any_of(c("label", "tags", "link", "placeholders", "tooltip", "shape", "id")))
@@ -289,31 +306,27 @@ columns_to_style <- function(start_df) {
                                  mutate(style = vect_temp))
 }
 
-# TODO add a default standard in case not specified style or a style_name
-
-object_cell_attributes <- create_cell_attributes() %>%
-  add_row(cell_name = "1cella", cell_style = "orange", label = "cella_arancione", tags = "cell1", link = "",
-          tooltip = "hey, this is the first tooltip", shape = "oval",
-          x = "80", y = "120", width = "120", height = "60", as = "geometry") %>%
-  add_row(cell_name = "2cella", cell_style = "yellow", label = "cella_gialla", tags = "cell2", link = "",
-          tooltip = "Now is the second tooltip", shape = "oval",
-          x = "320", y = "40", width = "120", height = "60", as = "geometry")
-
-object_arrow_attributes <- create_arrow_attributes() %>%
-  add_row(tags = "1tag 2tag", arrow_style = "circle arrow", source = "1cella", target = "2cella",
-          width = "60", relative = "1", as = "geometry")
-
 ##%######################################################%##
 #                                                          #
 ####                   script to run                    ####
 #                                                          #
 ##%######################################################%##
 
-test_xml <- create_xml_container(1)
+# TODO add a default standard in case not specified style or a style_name
+
+test_xml <- create_diagram(
+  1,
+  cella1 = list(cell_style = "orange", label = "cella_arancione", tags = "cell1", link = "",
+          tooltip = "hey, this is the first tooltip", shape = "oval",
+          x = "80", y = "120", width = "120", height = "60", as = "geometry"),
+  cella2 = list(cell_style = "yellow", label = "cella_gialla", tags = "cell2", link = "",
+          tooltip = "Now is the second tooltip", shape = "oval",
+          x = "320", y = "40", width = "120", height = "60", as = "geometry"),
+  list(tags = "1tag 2tag", arrow_style = "circle arrow", source = "cella1", target = "cella2",
+       width = "60", relative = "1", as = "geometry")
+  )
 
 # TODO apply the attribute in the datasets to the xml document
-
-
 
 # create a dataset with nodes/arrows relations (or two distinct dfs)
 # create a second dataset for the order of "layers" or create the one with relationships map already ordered

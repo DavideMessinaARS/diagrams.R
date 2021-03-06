@@ -91,7 +91,8 @@ create_arrow_cell_attrs_tbl <- function(object_arrow_attributes, object_cell_att
     select(-arrow_style )
   object_cell_attributes <- object_cell_attributes %>%
     left_join(cell_styles, by = c("cell_style" = "name_style")) %>%
-    select(-cell_style )
+    mutate(shape = coalesce(shape.x, shape.y)) %>%
+    select(-c(cell_style, shape.x, shape.y))
   
   # Create vectors of ids for both cells and arrows 
   id_cell <- create_id_cells()
@@ -136,7 +137,6 @@ create_arrow_cell_attrs_list <- function(tbl_row) {
 # TODO support for deciding styles
 # TODO support for different style for each page
 create_diagram <- function(pages, ...){
-  
   elements_list <- list(...)
   object_cell_attributes <- create_cell_attributes()
   object_arrow_attributes <- create_arrow_attributes()
@@ -149,8 +149,6 @@ create_diagram <- function(pages, ...){
       object_arrow_attributes <- object_arrow_attributes %>%
         add_row(as_tibble(elements_list[[i]]))
     }
-    print(object_cell_attributes)
-    print(object_arrow_attributes)
   }
   
   test_xml <- xml_new_root("mxfile", host="Electron", modified="2021-02-12T20:24:28.529Z",
@@ -261,12 +259,12 @@ create_arrow_styles_df <- function() {
 
 create_cell_styles_df <- function() {
   temp_df <- tribble(
-    ~name_style,~style,~parent,~vertex,~html,~rounded,~whiteSpace,~fillColor,~strokeColor,~strokeWidth,~dashed,
-    #----------|------|-------|-------|-----|--------|-----------|----------|------------|------------|-------
-        "empty",    "",     "",     "",   "",      "",         "",        "",          "",          "",     "",
-        "start",    "",    "0",     "",   "",      "",         "",        "",          "",          "",     "",
-       "orange",    "",    "1",    "1",  "1",     "0",     "wrap", "#ffcc99",   "#36393d",          "",     "",
-       "yellow",    "",    "1",    "1",  "1",     "0",     "wrap", "#ffff88",   "#36393d",          "",     ""
+    ~name_style,~style,~parent,~vertex,~html,~rounded,~whiteSpace,~fillColor,~strokeColor,~strokeWidth,~dashed,~shape,
+    #----------|------|-------|-------|-----|--------|-----------|----------|------------|------------|-------|------
+        "empty",    "",     "",     "",   "",      "",         "",        "",          "",          "",     "",    "",
+        "start",    "",    "0",     "",   "",      "",         "",        "",          "",          "",     "",    "",
+       "orange",    "",    "1",    "1",  "1",     "0",     "wrap", "#ffcc99",   "#36393d",          "",     "","oval",
+       "yellow",    "",    "1",    "1",  "1",     "0",     "wrap", "#ffff88",   "#36393d",          "",     "","oval"
   )
 }
 
@@ -275,7 +273,7 @@ create_cell_styles_df <- function() {
 columns_to_style <- function(start_df) {
   
   # Drop final columns and retain the ones to combine. suppressWarnings otherwise one_of() throws a warning.
-  suppressWarnings(temp_df <- start_df %>% select(-c(name_style, style, parent, one_of("vertex", "edge"))))
+  temp_df <- start_df %>% select(-c(name_style, style, parent, any_of(c("vertex", "edge", "shape"))))
   # Split the df in a list of row
   temp_list <- split(temp_df, seq(nrow(temp_df)))
   # check which styles we need to keep
@@ -302,7 +300,7 @@ columns_to_style <- function(start_df) {
   
   # Keep only the column we need and modify the style with the values from the vector created above.
   start_df <- suppressWarnings(start_df %>%
-                                 select(name_style, style, parent, one_of("vertex", "edge")) %>%
+                                 select(name_style, style, parent, one_of(c("vertex", "edge", "shape"))) %>%
                                  mutate(style = vect_temp))
 }
 
@@ -317,10 +315,10 @@ columns_to_style <- function(start_df) {
 test_xml <- create_diagram(
   1,
   cella1 = list(cell_style = "orange", label = "cella_arancione", tags = "cell1", link = "",
-          tooltip = "hey, this is the first tooltip", shape = "oval",
+          tooltip = "hey, this is the first tooltip",
           x = "80", y = "120", width = "120", height = "60", as = "geometry"),
   cella2 = list(cell_style = "yellow", label = "cella_gialla", tags = "cell2", link = "",
-          tooltip = "Now is the second tooltip", shape = "oval",
+          tooltip = "Now is the second tooltip",
           x = "320", y = "40", width = "120", height = "60", as = "geometry"),
   list(tags = "1tag 2tag", arrow_style = "circle arrow", source = "cella1", target = "cella2",
        width = "60", relative = "1", as = "geometry")

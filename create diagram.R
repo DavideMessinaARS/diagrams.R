@@ -88,7 +88,10 @@ create_arrow_cell_attrs_tbl <- function(object_arrow_attributes, object_cell_att
   # Substitute the style name from the user-defined cells/arrows with the variable associated with them
   object_arrow_attributes <- object_arrow_attributes %>%
     left_join(arrow_styles, by = c("arrow_style" = "name_style")) %>%
-    select(-arrow_style )
+    mutate(width = coalesce(width.x, width.y),
+           relative = coalesce(relative.x, relative.y),
+           as = coalesce(as.x, as.y))  %>%
+    select(-c(arrow_style, width.x, width.y, relative.x, relative.y, as.x, as.y))
   object_cell_attributes <- object_cell_attributes %>%
     left_join(cell_styles, by = c("cell_style" = "name_style")) %>%
     mutate(shape = coalesce(shape.x, shape.y),
@@ -254,9 +257,9 @@ create_page_styles_df <- function() {
 
 create_arrow_styles_df <- function() {
   temp_df <- tribble(
-       ~name_style,~style,~parent,~edge,~html,~verticalAlign,~startArrow,~startFill,~endArrow,~startSize,~exitX,~exitY,~exitDx,~exitDy,~entryX,~entryY,~entryDx,~entryDy,           ~edgeStyle,    ~elbow,~curved,
-    #-------------|------|-------|-----|-----|--------------|-----------|----------|---------|----------|------|------|-------|-------|-------|-------|--------|--------|---------------------|----------|-------
-    "circle arrow",    "",    "1",  "1",  "1",      "bottom",     "oval",         1,  "block",         8,     1,   0.5,      0,      0,      0,    0.5,       0,       0,"orthogonalEdgeStyle","vertical",      1
+       ~name_style,~style,~parent,~edge,~html,~verticalAlign,~startArrow,~startFill,~endArrow,~startSize,~exitX,~exitY,~exitDx,~exitDy,~entryX,~entryY,~entryDx,~entryDy,           ~edgeStyle,    ~elbow,~curved,~width,~relative,      ~as,
+    #-------------|------|-------|-----|-----|--------------|-----------|----------|---------|----------|------|------|-------|-------|-------|-------|--------|--------|---------------------|----------|-------|------|---------|----------
+    "circle arrow",    "",    "1",  "1",  "1",      "bottom",     "oval",         1,  "block",         8,     1,   0.5,      0,      0,      0,    0.5,       0,       0,"orthogonalEdgeStyle","vertical",      1,  "60",      "1","geometry"
   )
 }
 
@@ -276,7 +279,7 @@ create_cell_styles_df <- function() {
 columns_to_style <- function(start_df) {
   
   # Drop final columns and retain the ones to combine. suppressWarnings otherwise one_of() throws a warning.
-  temp_df <- start_df %>% select(-c(name_style, style, parent, any_of(c("vertex", "edge", "shape", "width", "height", "as"))))
+  temp_df <- start_df %>% select(-c(name_style, style, parent, any_of(c("vertex", "edge", "shape", "width", "height", "as", "relative"))))
   # Split the df in a list of row
   temp_list <- split(temp_df, seq(nrow(temp_df)))
   # check which styles we need to keep
@@ -303,7 +306,7 @@ columns_to_style <- function(start_df) {
   
   # Keep only the column we need and modify the style with the values from the vector created above.
   start_df <- suppressWarnings(start_df %>%
-                                 select(name_style, style, parent, one_of(c("vertex", "edge", "shape", "width", "height", "as"))) %>%
+                                 select(name_style, style, parent, one_of(c("vertex", "edge", "shape", "width", "height", "as", "relative"))) %>%
                                  mutate(style = vect_temp))
 }
 
@@ -317,12 +320,9 @@ columns_to_style <- function(start_df) {
 
 test_xml <- create_diagram(
   1,
-  cella1 = list(cell_style = "orange", label = "cella_arancione", tags = "cell1", link = "",
-          tooltip = "hey, this is the first tooltip", x = "80", y = "120"),
-  cella2 = list(cell_style = "yellow", label = "cella_gialla", tags = "cell2", link = "",
-          tooltip = "Now is the second tooltip", x = "320", y = "40"),
-  list(tags = "1tag 2tag", arrow_style = "circle arrow", source = "cella1", target = "cella2",
-       width = "60", relative = "1", as = "geometry")
+  cella1 = list(cell_style = "orange", label = "cella_arancione", tags = "cell1", link = "", x = "80", y = "120"),
+  cella2 = list(cell_style = "yellow", label = "cella_gialla", tags = "cell2", link = "", x = "320", y = "40"),
+  list(tags = "1tag 2tag", arrow_style = "circle arrow", source = "cella1", target = "cella2")
   )
 
 # TODO apply the attribute in the datasets to the xml document

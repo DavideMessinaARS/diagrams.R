@@ -189,13 +189,13 @@ create_diagram <- function(pages, ...){
     
     for (i in 1:nrow(object_attrs_tbl)) {
       object_attrs_named_row_filtered <- object_attrs_tbl[i,] %>%
-        select(which(object_attrs_tbl[i,] != ""))
+        select(which(object_attrs_tbl[i,] != "" | is.null(object_attrs_tbl[i,])))
       object_attrs_named_vector <- create_arrow_cell_attrs_list(object_attrs_named_row_filtered)
       mxCell_attrs_named_row_filtered <- mxCell_attrs_tbl[i,] %>%
-        select(which(mxCell_attrs_tbl[i,] != ""))
+        select(which(mxCell_attrs_tbl[i,] != "" | is.null(mxCell_attrs_tbl[i,])))
       mxCell_attrs_named_vector <- create_arrow_cell_attrs_list(mxCell_attrs_named_row_filtered)
       mxGeometry_attrs_named_row_filtered <- mxGeometry_attrs_tbl[i,] %>%
-        select(which(mxGeometry_attrs_tbl[i,] != ""))
+        select(which(mxGeometry_attrs_tbl[i,] != "" | is.null(mxGeometry_attrs_tbl[i,])))
       mxGeometry_attrs_named_vector <- create_arrow_cell_attrs_list(mxGeometry_attrs_named_row_filtered)
       
       if (i %in% c(1,2)) {

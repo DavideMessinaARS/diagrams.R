@@ -1,6 +1,7 @@
 library(xml2)
 library(tibble)
 library(dplyr)
+library(magrittr)
 
 
 ##%######################################################%##
@@ -142,20 +143,49 @@ create_arrow_cell_attrs_list <- function(tbl_row) {
 # Create new document and root. Number of pages is a variable defined in the parameters.
 # TODO support for deciding styles
 # TODO support for different style for each page
-create_diagram <- function(pages, ...){
-  elements_list <- list(...)
+create_diagram <- function(cell_list, pages, arrows_style, direction){
   object_cell_attributes <- create_cell_attributes()
   object_arrow_attributes <- create_arrow_attributes()
-  for (i in seq_along(elements_list)) {
-    name_cell <- names(elements_list)
-    if (name_cell[i] != "") {
-      object_cell_attributes <- object_cell_attributes %>%
-        add_row(as_tibble(c(elements_list[[i]], "cell_name" = name_cell[i])))
-    } else {
-      object_arrow_attributes <- object_arrow_attributes %>%
-        add_row(as_tibble(elements_list[[i]]))
+  for (elem in cell_list) {
+    if (elem$input != "") {
+      for (cell in elem$input[[1]]) {
+        object_arrow_attributes <- object_arrow_attributes %>%
+          add_row(as_tibble(list(arrow_style = arrows_style, source = cell, target = elem$cell_name)))
+      }
     }
+    if (elem$output != "") {
+      for (cell in elem$output[[1]]) {
+        object_arrow_attributes <- object_arrow_attributes %>%
+          add_row(as_tibble(list(arrow_style = arrows_style, source = elem$cell_name, target = cell)))
+      }
+    }
+    
+    elem[["output"]] <- NULL
+    elem[["input"]] <- NULL
+    object_cell_attributes <- object_cell_attributes %>%
+      dplyr::add_row(as_tibble(elem))
+    
+    #TODO create tags from complete arrows dataset
+    
+    # name_cell <- names(elements_list)
+    # if (name_cell[i] != "") {
+    #   object_cell_attributes <- object_cell_attributes %>%
+    #     add_row(as_tibble(c(elements_list[[i]], "cell_name" = name_cell[i])))
+    # } else {
+    #   object_arrow_attributes <- object_arrow_attributes %>%
+    #     add_row(as_tibble(elements_list[[i]]))
+    # }
   }
+  
+  object_cell_tags <- object_cell_attributes %>%
+    dplyr::select(cell_name, tags) %>%
+    dplyr::rename(tag = tags)
+  
+  object_arrow_attributes <- object_arrow_attributes %>%
+    dplyr::left_join(object_cell_tags, by = c("source" = "cell_name")) %>%
+    dplyr::left_join(object_cell_tags, by = c("target" = "cell_name")) %>%
+    dplyr::mutate(tags = paste(tag.x, tag.y, sep = " ")) %>%
+    dplyr::select(-c(tag.x, tag.y))
   
   test_xml <- xml_new_root("mxfile", host="Electron", modified="2021-02-12T20:24:28.529Z",
                            agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.1.8 Chrome/87.0.4280.88 Electron/11.1.1 Safari/537.36",
@@ -219,26 +249,27 @@ create_diagram <- function(pages, ...){
 
 # Create the tibble for the cells attributes. It is initialize with two empty cells as foundation(requirements?)
 create_cell_attributes <- function(cstyles, astyles) {
-  temp_df <- tribble(
-    ~cell_name, ~cell_style,~label,~tags,~link,~placeholders,~tooltip,~shape,~x,~y,~width,~height,~as,
-    #---------|------------|------|-----|-----|-------------|--------|------|--|--|------|-------|---|
-           "0",     "empty",    "",   "",   "",           "",      "",    "","","",    "",     "", "",
-           "1",     "start",    "",   "",   "",           "",      "",    "","","",    "",     "", ""
+  temp_df <- tibble::tribble(
+    ~cell_name, ~cell_style,~label,~tags,~link,~placeholders,~tooltip,~shape,~x,~y,~width,~height,~as,~rank,
+    #---------|------------|------|-----|-----|-------------|--------|------|--|--|------|-------|---|-----|
+           "0",     "empty",    "",   "",   "",           "",      "",    "","","",    "",     "", "",   NA,
+           "1",     "start",    "",   "",   "",           "",      "",    "","","",    "",     "", "",   NA
   )
 }
 
 # Create the tibble for the arrows attributes. Initialize empty
 create_arrow_attributes <- function(cstyles, astyles) {
-  temp_df <- tibble(label = character(),
-                    tags = character(),
-                    tooltip = character(),
-                    arrow_style = character(),
-                    source = character(),
-                    target = character(),
-                    width = character(),
-                    relative = character(),
-                    as = character())
+  temp_df <- tibble::tibble(label = character(),
+                            tags = character(),
+                            tooltip = character(),
+                            arrow_style = character(),
+                            source = character(),
+                            target = character(),
+                            width = character(),
+                            relative = character(),
+                            as = character())
 }
+
 
 ##%######################################################%##
 #                                                          #
@@ -248,7 +279,7 @@ create_arrow_attributes <- function(cstyles, astyles) {
 
 # create styles and default values in multiple datasets (some parameter might be eliminated altogether, for example arrow width)
 create_page_styles_df <- function() {
-  temp_df <- tribble(
+  temp_df <- tibble::tribble(
     ~name_style,   ~dx,  ~dy,~grid,~gridSize,~guides,~tooltips,~connect,~arrows,~fold,~page,~pageScale,~pageWidth,~pageHeight,~math,~shadow,
     #----------|------|-----|-----|---------|-------|---------|--------|-------|-----|-----|----------|----------|-----------|-----|-------
     "default"  ,"1086","846",  "1",     "10",    "1",      "1",     "1",    "1",  "1",  "1",       "1",     "850",     "1100",  "0",    "0"
@@ -256,7 +287,7 @@ create_page_styles_df <- function() {
 }
 
 create_arrow_styles_df <- function() {
-  temp_df <- tribble(
+  temp_df <- tibble::tribble(
        ~name_style,~style,~parent,~edge,~html,~verticalAlign,~startArrow,~startFill,~endArrow,~startSize,~exitX,~exitY,~exitDx,~exitDy,~entryX,~entryY,~entryDx,~entryDy,           ~edgeStyle,    ~elbow,~curved,~width,~relative,      ~as,
     #-------------|------|-------|-----|-----|--------------|-----------|----------|---------|----------|------|------|-------|-------|-------|-------|--------|--------|---------------------|----------|-------|------|---------|----------
     "circle arrow",    "",    "1",  "1",  "1",      "bottom",     "oval",         1,  "block",         8,     1,   0.5,      0,      0,      0,    0.5,       0,       0,"orthogonalEdgeStyle","vertical",      1,  "60",      "1","geometry"
@@ -264,7 +295,7 @@ create_arrow_styles_df <- function() {
 }
 
 create_cell_styles_df <- function() {
-  temp_df <- tribble(
+  temp_df <- tibble::tribble(
     ~name_style,~style,~parent,~vertex,~html,~rounded,~whiteSpace,~fillColor,~strokeColor,~strokeWidth,~dashed,~shape,~width,~height,       ~as,
     #----------|------|-------|-------|-----|--------|-----------|----------|------------|------------|-------|------|------|-------|-----------
         "empty",    "",     "",     "",   "",      "",         "",        "",          "",          "",     "",    "",    "",     "",        "",
@@ -318,12 +349,30 @@ columns_to_style <- function(start_df) {
 
 # TODO add a default standard in case not specified style or a style_name
 
-test_xml <- create_diagram(
-  1,
-  cella1 = list(cell_style = "orange", label = "cella_arancione", tags = "cell1", link = "", x = "80", y = "120"),
-  cella2 = list(cell_style = "yellow", label = "cella_gialla", tags = "cell2", link = "", x = "320", y = "40"),
-  list(tags = "1tag 2tag", arrow_style = "circle arrow", source = "cella1", target = "cella2")
-  )
+# test_xml <- create_diagram(
+#   1,
+#   cella1 = list(cell_style = "orange", label = "cella_arancione", tags = "cell1", link = "", x = "80", y = "120"),
+#   cella2 = list(cell_style = "yellow", label = "cella_gialla", tags = "cell2", link = "", x = "320", y = "40"),
+#   list(tags = "1tag 2tag", arrow_style = "circle arrow", source = "cella1", target = "cella2")
+#   )
+
+createCell <- function(cell_name, cell_style = "", label = "", tags = "", link = "", x = "", y = "", rank = 1, input = "", output = "") {
+  return(list(cell_name = cell_name, cell_style = cell_style, label = label, tags = tags,
+              link = link, x = x, y = y, rank = rank, input = list(input), output = list(output)))
+}
+
+cella1 <- createCell("cella1", cell_style = "orange", label = "cella_arancione1", tags = "cell1 test", link = "", rank = 1)
+cella2 <- createCell("cella2", cell_style = "orange", label = "cella_arancione2", tags = "cell2", link = "", rank = 1)
+cella3 <- createCell("cella3", cell_style = "yellow", label = "cella_gialla", tags = "cell3", link = "",
+                     rank = 2, input = c("cella1", "cella2"), output = c("cella4", "cella5"))
+cella4 <- createCell("cella4", cell_style = "orange", label = "cella_arancione3", tags = "cell4", link = "", rank = 3)
+cella5 <- createCell("cella5", cell_style = "orange", label = "cella_arancione4", tags = "cell5 aaa", link = "", rank = 3)
+
+cell_list <- list(cella1, cella2, cella3, cella4, cella5)
+pages <- 1
+arrows_style <- "circle arrow"
+
+test_xml <- create_diagram(cell_list, pages, arrows_style, "TB")
 
 # TODO apply the attribute in the datasets to the xml document
 

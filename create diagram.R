@@ -185,18 +185,23 @@ create_diagram <- function(cell_list, pages, arrows_style, direction){
     dplyr::mutate(tags = paste(tag.x, tag.y, sep = " ")) %>%
     dplyr::select(-c(tag.x, tag.y))
   
+  part2_object_cell_attributes <- object_cell_attributes %>%
+    filter(!cell_style %in% c("empty", "start"))
   if (direction == "TB") {
-    part2_object_cell_attributes <- object_cell_attributes %>%
-      filter(!cell_style %in% c("empty", "start")) %>%
+    part2_object_cell_attributes <- part2_object_cell_attributes %>%
       mutate(y = level * 100) %>%
       group_by(level) %>%
       mutate(x = row_number() * 200 - 100)
   } else if (direction == "LR") {
     part2_object_cell_attributes <- object_cell_attributes %>%
-      filter(!cell_style %in% c("empty", "start")) %>%
       mutate(x = level * 200 - 100) %>%
       group_by(level) %>%
       mutate(y = row_number() * 100)
+  } else if (direction == "RL") {
+    part2_object_cell_attributes <- object_cell_attributes %>%
+      mutate(x = level * -200 + 100) %>%
+      group_by(level) %>%
+      mutate(y = row_number() * -100)
   }
   
   object_cell_attributes <- object_cell_attributes %>%
@@ -390,7 +395,7 @@ cell_list <- list(cella1, cella2, cella3, cella4, cella5)
 pages <- 1
 arrows_style <- "circle arrow"
 
-test_xml <- create_diagram(cell_list, pages, arrows_style, "TB")
+test_xml <- create_diagram(cell_list, pages, arrows_style, "RL")
 
 # TODO apply the attribute in the datasets to the xml document
 

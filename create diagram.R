@@ -165,8 +165,6 @@ create_diagram <- function(cell_list, pages, arrows_style, direction){
     object_cell_attributes <- object_cell_attributes %>%
       dplyr::add_row(as_tibble(elem))
     
-    #TODO create tags from complete arrows dataset
-    
     # name_cell <- names(elements_list)
     # if (name_cell[i] != "") {
     #   object_cell_attributes <- object_cell_attributes %>%
@@ -186,6 +184,26 @@ create_diagram <- function(cell_list, pages, arrows_style, direction){
     dplyr::left_join(object_cell_tags, by = c("target" = "cell_name")) %>%
     dplyr::mutate(tags = paste(tag.x, tag.y, sep = " ")) %>%
     dplyr::select(-c(tag.x, tag.y))
+  
+  if (direction == "TB") {
+    part2_object_cell_attributes <- object_cell_attributes %>%
+      filter(!cell_style %in% c("empty", "start")) %>%
+      mutate(y = level * 100) %>%
+      group_by(level) %>%
+      mutate(x = row_number() * 200 - 100)
+  } else if (direction == "LR") {
+    part2_object_cell_attributes <- object_cell_attributes %>%
+      filter(!cell_style %in% c("empty", "start")) %>%
+      mutate(x = level * 200 - 100) %>%
+      group_by(level) %>%
+      mutate(y = row_number() * 100)
+  }
+  
+  object_cell_attributes <- object_cell_attributes %>%
+    filter(cell_style %in% c("empty", "start")) %>%
+    rbind(part2_object_cell_attributes) %>%
+    select(-level)
+  
   
   test_xml <- xml_new_root("mxfile", host="Electron", modified="2021-02-12T20:24:28.529Z",
                            agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.1.8 Chrome/87.0.4280.88 Electron/11.1.1 Safari/537.36",
@@ -250,10 +268,10 @@ create_diagram <- function(cell_list, pages, arrows_style, direction){
 # Create the tibble for the cells attributes. It is initialize with two empty cells as foundation(requirements?)
 create_cell_attributes <- function(cstyles, astyles) {
   temp_df <- tibble::tribble(
-    ~cell_name, ~cell_style,~label,~tags,~link,~placeholders,~tooltip,~shape,~x,~y,~width,~height,~as,~rank,
-    #---------|------------|------|-----|-----|-------------|--------|------|--|--|------|-------|---|-----|
-           "0",     "empty",    "",   "",   "",           "",      "",    "","","",    "",     "", "",   NA,
-           "1",     "start",    "",   "",   "",           "",      "",    "","","",    "",     "", "",   NA
+    ~cell_name, ~cell_style,~label,~tags,~link,~placeholders,~tooltip,~shape,~x,~y,~width,~height,~as,~level,
+    #---------|------------|------|-----|-----|-------------|--------|------|--|--|------|-------|---|------|
+           "0",     "empty",    "",   "",   "",           "",      "",    "","","",    "",     "", "",    NA,
+           "1",     "start",    "",   "",   "",           "",      "",    "","","",    "",     "", "",    NA
   )
 }
 
@@ -356,17 +374,17 @@ columns_to_style <- function(start_df) {
 #   list(tags = "1tag 2tag", arrow_style = "circle arrow", source = "cella1", target = "cella2")
 #   )
 
-createCell <- function(cell_name, cell_style = "", label = "", tags = "", link = "", x = "", y = "", rank = 1, input = "", output = "") {
+createCell <- function(cell_name, cell_style = "", label = "", tags = "", link = "", x = "", y = "", level = 1, input = "", output = "") {
   return(list(cell_name = cell_name, cell_style = cell_style, label = label, tags = tags,
-              link = link, x = x, y = y, rank = rank, input = list(input), output = list(output)))
+              link = link, x = x, y = y, level = level, input = list(input), output = list(output)))
 }
 
-cella1 <- createCell("cella1", cell_style = "orange", label = "cella_arancione1", tags = "cell1 test", link = "", rank = 1)
-cella2 <- createCell("cella2", cell_style = "orange", label = "cella_arancione2", tags = "cell2", link = "", rank = 1)
+cella1 <- createCell("cella1", cell_style = "orange", label = "cella_arancione1", tags = "cell1 test", link = "", level = 1)
+cella2 <- createCell("cella2", cell_style = "orange", label = "cella_arancione2", tags = "cell2", link = "", level = 1)
 cella3 <- createCell("cella3", cell_style = "yellow", label = "cella_gialla", tags = "cell3", link = "",
-                     rank = 2, input = c("cella1", "cella2"), output = c("cella4", "cella5"))
-cella4 <- createCell("cella4", cell_style = "orange", label = "cella_arancione3", tags = "cell4", link = "", rank = 3)
-cella5 <- createCell("cella5", cell_style = "orange", label = "cella_arancione4", tags = "cell5 aaa", link = "", rank = 3)
+                     level = 2, input = c("cella1", "cella2"), output = c("cella4", "cella5"))
+cella4 <- createCell("cella4", cell_style = "orange", label = "cella_arancione3", tags = "cell4", link = "", level = 3)
+cella5 <- createCell("cella5", cell_style = "orange", label = "cella_arancione4", tags = "cell5 aaa", link = "", level = 3)
 
 cell_list <- list(cella1, cella2, cella3, cella4, cella5)
 pages <- 1

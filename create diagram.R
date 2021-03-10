@@ -78,12 +78,27 @@ create_vector_param_page <- function() {
 }
 
 # Call the creation of the df containing the styles of cells and arrows,
-create_arrow_cell_attrs_tbl <- function(object_arrow_attributes, object_cell_attributes) {
+create_arrow_cell_attrs_tbl <- function(object_arrow_attributes, object_cell_attributes, direction) {
   
   # Create the stiles df for both cells and arrows. Collapse the column to create the variable style
+  if (direction == "TB") {
+    outX <- inX <- "0.5"
+    outY <- "1"
+    inY <- "0"
+  } else if (direction == "LR") {
+    outX <- "1"
+    inX <- "0"
+    outY <- inY <- "0.5"
+  } else if (direction == "RL") {
+    outX <- "0"
+    inX <- "1"
+    outY <- inY <- "0.5"
+  }
+  
   cell_styles <- create_cell_styles_df() %>%
     columns_to_style()
   arrow_styles <- create_arrow_styles_df() %>%
+    mutate(exitX = outX, exitY = outY, entryX = inX, entryY = inY) %>%
     columns_to_style()
   
   # Substitute the style name from the user-defined cells/arrows with the variable associated with them
@@ -193,15 +208,15 @@ create_diagram <- function(cell_list, pages, arrows_style, direction){
       group_by(level) %>%
       mutate(x = row_number() * 200 - 100)
   } else if (direction == "LR") {
-    part2_object_cell_attributes <- object_cell_attributes %>%
+    part2_object_cell_attributes <- part2_object_cell_attributes %>%
       mutate(x = level * 200 - 100) %>%
       group_by(level) %>%
       mutate(y = row_number() * 100)
   } else if (direction == "RL") {
-    part2_object_cell_attributes <- object_cell_attributes %>%
+    part2_object_cell_attributes <- part2_object_cell_attributes %>%
       mutate(x = level * -200 + 100) %>%
       group_by(level) %>%
-      mutate(y = row_number() * -100)
+      mutate(y = row_number() * 100)
   }
   
   object_cell_attributes <- object_cell_attributes %>%
@@ -230,7 +245,7 @@ create_diagram <- function(cell_list, pages, arrows_style, direction){
     xml_set_attrs(xml_children(xml_children(test_xml))[length(xml_children(xml_children(test_xml)))], vector_param_page)
     xml_add_child(xml_children(xml_children(test_xml)), "root")
 
-    arrow_cell_attrs_tbl <- create_arrow_cell_attrs_tbl(object_arrow_attributes, object_cell_attributes)
+    arrow_cell_attrs_tbl <- create_arrow_cell_attrs_tbl(object_arrow_attributes, object_cell_attributes, direction)
 
     object_attrs_tbl <- arrow_cell_attrs_tbl %>%
       select(any_of(c("label", "tags", "link", "placeholders", "tooltip", "shape", "id")))
@@ -315,6 +330,7 @@ create_arrow_styles_df <- function() {
     #-------------|------|-------|-----|-----|--------------|-----------|----------|---------|----------|------|------|-------|-------|-------|-------|--------|--------|---------------------|----------|-------|------|---------|----------
     "circle arrow",    "",    "1",  "1",  "1",      "bottom",     "oval",         1,  "block",         8,     1,   0.5,      0,      0,      0,    0.5,       0,       0,"orthogonalEdgeStyle","vertical",      1,  "60",      "1","geometry"
   )
+  return(temp_df)
 }
 
 create_cell_styles_df <- function() {
@@ -326,6 +342,7 @@ create_cell_styles_df <- function() {
        "orange",    "",    "1",    "1",  "1",     "0",     "wrap", "#ffcc99",   "#36393d",          "",     "","oval", "120",   "60","geometry",
        "yellow",    "",    "1",    "1",  "1",     "0",     "wrap", "#ffff88",   "#36393d",          "",     "","oval", "120",   "60","geometry"
   )
+  return(temp_df)
 }
 
 # original dataset have the style attribute divide in multple columns for easier access
@@ -395,7 +412,7 @@ cell_list <- list(cella1, cella2, cella3, cella4, cella5)
 pages <- 1
 arrows_style <- "circle arrow"
 
-test_xml <- create_diagram(cell_list, pages, arrows_style, "RL")
+test_xml <- create_diagram(cell_list, pages, arrows_style, "TB")
 
 # TODO apply the attribute in the datasets to the xml document
 

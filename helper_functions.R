@@ -60,7 +60,53 @@ as.named.vector <- function(temp_df) {
 # exclude the name of the style and transform the output to named character vector
 create_vector_param_page <- function() {
   temp_df <- create_page_styles_df() %>%
-    filter(name_style == "default") %>%
-    select(-name_style)
+    dplyr::filter(name_style == "default") %>%
+    dplyr::select(-name_style)
   return(as.named.vector(temp_df))
+}
+
+# original dataset have the style attribute divide in multple columns for easier access
+# create the style attribute which is a combination of the columns divided by ";"
+columns_to_style <- function(start_df) {
+  
+  # Drop final columns and retain the ones to combine. suppressWarnings otherwise one_of() throws a warning.
+  temp_df <- start_df %>%
+    dplyr::select(-c(name_style, style, parent,
+                     any_of(c("vertex", "edge", "shape", "width", "height", "as", "relative"))))
+  
+  # Split the df in a list of row
+  temp_list <- split(temp_df, seq(nrow(temp_df)))
+  
+  # check which styles we need to keep
+  has_style <- start_df$style != ""
+  
+  # Combine the column values and names in a string. Put the strings in a vector.
+  vect_temp <- c()
+  for (i in seq_along(temp_list)) {
+    # If row already have a style do not overwrite it with the other value from dfs
+    # TODO overwrite style in case of value given by user directly in command (probably later with str_detect)
+    if (has_style[[i]])  {
+      
+      vect_temp <- append(vect_temp, start_df$style[[i]])
+      
+    } else {
+      
+      temp_list[[i]] <- temp_list[[i]] %>%
+        dplyr::select(which(temp_list[[i]] != ""))
+      collapse_string = paste0(names(temp_list[[i]]), "=", temp_list[[i]], collapse = ";")
+      
+      if (collapse_string != "=") {
+        vect_temp <- append(vect_temp, paste0(collapse_string, ";"))
+      } else {
+        vect_temp <- append(vect_temp, start_df$style[[i]])
+      }
+      
+    }
+  } 
+  
+  # Keep only the column we need and modify the style with the values from the vector created above.
+  start_df <- suppressWarnings(start_df %>%
+                                 dplyr::select(name_style, style, parent,
+                                               any_of(c("vertex", "edge", "shape", "width", "height", "as", "relative"))) %>%
+                                 dplyr::mutate(style = vect_temp))
 }

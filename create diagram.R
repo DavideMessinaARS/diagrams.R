@@ -10,6 +10,10 @@ library(magrittr)
 #                                                          #
 ##%######################################################%##
 
+write.xml <- function(...) {
+  suppressMessages(write_xml(...))
+}
+
 # Function useful for recoding all values of a column. The dataframe to join NEED to have just 1 column outside of keys!
 # Condition specified as ex:c("a" = "b")
 left_join_and_substitute <- function(df1, df2, old_name = T, by.cond = NULL) {
@@ -18,7 +22,7 @@ left_join_and_substitute <- function(df1, df2, old_name = T, by.cond = NULL) {
     new_values_var <- setdiff(names(df2), names(df1))
     old_name_var <- intersect(names(df2), names(df1))
     finaldf <- df1 %>%
-      left_join(df2)
+      left_join(df2, by = "cell_name")
     
     # Join and substitute the value of the key with the values of the column of the joined df.
     # Drop the duplicate column.
@@ -39,13 +43,10 @@ helper_left_join_and_substitute <- function(df_temp, keep_name, new_var, old_var
   # Join and substitute the value of the key with the values of the column of the joined df.
   # Drop the duplicate column.
   if (keep_name){ #Keep the original variable name
-    df_temp %>%
-      mutate({{old_var}} := eval(parse(text = new_var)))%>%
-      select(-new_var)
+    df_temp[old_var] <- df_temp[new_var]
+    df_temp[!names(df_temp) == new_var]
   } else { #Use df2 variable name
-    df_temp %>%
-      mutate({{new_var}} := eval(parse(text = new_var)))%>%
-      select(-old_var)
+    df_temp[!names(df_temp) == old_var]
   }
 }
 
@@ -128,16 +129,22 @@ create_arrow_cell_attrs_tbl <- function(object_arrow_attributes, object_cell_att
     mutate(id = id_cells)
   
   # Substitute the variable with the user-defined cell name with corresponding ids
+  # object_cell_attributes <- object_cell_attributes %>%
+  #   left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("parent" = "cell_name")) %>%
+  #   left_join_and_substitute(tbl_name_to_id, old_name = F)
+  
   object_cell_attributes <- object_cell_attributes %>%
-    left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("parent" = "cell_name")) %>%
-    left_join_and_substitute(tbl_name_to_id, old_name = F)
+    rename(id = cell_name)
   
   # Substitute the value, not the name, of the variables "source" and "target" with corresponding ids
   # Add the ids for the arrows
+  # object_arrow_attributes <- object_arrow_attributes %>%
+  #   left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("parent" = "cell_name")) %>%
+  #   left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("source" = "cell_name")) %>%
+  #   left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("target" = "cell_name")) %>%
+  #   mutate(id = id_arrows)
+  
   object_arrow_attributes <- object_arrow_attributes %>%
-    left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("parent" = "cell_name")) %>%
-    left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("source" = "cell_name")) %>%
-    left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("target" = "cell_name")) %>%
     mutate(id = id_arrows)
   
   # Combine the two tbl
@@ -154,7 +161,6 @@ create_arrow_cell_attrs_list <- function(tbl_row) {
   names(temp_vect) <- names(tbl_row)
   return(temp_vect)
 }
-
 # Create new document and root. Number of pages is a variable defined in the parameters.
 # TODO support for deciding styles
 # TODO support for different style for each page
@@ -412,7 +418,7 @@ cell_list <- list(cella1, cella2, cella3, cella4, cella5)
 pages <- 1
 arrows_style <- "circle arrow"
 
-test_xml <- create_diagram(cell_list, pages, arrows_style, "TB")
+test_xml <- create_diagram(cell_list, pages, arrows_style, direction = "TB")
 
 # TODO apply the attribute in the datasets to the xml document
 
@@ -421,4 +427,5 @@ test_xml <- create_diagram(cell_list, pages, arrows_style, "TB")
 
 # create a dataset containing links, tags, tooltip and other attributes (placeholders, shape, ...)
 
-write_xml(test_xml, "test r.xml")
+write.xml(test_xml, "test r.xml")
+getwd()

@@ -110,3 +110,26 @@ columns_to_style <- function(start_df) {
                                                any_of(c("vertex", "edge", "shape", "width", "height", "as", "relative"))) %>%
                                  dplyr::mutate(style = vect_temp))
 }
+
+# Create the tibble for the cells attributes. It is initialize with two empty cells as foundation(requirements?)
+create_cell_attributes <- function(cstyles, astyles) {
+  temp_df <- tibble::tribble(
+    ~cell_name, ~cell_style,~label,~tags,~link,~placeholders,~tooltip,~shape,~x,~y,~width,~height,~as,~level,
+    #---------|------------|------|-----|-----|-------------|--------|------|--|--|------|-------|---|------|
+    "0",     "empty",    "",   "",   "",           "",      "",    "","","",    "",     "", "",    NA,
+    "1",     "start",    "",   "",   "",           "",      "",    "","","",    "",     "", "",    NA
+  )
+}
+
+# Create the tibble for the arrows attributes. Initialize empty
+create_arrow_attributes <- function(cstyles, astyles) {
+  temp_df <- tibble::tibble(label = character(),
+                            tags = character(),
+                            tooltip = character(),
+                            arrow_style = character(),
+                            source = character(),
+                            target = character(),
+                            width = character(),
+                            relative = character(),
+                            as = character())
+}

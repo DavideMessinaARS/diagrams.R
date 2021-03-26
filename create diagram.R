@@ -106,7 +106,7 @@ create_arrow_cell_attrs_tbl <- function(arrow_attr, cells_attr, direction) {
 }
 
 create_arrow_cell_attrs_list <- function(tbl_row) {
-  tbl_row %>%
+  tbl_row %<>%
     select(which(tbl_row != ""))
   return(as.named.vector(tbl_row))
 }
@@ -131,6 +131,7 @@ create_diagram <- function(cell_list, pages, arrows_style, direction){
   vector_param_page <- create_vector_param_page()
   
   # TODO need fix for page > 1
+  # TODO clean child usage
   for (page in 1:pages) {
     
     xml_add_child(test_xml, "diagram")
@@ -190,13 +191,6 @@ create_diagram <- function(cell_list, pages, arrows_style, direction){
 
 # TODO add a default standard in case not specified style or a style_name
 
-# test_xml <- create_diagram(
-#   1,
-#   cella1 = list(cell_style = "orange", label = "cella_arancione", tags = "cell1", link = "", x = "80", y = "120"),
-#   cella2 = list(cell_style = "yellow", label = "cella_gialla", tags = "cell2", link = "", x = "320", y = "40"),
-#   list(tags = "1tag 2tag", arrow_style = "circle arrow", source = "cella1", target = "cella2")
-#   )
-
 createCell <- function(cell_name, cell_style = "", label = "", tags = "", link = "", x = "", y = "", level = 1, input = "", output = "") {
   if (link != "") {
     link <- paste0('data:action/json,{"actions":[{"open": "', link, '"}]}')
@@ -218,12 +212,5 @@ pages <- 1
 arrows_style <- "circle arrow"
 
 test_xml <- create_diagram(cell_list, pages, arrows_style, direction = "TB")
-
-# TODO apply the attribute in the datasets to the xml document
-
-# create a dataset with nodes/arrows relations (or two distinct dfs)
-# create a second dataset for the order of "layers" or create the one with relationships map already ordered
-
-# create a dataset containing links, tags, tooltip and other attributes (placeholders, shape, ...)
 
 write_xml(test_xml, "test r.xml")

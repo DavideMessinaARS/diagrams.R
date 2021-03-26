@@ -11,7 +11,7 @@ library(magrittr)
 ##%######################################################%##
 
 # Call the creation of the df containing the styles of cells and arrows,
-create_arrow_cell_attrs_tbl <- function(object_arrow_attributes, object_cell_attributes, direction) {
+create_arrow_cell_attrs_tbl <- function(arrow_attr, cells_attr, direction) {
   
   # Create the stiles df for both cells and arrows. Collapse the column to create the variable style
   if (direction == "TB") {
@@ -30,18 +30,37 @@ create_arrow_cell_attrs_tbl <- function(object_arrow_attributes, object_cell_att
   
   cell_styles <- create_cell_styles_df() %>%
     columns_to_style()
+  
+  #TODO add option for other direction in addition to TB
+  
   arrow_styles <- create_arrow_styles_df() %>%
     mutate(exitX = outX, exitY = outY, entryX = inX, entryY = inY) %>%
     columns_to_style()
   
+  arrow_styles0 <- create_arrow_styles_df() %>%
+    mutate(exitX = "1", exitY = "0.5", entryX = "0", entryY = "0.5") %>%
+    columns_to_style()
+  
   # Substitute the style name from the user-defined cells/arrows with the variable associated with them
-  object_arrow_attributes <- object_arrow_attributes %>%
+  tmp0 <- arrow_attr %>%
+    filter(level0) %>%
+    left_join(arrow_styles0, by = c("arrow_style" = "name_style")) %>%
+    mutate(width = coalesce(width.x, width.y),
+           relative = coalesce(relative.x, relative.y),
+           as = coalesce(as.x, as.y))  %>%
+    select(-c(arrow_style, width.x, width.y, relative.x, relative.y, as.x, as.y, level0))
+    
+  tmp1 <- arrow_attr %>%
+    filter(!level0)  %>%
     left_join(arrow_styles, by = c("arrow_style" = "name_style")) %>%
     mutate(width = coalesce(width.x, width.y),
            relative = coalesce(relative.x, relative.y),
            as = coalesce(as.x, as.y))  %>%
-    select(-c(arrow_style, width.x, width.y, relative.x, relative.y, as.x, as.y))
-  object_cell_attributes <- object_cell_attributes %>%
+    select(-c(arrow_style, width.x, width.y, relative.x, relative.y, as.x, as.y, level0))
+  
+  arrow_attr <- rbind(tmp0, tmp1)
+  
+  cells_attr <- cells_attr %>%
     left_join(cell_styles, by = c("cell_style" = "name_style")) %>%
     mutate(shape = coalesce(shape.x, shape.y),
            width = coalesce(width.x, width.y),
@@ -51,36 +70,36 @@ create_arrow_cell_attrs_tbl <- function(object_arrow_attributes, object_cell_att
 
   # Create vectors of ids for both cells and arrows 
   id_cell <- create_id_cells()
-  nrow_obj_cell = nrow(object_cell_attributes)
+  nrow_obj_cell = nrow(cells_attr)
   id_cells <- id_cell[1:nrow_obj_cell]
-  id_arrows <- id_cell[(nrow_obj_cell+1):(nrow_obj_cell+nrow(object_arrow_attributes))]
+  id_arrows <- id_cell[(nrow_obj_cell+1):(nrow_obj_cell+nrow(arrow_attr))]
   
   # Create a tbl. Take the user-defined cell name and link the cell-id to them
-  tbl_name_to_id <- object_cell_attributes %>%
+  tbl_name_to_id <- cells_attr %>%
     select(cell_name) %>%
     mutate(id = id_cells)
   
   # Substitute the variable with the user-defined cell name with corresponding ids
-  # object_cell_attributes <- object_cell_attributes %>%
+  # cells_attr <- cells_attr %>%
   #   left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("parent" = "cell_name")) %>%
   #   left_join_and_substitute(tbl_name_to_id, old_name = F)
   
-  object_cell_attributes <- object_cell_attributes %>%
+  cells_attr <- cells_attr %>%
     rename(id = cell_name)
   
   # Substitute the value, not the name, of the variables "source" and "target" with corresponding ids
   # Add the ids for the arrows
-  # object_arrow_attributes <- object_arrow_attributes %>%
+  # arrow_attr <- arrow_attr %>%
   #   left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("parent" = "cell_name")) %>%
   #   left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("source" = "cell_name")) %>%
   #   left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("target" = "cell_name")) %>%
   #   mutate(id = id_arrows)
   
-  object_arrow_attributes <- object_arrow_attributes %>%
+  arrow_attr <- arrow_attr %>%
     mutate(id = id_arrows)
   
   # Combine the two tbl
-  cell_arrows_attrs_tbl <- bind_rows(object_cell_attributes, object_arrow_attributes)
+  cell_arrows_attrs_tbl <- bind_rows(cells_attr, arrow_attr)
   
   return(cell_arrows_attrs_tbl)
   
@@ -96,71 +115,12 @@ create_arrow_cell_attrs_list <- function(tbl_row) {
 # TODO support for deciding styles
 # TODO support for different style for each page
 create_diagram <- function(cell_list, pages, arrows_style, direction){
-  object_cell_attributes <- create_cell_attributes()
-  object_arrow_attributes <- create_arrow_attributes()
-  for (elem in cell_list) {
-    if (elem$input != "") {
-      for (cell in elem$input[[1]]) {
-        object_arrow_attributes <- object_arrow_attributes %>%
-          add_row(as_tibble(list(arrow_style = arrows_style, source = cell, target = elem$cell_name)))
-      }
-    }
-    if (elem$output != "") {
-      for (cell in elem$output[[1]]) {
-        object_arrow_attributes <- object_arrow_attributes %>%
-          add_row(as_tibble(list(arrow_style = arrows_style, source = elem$cell_name, target = cell)))
-      }
-    }
-    
-    elem[["output"]] <- NULL
-    elem[["input"]] <- NULL
-    object_cell_attributes <- object_cell_attributes %>%
-      dplyr::add_row(as_tibble(elem))
-    
-    # name_cell <- names(elements_list)
-    # if (name_cell[i] != "") {
-    #   object_cell_attributes <- object_cell_attributes %>%
-    #     add_row(as_tibble(c(elements_list[[i]], "cell_name" = name_cell[i])))
-    # } else {
-    #   object_arrow_attributes <- object_arrow_attributes %>%
-    #     add_row(as_tibble(elements_list[[i]]))
-    # }
-  }
   
-  object_cell_tags <- object_cell_attributes %>%
-    dplyr::select(cell_name, tags) %>%
-    dplyr::rename(tag = tags)
-  
-  object_arrow_attributes <- object_arrow_attributes %>%
-    dplyr::left_join(object_cell_tags, by = c("source" = "cell_name")) %>%
-    dplyr::left_join(object_cell_tags, by = c("target" = "cell_name")) %>%
-    dplyr::mutate(tags = paste(tag.x, tag.y, sep = " ")) %>%
-    dplyr::select(-c(tag.x, tag.y))
-  
-  part2_object_cell_attributes <- object_cell_attributes %>%
-    filter(!cell_style %in% c("empty", "start"))
-  if (direction == "TB") {
-    part2_object_cell_attributes <- part2_object_cell_attributes %>%
-      mutate(y = level * 100) %>%
-      group_by(level) %>%
-      mutate(x = row_number() * 200 - 100)
-  } else if (direction == "LR") {
-    part2_object_cell_attributes <- part2_object_cell_attributes %>%
-      mutate(x = level * 200 - 100) %>%
-      group_by(level) %>%
-      mutate(y = row_number() * 100)
-  } else if (direction == "RL") {
-    part2_object_cell_attributes <- part2_object_cell_attributes %>%
-      mutate(x = level * -200 + 100) %>%
-      group_by(level) %>%
-      mutate(y = row_number() * 100)
-  }
-  
-  object_cell_attributes <- object_cell_attributes %>%
-    filter(cell_style %in% c("empty", "start")) %>%
-    rbind(part2_object_cell_attributes) %>%
-    select(-level)
-  
+  cells_attr <- basic_cells()
+  arrow_attr <- basic_arrow_attributes()
+  cell_arr <- populate_attrs_fd(cells_attr, arrow_attr)
+  cells_attr <- cell_arr[[1]]
+  arrow_attr <- cell_arr[[2]]
   
   test_xml <- xml_new_root("mxfile", host="Electron", modified="2021-02-12T20:24:28.529Z",
                            agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.1.8 Chrome/87.0.4280.88 Electron/11.1.1 Safari/537.36",
@@ -182,7 +142,7 @@ create_diagram <- function(cell_list, pages, arrows_style, direction){
     xml_set_attrs(xml_children(xml_children(test_xml))[length(xml_children(xml_children(test_xml)))], vector_param_page)
     xml_add_child(xml_children(xml_children(test_xml)), "root")
 
-    arrow_cell_attrs_tbl <- create_arrow_cell_attrs_tbl(object_arrow_attributes, object_cell_attributes, direction)
+    arrow_cell_attrs_tbl <- create_arrow_cell_attrs_tbl(arrow_attr, cells_attr, direction)
 
     object_attrs_tbl <- arrow_cell_attrs_tbl %>%
       select(any_of(c("label", "tags", "link", "placeholders", "tooltip", "shape", "id")))
@@ -238,18 +198,22 @@ create_diagram <- function(cell_list, pages, arrows_style, direction){
 #   )
 
 createCell <- function(cell_name, cell_style = "", label = "", tags = "", link = "", x = "", y = "", level = 1, input = "", output = "") {
+  if (link != "") {
+    link <- paste0('data:action/json,{"actions":[{"open": "', link, '"}]}')
+  }
   return(list(cell_name = cell_name, cell_style = cell_style, label = label, tags = tags,
               link = link, x = x, y = y, level = level, input = list(input), output = list(output)))
 }
 
-cella1 <- createCell("cella1", cell_style = "orange", label = "cella_arancione1", tags = "cell1 test", link = "", level = 1)
-cella2 <- createCell("cella2", cell_style = "orange", label = "cella_arancione2", tags = "cell2", link = "", level = 1)
+cella1 <- createCell("cella1", cell_style = "orange", label = "cella_arancione1", tags = "cell1 test", link = "", level = 0)
+cella2 <- createCell("cella2", cell_style = "orange", label = "cella_arancione2", tags = "cell2", link = "", level = 0)
+cella2a <- createCell("cella2a", cell_style = "orange", label = "cella_arancione2a", tags = "cell2", link = "", level = 1)
 cella3 <- createCell("cella3", cell_style = "yellow", label = "cella_gialla", tags = "cell3", link = "",
-                     level = 2, input = c("cella1", "cella2"), output = c("cella4", "cella5"))
+                     level = 2, input = c("cella1", "cella2", "cella2a"), output = c("cella4", "cella5"))
 cella4 <- createCell("cella4", cell_style = "orange", label = "cella_arancione3", tags = "cell4", link = "", level = 3)
 cella5 <- createCell("cella5", cell_style = "orange", label = "cella_arancione4", tags = "cell5 aaa", link = "", level = 3)
 
-cell_list <- list(cella1, cella2, cella3, cella4, cella5)
+cell_list <- list(cella1, cella2, cella2a, cella3, cella4, cella5)
 pages <- 1
 arrows_style <- "circle arrow"
 

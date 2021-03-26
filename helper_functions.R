@@ -112,7 +112,7 @@ columns_to_style <- function(start_df) {
 }
 
 # Create the tibble for the cells attributes. It is initialize with two empty cells as foundation(requirements?)
-create_cell_attributes <- function(cstyles, astyles) {
+basic_cells <- function(cstyles, astyles) {
   temp_df <- tibble::tribble(
     ~cell_name, ~cell_style,~label,~tags,~link,~placeholders,~tooltip,~shape,~x,~y,~width,~height,~as,~level,
     #---------|------------|------|-----|-----|-------------|--------|------|--|--|------|-------|---|------|
@@ -122,7 +122,7 @@ create_cell_attributes <- function(cstyles, astyles) {
 }
 
 # Create the tibble for the arrows attributes. Initialize empty
-create_arrow_attributes <- function(cstyles, astyles) {
+basic_arrow_attributes <- function(cstyles, astyles) {
   temp_df <- tibble::tibble(label = character(),
                             tags = character(),
                             tooltip = character(),
@@ -133,3 +133,80 @@ create_arrow_attributes <- function(cstyles, astyles) {
                             relative = character(),
                             as = character())
 }
+
+#TODO comment functions below
+populate_attrs_fd <- function(cells_attr, arrow_attr) {
+  
+  for (elem in cell_list) {
+    
+    if (!elem$input == "") {
+      for (cell in elem$input[[1]]) {
+        arrow_attr %<>%
+          tibble::add_row(tibble::tibble_row(arrow_style = arrows_style, source = cell, target = elem$cell_name))
+      }
+    }
+    if (!elem$output == "") {
+      for (cell in elem$output[[1]]) {
+        arrow_attr %<>%
+          tibble::add_row(tibble::tibble_row(arrow_style = arrows_style, source = elem$cell_name, target = cell))
+      }
+    }
+    
+    elem[["output"]] <- NULL
+    elem[["input"]] <- NULL
+    cells_attr %<>%
+      tibble::add_row(as_tibble(elem))
+  }
+  
+  arrow_attr <- calc_tags_level0(cells_attr, arrow_attr)
+  cells_attr <- calc_coordinates(cells_attr, direction)
+  
+  return(list(cells_attr, arrow_attr))
+}
+
+calc_tags_level0 <- function(cells_attr, arrow_attr) {
+  
+  cells_tag_level <- cells_attr %>%
+    dplyr::select(cell_name, tags, level) %>%
+    dplyr::rename(tag = tags)
+  
+  return(arrow_attr %>%
+           dplyr::left_join(cells_tag_level, by = c("source" = "cell_name")) %>%
+           dplyr::left_join(cells_tag_level, by = c("target" = "cell_name")) %>%
+           dplyr::mutate(tags = paste(tag.x, tag.y, sep = " "), level0 = level.x*level.y == 0) %>%
+           dplyr::select(-c(tag.x, tag.y, level.x, level.y)))
+  
+}
+
+calc_coordinates <- function(cells_attr, direction) {
+  
+  cells_attr_not_empty <- cells_attr %>%
+    filter(!cell_style %in% c("empty", "start"))
+  
+  if (direction == "TB") {
+    cells_attr_not_empty %<>%
+      mutate(y = if_else(level != 0, level * 100, 0), x = 0) %>%
+      group_by(level) %>%
+      mutate(x = if_else(level != 0, row_number() * 200 - 100 + lv_0_flag * 200, x),
+             y = if_else(level != 0, y, row_number() * 100))
+  } else if (direction == "LR") {
+    #TODO check if work correctly TB, LR and RL
+    cells_attr_not_empty %<>%
+      mutate(x = if_else(level != 0, (level - 1) * 200, 0), y = 0) %>%
+      group_by(level) %>%
+      mutate(y = if_else(level != 0, row_number() * 100 + lv_0_flag * 100, x),
+             x = if_else(level != 0, x, row_number() * 200))
+  } else if (direction == "RL") {
+    cells_attr_not_empty %<>%
+      mutate(x = if_else(level != 0, (level - 1) * -200, 0), y = 0) %>%
+      group_by(level) %>%
+      mutate(y = if_else(level != 0, row_number() * -100 + lv_0_flag * -100, x),
+             x = if_else(level != 0, x, row_number() * -200))
+  }
+  
+  return(cells_attr %<>%
+           filter(cell_style %in% c("empty", "start")) %>%
+           rbind(cells_attr_not_empty) %>%
+           select(-level))
+}
+

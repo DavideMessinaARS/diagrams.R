@@ -18,12 +18,16 @@ create_arrow_styles_df <- function() {
 
 create_cell_styles_df <- function() {
   temp_df <- tibble::tribble(
-    ~name_style,~style,~parent,~vertex,~html,~rounded,~whiteSpace,~fillColor,~strokeColor,~strokeWidth,~dashed,~shape,~width,~height,       ~as,
-    #----------|------|-------|-------|-----|--------|-----------|----------|------------|------------|-------|------|------|-------|-----------
-    "empty",    "",     "",     "",   "",      "",         "",        "",          "",          "",     "",    "",    "",     "",        "",
-    "start",    "",    "0",     "",   "",      "",         "",        "",          "",          "",     "",    "",    "",     "",        "",
-    "orange",    "",    "1",    "1",  "1",     "0",     "wrap", "#ffcc99",   "#36393d",          "",     "","oval", "120",   "60","geometry",
-    "yellow",    "",    "1",    "1",  "1",     "0",     "wrap", "#ffff88",   "#36393d",          "",     "","oval", "120",   "60","geometry"
+    ~name_style ,~style,~parent,~vertex,~html,~rounded,~whiteSpace,~fillColor,~strokeColor,~strokeWidth,~dashed,~shape,~width,~height,       ~as,
+    #-----------|------|-------|-------|-----|--------|-----------|----------|------------|------------|-------|------|------|-------|-----------
+    "empty"     ,    "",     "",     "",   "",      "",         "",        "",          "",          "",     "",    "",    "",     "",        "",
+    "start"     ,    "",    "0",     "",   "",      "",         "",        "",          "",          "",     "",    "",    "",     "",        "",
+    "white"     ,    "",    "1",    "1",  "1",     "0",     "wrap", "#FFFFFF",   "#36393d",          "",     "","oval", "120",   "60","geometry",
+    "green"     ,    "",    "1",    "1",  "1",     "0",     "wrap", "#008000",   "#36393d",          "",     "","oval", "120",   "60","geometry",
+    "dark blue" ,    "",    "1",    "1",  "1",     "0",     "wrap", "#0000FF",   "#36393d",          "",     "","oval", "120",   "60","geometry",
+    "light blue",    "",    "1",    "1",  "1",     "0",     "wrap", "#0080FF",   "#36393d",          "",     "","oval", "120",   "60","geometry",
+    "orange"    ,    "",    "1",    "1",  "1",     "0",     "wrap", "#ffcc99",   "#36393d",          "",     "","oval", "120",   "60","geometry",
+    "yellow"    ,    "",    "1",    "1",  "1",     "0",     "wrap", "#ffff88",   "#36393d",          "",     "","oval", "120",   "60","geometry"
   )
   return(temp_df)
 }

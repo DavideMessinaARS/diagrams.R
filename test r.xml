@@ -1,17 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mxfile host="Electron" modified="2021-02-12T20:24:28.529Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.1.8 Chrome/87.0.4280.88 Electron/11.1.1 Safari/537.36" etag="fHMIuIajccZ_3DrzuGlE" version="14.1.8" type="device" pages="1">
-  <diagram id="indebted_porygon" name="Page-1">
+  <diagram id="self-conscious_spearow" name="Page-1">
     <mxGraphModel dx="1086" dy="846" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
-      <root/>
-      <root/>
-    </mxGraphModel>
-    <mxGraphModel>
-      <root/>
-    </mxGraphModel>
-  </diagram>
-  <diagram id="fanciful_golem" name="Page-2">
-    <mxGraphModel dx="1086" dy="846" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
-      <root/>
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <object label="cella_arancione1" tags="cell1 test" shape="oval" id="cella1">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffcc99;strokeColor=#36393d;" parent="1" vertex="1">
+            <mxGeometry x="0" y="100" width="120" height="60" as="geometry"/>
+          </mxCell>
+        </object>
+        <object label="cella_arancione2" tags="cell2" shape="oval" id="cella2">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffcc99;strokeColor=#36393d;" parent="1" vertex="1">
+            <mxGeometry x="0" y="200" width="120" height="60" as="geometry"/>
+          </mxCell>
+        </object>
+        <object label="cella_arancione2a" tags="cell2" shape="oval" id="cella2a">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffcc99;strokeColor=#36393d;" parent="1" vertex="1">
+            <mxGeometry x="300" y="100" width="120" height="60" as="geometry"/>
+          </mxCell>
+        </object>
+        <object label="cella_gialla" tags="cell3" shape="oval" id="cella3">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d;" parent="1" vertex="1">
+            <mxGeometry x="300" y="200" width="120" height="60" as="geometry"/>
+          </mxCell>
+        </object>
+        <object label="cella_arancione3" tags="cell4" shape="oval" id="cella4">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffcc99;strokeColor=#36393d;" parent="1" vertex="1">
+            <mxGeometry x="300" y="300" width="120" height="60" as="geometry"/>
+          </mxCell>
+        </object>
+        <object label="cella_arancione4" tags="cell5 aaa" shape="oval" id="cella5">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffcc99;strokeColor=#36393d;" parent="1" vertex="1">
+            <mxGeometry x="500" y="300" width="120" height="60" as="geometry"/>
+          </mxCell>
+        </object>
+        <object tags="cell1 test cell3" id="overworked_quilava">
+          <mxCell style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;elbow=vertical;curved=1;" parent="1" source="cella1" target="cella3" edge="1">
+            <mxGeometry width="60" relative="1" as="geometry"/>
+          </mxCell>
+        </object>
+        <object tags="cell2 cell3" id="used_gligar">
+          <mxCell style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;elbow=vertical;curved=1;" parent="1" source="cella2" target="cella3" edge="1">
+            <mxGeometry width="60" relative="1" as="geometry"/>
+          </mxCell>
+        </object>
+        <object tags="cell2 cell3" id="fatigued_shuckle">
+          <mxCell style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;elbow=vertical;curved=1;" parent="1" source="cella2a" target="cella3" edge="1">
+            <mxGeometry width="60" relative="1" as="geometry"/>
+          </mxCell>
+        </object>
+        <object tags="cell3 cell4" id="reverent_croconaw">
+          <mxCell style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;elbow=vertical;curved=1;" parent="1" source="cella3" target="cella4" edge="1">
+            <mxGeometry width="60" relative="1" as="geometry"/>
+          </mxCell>
+        </object>
+        <object tags="cell3 cell5 aaa" id="questioned_stantler">
+          <mxCell style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;elbow=vertical;curved=1;" parent="1" source="cella3" target="cella5" edge="1">
+            <mxGeometry width="60" relative="1" as="geometry"/>
+          </mxCell>
+        </object>
+      </root>
     </mxGraphModel>
   </diagram>
 </mxfile>

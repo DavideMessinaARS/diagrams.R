@@ -135,7 +135,7 @@ basic_arrow_attributes <- function(cstyles, astyles) {
 }
 
 #TODO comment functions below
-populate_attrs_fd <- function(cells_attr, arrow_attr) {
+populate_attrs_fd <- function(cells_attr, arrow_attr, direction) {
   
   for (elem in cell_list) {
     
@@ -182,7 +182,7 @@ calc_coordinates <- function(cells_attr, direction) {
   
   cells_attr_not_empty <- cells_attr %>%
     filter(!cell_style %in% c("empty", "start"))
-  
+  lv_0_flag <- 0 %in% cells_attr$level
   if (direction == "TB") {
     cells_attr_not_empty %<>%
       mutate(y = if_else(level != 0, level * 100, 0), x = 0) %>%

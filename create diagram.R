@@ -3,7 +3,6 @@ library(tibble)
 library(dplyr)
 library(magrittr)
 
-
 ##%######################################################%##
 #                                                          #
 ####                auxiliary functions                 ####
@@ -118,7 +117,7 @@ create_diagram <- function(cell_list, pages, arrows_style, direction){
   
   cells_attr <- basic_cells()
   arrow_attr <- basic_arrow_attributes()
-  cell_arr <- populate_attrs_fd(cells_attr, arrow_attr)
+  cell_arr <- populate_attrs_fd(cells_attr, arrow_attr, direction)
   cells_attr <- cell_arr[[1]]
   arrow_attr <- cell_arr[[2]]
   

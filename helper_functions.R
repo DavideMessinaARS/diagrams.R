@@ -69,46 +69,34 @@ create_vector_param_page <- function() {
 # create the style attribute which is a combination of the columns divided by ";"
 columns_to_style <- function(start_df) {
   
+  # TODO remove this part
+  start_df <- cell_styles
+  
   # Drop final columns and retain the ones to combine. suppressWarnings otherwise one_of() throws a warning.
   temp_df <- start_df %>%
-    dplyr::select(-c(name_style, style, parent,
-                     any_of(c("vertex", "edge", "shape", "width", "height", "as", "relative"))))
+    dplyr::select(any_of(c("style", "html", "rounded", "whiteSpace", "fillColor",
+                           "strokeColor", "strokeWidth", "dashed")))
   
-  # Split the df in a list of row
-  temp_list <- split(temp_df, seq(nrow(temp_df)))
+  temp_df_2 <- start_df %>%
+    tibble::rowid_to_column("ID") %>%
+    dplyr::mutate_all(dplyr::na_if, "") %>%
+    tidyr::gather(key, value, any_of(c("style", "html", "rounded", "whiteSpace", "fillColor",
+                                "strokeColor", "strokeWidth", "dashed")), factor_key = TRUE) %>%
+    dplyr::filter(!is.na(value)) %>%
+    tidyr::unite(var, key:value, sep = "=", remove = F) %>% 
+    dplyr::select(-c(value)) %>% 
+    tidyr::spread(key, var) %>%
+    dplyr::select(-c(ID)) %>%
+    tidyr::unite(style, any_of(c("style", "html", "rounded", "whiteSpace", "fillColor",
+                                 "strokeColor", "strokeWidth", "dashed")), sep = ";", na.rm = T)
   
-  # check which styles we need to keep
-  has_style <- start_df$style != ""
-  
-  # Combine the column values and names in a string. Put the strings in a vector.
-  vect_temp <- c()
-  for (i in seq_along(temp_list)) {
-    # If row already have a style do not overwrite it with the other value from dfs
-    # TODO overwrite style in case of value given by user directly in command (probably later with str_detect)
-    if (has_style[[i]])  {
-      
-      vect_temp <- append(vect_temp, start_df$style[[i]])
-      
-    } else {
-      
-      temp_list[[i]] <- temp_list[[i]] %>%
-        dplyr::select(which(temp_list[[i]] != ""))
-      collapse_string = paste0(names(temp_list[[i]]), "=", temp_list[[i]], collapse = ";")
-      
-      if (collapse_string != "=") {
-        vect_temp <- append(vect_temp, paste0(collapse_string, ";"))
-      } else {
-        vect_temp <- append(vect_temp, start_df$style[[i]])
-      }
-      
-    }
-  } 
+  vect_temp <- c("", "", tibble::deframe(temp_df_2))
   
   # Keep only the column we need and modify the style with the values from the vector created above.
-  start_df <- suppressWarnings(start_df %>%
-                                 dplyr::select(name_style, style, parent,
-                                               any_of(c("vertex", "edge", "shape", "width", "height", "as", "relative"))) %>%
-                                 dplyr::mutate(style = vect_temp))
+  start_df <- start_df %>%
+    dplyr::select(name_style, style, parent,
+                  any_of(c("vertex", "edge", "shape", "width", "height", "as", "relative"))) %>%
+    dplyr::mutate(style = vect_temp)
 }
 
 # Create the tibble for the cells attributes. It is initialize with two empty cells as foundation(requirements?)

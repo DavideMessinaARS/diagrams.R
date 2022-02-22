@@ -69,34 +69,22 @@ create_vector_param_page <- function() {
 # create the style attribute which is a combination of the columns divided by ";"
 columns_to_style <- function(start_df) {
   
-  # TODO remove this part
-  start_df <- cell_styles
-  
-  # Drop final columns and retain the ones to combine. suppressWarnings otherwise one_of() throws a warning.
-  temp_df <- start_df %>%
-    dplyr::select(any_of(c("style", "html", "rounded", "whiteSpace", "fillColor",
-                           "strokeColor", "strokeWidth", "dashed")))
-  
-  temp_df_2 <- start_df %>%
+  start_df %>%
     tibble::rowid_to_column("ID") %>%
     dplyr::mutate_all(dplyr::na_if, "") %>%
-    tidyr::gather(key, value, any_of(c("style", "html", "rounded", "whiteSpace", "fillColor",
+    tidyr::gather(key, value, any_of(c("html", "rounded", "whiteSpace", "fillColor",
                                 "strokeColor", "strokeWidth", "dashed")), factor_key = TRUE) %>%
-    dplyr::filter(!is.na(value)) %>%
-    tidyr::unite(var, key:value, sep = "=", remove = F) %>% 
+    dplyr::filter(!is.na(value) | name_style %in% c("empty", "start")) %>%
+    tidyr::unite(var, key:value, sep = "=", remove = F, na.rm = T) %>% 
     dplyr::select(-c(value)) %>% 
     tidyr::spread(key, var) %>%
+    dplyr::mutate(dplyr::across(.cols = any_of(c("html", "rounded", "whiteSpace", "fillColor",
+                                   "strokeColor", "strokeWidth", "dashed")),
+                  .fns = ~ ifelse(name_style %in% c("empty", "start"), NA, .x))) %>%
     dplyr::select(-c(ID)) %>%
     tidyr::unite(style, any_of(c("style", "html", "rounded", "whiteSpace", "fillColor",
                                  "strokeColor", "strokeWidth", "dashed")), sep = ";", na.rm = T)
   
-  vect_temp <- c("", "", tibble::deframe(temp_df_2))
-  
-  # Keep only the column we need and modify the style with the values from the vector created above.
-  start_df <- start_df %>%
-    dplyr::select(name_style, style, parent,
-                  any_of(c("vertex", "edge", "shape", "width", "height", "as", "relative"))) %>%
-    dplyr::mutate(style = vect_temp)
 }
 
 # Create the tibble for the cells attributes. It is initialize with two empty cells as foundation(requirements?)

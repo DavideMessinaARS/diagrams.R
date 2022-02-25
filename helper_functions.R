@@ -214,12 +214,14 @@ calc_coordinates <- function(cells_attr, direction) {
   
   cells_attr_not_empty <- cells_attr %>%
     dplyr::filter(!cell_style %in% c("empty", "start"))
-  
-  max_level_size <- max(group_size(cells_attr_not_empty %>% group_by(level)))
-  tl_flag <- 0 %in% cells_attr$level
-  br_flag <- 0 %in% cells_attr$level
-  
-  sum(c("a", "b") %in% c("a", "b", "c"))
+  lv_0_flag <- 0 %in% cells_attr$level
+  #   filter(!cell_style %in% c("empty", "start"))
+  # 
+  # max_level_size <- max(group_size(cells_attr_not_empty %>% group_by(level)))
+  # tl_flag <- 0 %in% cells_attr$level
+  # br_flag <- 0 %in% cells_attr$level
+  # 
+  # sum(c("a", "b") %in% c("a", "b", "c"))
   
   if (direction == "TB") {
     cells_attr_not_empty %<>%

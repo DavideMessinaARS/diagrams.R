@@ -213,34 +213,33 @@ calc_tags_level0 <- function(cells_attr, arrow_attr) {
 calc_coordinates <- function(cells_attr, direction) {
   
   cells_attr_not_empty <- cells_attr %>%
-    dplyr::filter(!cell_style %in% c("empty", "start"))
-  lv_0_flag <- 0 %in% cells_attr$level
+    dplyr::filter(!cell_style %in% c("empty", "start")) %>%
+    dplyr::group_by(level) %>%
+    dplyr::mutate(row_level = dplyr::row_number()) %>%
+    dplyr::ungroup()
   
   if (direction == "TB") {
-    cells_attr_not_empty %>%
-      dplyr::group_by(level) %>%
-      dplyr::mutate(x = dplyr::if_else(level != 0, dplyr::row_number() * 200 - 100 + lv_0_flag * 200, 0),
-                    y = dplyr::if_else(level != 0, level * 100, dplyr::row_number() * 100)) %>%
-      dplyr::ungroup()
+    cells_attr_not_empty %<>%
+      dplyr::mutate(x = dplyr::if_else(level != 0, row_level * 200 + 100, 0),
+                    y = dplyr::if_else(level != 0, level * 100, row_level * 100))
   } else if (direction == "LR") {
     #TODO check if work correctly TB, LR and RL
-    cells_attr_not_empty %>%
-      dplyr::group_by(level) %>%
-      dplyr::mutate(y = dplyr::if_else(level != 0, dplyr::row_number() * 100 + lv_0_flag * 100, 0),
-                    x = dplyr::if_else(level != 0, (level - 1) * 200, dplyr::row_number() * 200)) %>%
-      dplyr::ungroup()
+    cells_attr_not_empty %<>%
+      dplyr::mutate(y = dplyr::if_else(level != 0, row_level * 100 + 100, 0),
+                    x = dplyr::if_else(level != 0, (level - 1) * 200, row_level * 200))
   } else if (direction == "RL") {
-    cells_attr_not_empty %>%
-      dplyr::group_by(level) %>%
-      dplyr::mutate(y = dplyr::if_else(level != 0, dplyr::row_number() * -100 + lv_0_flag * -100, 0),
-                    x = dplyr::if_else(level != 0, (level - 1) * -200, dplyr::row_number() * -200)) %>%
-      dplyr::ungroup()
+    cells_attr_not_empty %<>%
+      dplyr::mutate(y = dplyr::if_else(level != 0, row_level * -100 - 100, 0),
+                    x = dplyr::if_else(level != 0, (level - 1) * -200, row_level * -200))
   }
+  
+  cells_attr_not_empty %<>%
+    dplyr::mutate(across(c(x, y), as.character))
   
   return(cells_attr %<>%
            dplyr::filter(cell_style %in% c("empty", "start")) %>%
-           rbind(cells_attr_not_empty) %>%
-           dplyr::select(-level))
+           dplyr::bind_rows(cells_attr_not_empty) %>%
+           dplyr::select(-c(level,row_number)))
 }
 
 createCell <- function(cell_name, cell_style = "", label = "", tags = "", link = "", x = "", y = "", level = 1, input = "", output = "") {

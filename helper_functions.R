@@ -88,8 +88,8 @@ columns_to_style <- function(start_df) {
 }
 
 # Create the tibble for the cells attributes. It is initialize with two empty cells as foundation(requirements?)
-basic_cells <- function(cstyles, astyles) {
-  temp_df <- tibble::tribble(
+basic_cells <- function() {
+  tibble::tribble(
     ~cell_name, ~cell_style,~label,~tags,~link,~placeholders,~tooltip,~shape,~x,~y,~width,~height,~as,~level,
     #---------|------------|------|-----|-----|-------------|--------|------|--|--|------|-------|---|------|
     "0",     "empty",    "",   "",   "",           "",      "",    "","","",    "",     "", "",    NA,
@@ -98,20 +98,23 @@ basic_cells <- function(cstyles, astyles) {
 }
 
 # Create the tibble for the arrows attributes. Initialize empty
-basic_arrow_attributes <- function(cstyles, astyles) {
-  temp_df <- tibble::tibble(label = character(),
-                            tags = character(),
-                            tooltip = character(),
-                            arrow_style = character(),
-                            source = character(),
-                            target = character(),
-                            width = character(),
-                            relative = character(),
-                            as = character())
+basic_arrow_attributes <- function() {
+  tibble::tibble(label = character(),
+                 tags = character(),
+                 tooltip = character(),
+                 arrow_style = character(),
+                 source = character(),
+                 target = character(),
+                 width = character(),
+                 relative = character(),
+                 as = character())
 }
 
 #TODO comment functions below
-populate_attrs_fd <- function(cells_attr, arrow_attr, direction) {
+populate_attrs_fd <- function(cell_list, direction) {
+  
+  cells_attr <- basic_cells()
+  arrow_attr <- basic_arrow_attributes()
   
   for (elem in cell_list) {
     
@@ -131,8 +134,61 @@ populate_attrs_fd <- function(cells_attr, arrow_attr, direction) {
     elem[["output"]] <- NULL
     elem[["input"]] <- NULL
     cells_attr %<>%
-      tibble::add_row(as_tibble(elem))
+      tibble::add_row(tibble::as_tibble(elem))
   }
+  
+  arrow_attr <- calc_tags_level0(cells_attr, arrow_attr)
+  cells_attr <- calc_coordinates(cells_attr, direction)
+  
+  return(list(cells_attr, arrow_attr))
+}
+
+populate_attrs_fd_roel <- function(path, direction) {
+  
+  cells_attr <- basic_cells()
+  arrow_attr <- basic_arrow_attributes()
+  
+  temp_data <- readr::read_csv2(path,
+                                locale = readr::locale(decimal_mark = ",", grouping_mark = "."),
+                                show_col_types = FALSE)
+  
+  temp_data %<>%
+    dplyr::select(PROGRAM, FOLDER_VAR, FILE, TYPE) %>%
+    dplyr::mutate(PROGRAM = stringr::str_extract(temp_data$PROGRAM, "(?<=_)(\\d|_|a|b)*(?=_)"),
+                  level = as.integer(stringr::str_extract(temp_data$PROGRAM, "\\d+")),
+                  level_datamodel = dplyr::if_else(TYPE == "OUTPUT", level * 2, 999),
+                  level_step = (level * 2) - 1) %>%
+    dplyr::group_by(FOLDER_VAR, FILE) %>%
+    dplyr::mutate(level_datamodel = min(level_datamodel),
+                  level_datamodel = dplyr::if_else(level_datamodel == 999, 0, level_datamodel)) %>%
+    dplyr::ungroup()
+  
+  steps_cells <- temp_data %>%
+    dplyr::transmute(cell_name = paste(PROGRAM, level, sep = "_"),
+                     cell_style = steps_style,
+                     label = paste("Step", PROGRAM, sep = "_"),
+                     level = level_step) %>%
+    dplyr::distinct()
+  
+  datamodel_cells <- temp_data %>%
+    dplyr::transmute(cell_name = paste(FOLDER_VAR, FILE, sep = "_"),
+                     cell_style = datamodels_style,
+                     label = FILE,
+                     level = level_datamodel) %>%
+    dplyr::distinct()
+  
+  cells_attr %<>%
+    dplyr::bind_rows(steps_cells, datamodel_cells)
+  
+  arrow_attr %<>%
+    dplyr::bind_rows(
+      temp_data %>%
+        dplyr::transmute(
+          arrow_style = arrows_style,
+          source = dplyr::if_else(TYPE == "INPUT", paste(FOLDER_VAR, FILE, sep = "_"), paste(PROGRAM, level, sep = "_")),
+          target = dplyr::if_else(TYPE == "INPUT", paste(PROGRAM, level, sep = "_"), paste(FOLDER_VAR, FILE, sep = "_"))
+        )
+    )
   
   arrow_attr <- calc_tags_level0(cells_attr, arrow_attr)
   cells_attr <- calc_coordinates(cells_attr, direction)
@@ -157,32 +213,40 @@ calc_tags_level0 <- function(cells_attr, arrow_attr) {
 calc_coordinates <- function(cells_attr, direction) {
   
   cells_attr_not_empty <- cells_attr %>%
-    filter(!cell_style %in% c("empty", "start"))
+    dplyr::filter(!cell_style %in% c("empty", "start"))
   lv_0_flag <- 0 %in% cells_attr$level
   if (direction == "TB") {
     cells_attr_not_empty %<>%
-      mutate(y = if_else(level != 0, level * 100, 0), x = 0) %>%
-      group_by(level) %>%
-      mutate(x = if_else(level != 0, row_number() * 200 - 100 + lv_0_flag * 200, x),
-             y = if_else(level != 0, y, row_number() * 100))
+      dplyr::mutate(y = dplyr::if_else(level != 0, level * 100, 0), x = 0) %>%
+      dplyr::group_by(level) %>%
+      dplyr::mutate(x = dplyr::if_else(level != 0, dplyr::row_number() * 200 - 100 + lv_0_flag * 200, x),
+             y = dplyr::if_else(level != 0, y, dplyr::row_number() * 100))
   } else if (direction == "LR") {
     #TODO check if work correctly TB, LR and RL
     cells_attr_not_empty %<>%
-      mutate(x = if_else(level != 0, (level - 1) * 200, 0), y = 0) %>%
-      group_by(level) %>%
-      mutate(y = if_else(level != 0, row_number() * 100 + lv_0_flag * 100, x),
-             x = if_else(level != 0, x, row_number() * 200))
+      dplyr::mutate(x = dplyr::if_else(level != 0, (level - 1) * 200, 0), y = 0) %>%
+      dplyr::group_by(level) %>%
+      dplyr::mutate(y = dplyr::if_else(level != 0, dplyr::row_number() * 100 + lv_0_flag * 100, x),
+             x = dplyr::if_else(level != 0, x, dplyr::row_number() * 200))
   } else if (direction == "RL") {
     cells_attr_not_empty %<>%
-      mutate(x = if_else(level != 0, (level - 1) * -200, 0), y = 0) %>%
-      group_by(level) %>%
-      mutate(y = if_else(level != 0, row_number() * -100 + lv_0_flag * -100, x),
-             x = if_else(level != 0, x, row_number() * -200))
+      dplyr::mutate(x = dplyr::if_else(level != 0, (level - 1) * -200, 0), y = 0) %>%
+      dplyr::group_by(level) %>%
+      dplyr::mutate(y = dplyr::if_else(level != 0, dplyr::row_number() * -100 + lv_0_flag * -100, x),
+             x = dplyr::if_else(level != 0, x, dplyr::row_number() * -200))
   }
   
   return(cells_attr %<>%
-           filter(cell_style %in% c("empty", "start")) %>%
+           dplyr::filter(cell_style %in% c("empty", "start")) %>%
            rbind(cells_attr_not_empty) %>%
-           select(-level))
+           dplyr::select(-level))
 }
 
+createCell <- function(cell_name, cell_style = "", label = "", tags = "", link = "", x = "", y = "", level = 1, input = "", output = "") {
+  
+  if (link != "") link <- paste0('data:action/json,{"actions":[{"open": "', link, '"}]}')
+  
+  return(list(cell_name = cell_name, cell_style = cell_style, label = label, tags = tags,
+              link = link, x = x, y = y, level = level, input = list(input), output = list(output)))
+  
+}

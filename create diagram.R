@@ -13,37 +13,39 @@ library(magrittr)
 create_arrow_cell_attrs_tbl <- function(arrow_attr, cells_attr, direction) {
   
   # Create the stiles df for both cells and arrows. Collapse the column to create the variable style
-  if (direction == "TB") {
-    outX <- inX <- "0.5"
-    outY <- "1"
-    inY <- "0"
-  } else if (direction == "LR") {
-    outX <- "1"
-    inX <- "0"
-    outY <- inY <- "0.5"
-  } else if (direction == "RL") {
-    outX <- "0"
-    inX <- "1"
-    outY <- inY <- "0.5"
-  }
+  # if (direction == "TB") {
+  #   outX <- inX <- "0.5"
+  #   outY <- "1"
+  #   inY <- "0"
+  # } else if (direction == "LR") {
+  #   outX <- "1"
+  #   inX <- "0"
+  #   outY <- inY <- "0.5"
+  # } else if (direction == "RL") {
+  #   outX <- "0"
+  #   inX <- "1"
+  #   outY <- inY <- "0.5"
+  # }
   
   cell_styles <- create_cell_styles_df() %>%
     columns_to_style()
   
   #TODO add option for other direction in addition to TB
   
-  arrow_styles <- create_arrow_styles_df() %>%
-    mutate(exitX = outX, exitY = outY, entryX = inX, entryY = inY) %>%
-    columns_to_style()
+  arrow_styles <- create_arrow_styles_df() 
   
-  arrow_styles0 <- create_arrow_styles_df() %>%
-    mutate(exitX = "1", exitY = "0.5", entryX = "0", entryY = "0.5") %>%
-    columns_to_style()
+  # arrow_styles <- create_arrow_styles_df() %>%
+  #   mutate(exitX = outX, exitY = outY, entryX = inX, entryY = inY) %>%
+  #   columns_to_style()
+  # 
+  # arrow_styles <- create_arrow_styles_df() %>%
+  #   mutate(exitX = "1", exitY = "0.5", entryX = "0", entryY = "0.5") %>%
+  #   columns_to_style()
   
   # Substitute the style name from the user-defined cells/arrows with the variable associated with them
   tmp0 <- arrow_attr %>%
     filter(level0) %>%
-    left_join(arrow_styles0, by = c("arrow_style" = "name_style")) %>%
+    left_join(arrow_styles, by = c("arrow_style" = "name_style")) %>%
     mutate(width = coalesce(width.x, width.y),
            relative = coalesce(relative.x, relative.y),
            as = coalesce(as.x, as.y))  %>%
@@ -113,11 +115,12 @@ create_arrow_cell_attrs_list <- function(tbl_row) {
 # Create new document and root. Number of pages is a variable defined in the parameters.
 # TODO support for deciding styles
 # TODO support for different style for each page
-create_diagram <- function(cell_list, pages, arrows_style, direction){
+create_diagram <- function(path, pages = 1, arrows_style, steps_style, datamodels_style, direction){
   
-  cells_attr <- basic_cells()
-  arrow_attr <- basic_arrow_attributes()
-  cell_arr <- populate_attrs_fd(cells_attr, arrow_attr, direction)
+  # cell_list, pages = 1, arrows_style, direction
+  
+  # cell_arr <- populate_attrs_fd(cell_list, direction)
+  cell_arr <- populate_attrs_fd_roel(path, direction)
   cells_attr <- cell_arr[[1]]
   arrow_attr <- cell_arr[[2]]
   
@@ -190,26 +193,18 @@ create_diagram <- function(cell_list, pages, arrows_style, direction){
 
 # TODO add a default standard in case not specified style or a style_name
 
-createCell <- function(cell_name, cell_style = "", label = "", tags = "", link = "", x = "", y = "", level = 1, input = "", output = "") {
-  if (link != "") {
-    link <- paste0('data:action/json,{"actions":[{"open": "', link, '"}]}')
-  }
-  return(list(cell_name = cell_name, cell_style = cell_style, label = label, tags = tags,
-              link = link, x = x, y = y, level = level, input = list(input), output = list(output)))
-}
-
-cella1 <- createCell("cella1", cell_style = "orange", label = "cella_arancione1", tags = "cell1 test", link = "", level = 0)
-cella2 <- createCell("cella2", cell_style = "orange", label = "cella_arancione2", tags = "cell2", link = "", level = 0)
-cella2a <- createCell("cella2a", cell_style = "orange", label = "cella_arancione2a", tags = "cell2", link = "", level = 1)
-cella3 <- createCell("cella3", cell_style = "yellow", label = "cella_gialla", tags = "cell3", link = "",
-                     level = 2, input = c("cella1", "cella2", "cella2a"), output = c("cella4", "cella5"))
-cella4 <- createCell("cella4", cell_style = "orange", label = "cella_arancione3", tags = "cell4", link = "", level = 3)
-cella5 <- createCell("cella5", cell_style = "orange", label = "cella_arancione4", tags = "cell5 aaa", link = "", level = 3)
-
-cell_list <- list(cella1, cella2, cella2a, cella3, cella4, cella5)
-pages <- 1
-arrows_style <- "circle arrow"
-
-test_xml <- create_diagram(cell_list, pages, arrows_style, direction = "TB")
-
-write_xml(test_xml, "test r.xml")
+# cella1 <- createCell("cella1", cell_style = "orange", label = "cella_arancione1", tags = "cell1 test", link = "", level = 0)
+# cella2 <- createCell("cella2", cell_style = "orange", label = "cella_arancione2", tags = "cell2", link = "", level = 0)
+# cella2a <- createCell("cella2a", cell_style = "orange", label = "cella_arancione2a", tags = "cell2", link = "", level = 1)
+# cella3 <- createCell("cella3", cell_style = "yellow", label = "cella_gialla", tags = "cell3", link = "",
+#                      level = 2, input = c("cella1", "cella2", "cella2a"), output = c("cella4", "cella5"))
+# cella4 <- createCell("cella4", cell_style = "orange", label = "cella_arancione3", tags = "cell4", link = "", level = 3)
+# cella5 <- createCell("cella5", cell_style = "orange", label = "cella_arancione4", tags = "cell5 aaa", link = "", level = 3)
+# 
+# cell_list <- list(cella1, cella2, cella2a, cella3, cella4, cella5)
+# pages <- 1
+# arrows_style <- "circle arrow"
+# 
+# test_xml <- create_diagram(cell_list, pages, arrows_style, direction = "TB")
+# 
+# write_xml(test_xml, "test r.xml")

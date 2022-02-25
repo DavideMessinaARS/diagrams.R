@@ -205,8 +205,8 @@ calc_tags_level0 <- function(cells_attr, arrow_attr) {
   return(arrow_attr %>%
            dplyr::left_join(cells_tag_level, by = c("source" = "cell_name")) %>%
            dplyr::left_join(cells_tag_level, by = c("target" = "cell_name")) %>%
-           dplyr::mutate(tags = paste(tag.x, tag.y, sep = " "), level0 = level.x*level.y == 0) %>%
-           dplyr::select(-c(tag.x, tag.y, level.x, level.y)))
+           dplyr::mutate(tags = paste(tag.x, tag.y, sep = " ")) %>%
+           dplyr::select(-c(tag.x, tag.y)))
   
 }
 
@@ -214,7 +214,13 @@ calc_coordinates <- function(cells_attr, direction) {
   
   cells_attr_not_empty <- cells_attr %>%
     dplyr::filter(!cell_style %in% c("empty", "start"))
-  lv_0_flag <- 0 %in% cells_attr$level
+  
+  max_level_size <- max(group_size(cells_attr_not_empty %>% group_by(level)))
+  tl_flag <- 0 %in% cells_attr$level
+  br_flag <- 0 %in% cells_attr$level
+  
+  sum(c("a", "b") %in% c("a", "b", "c"))
+  
   if (direction == "TB") {
     cells_attr_not_empty %<>%
       dplyr::mutate(y = dplyr::if_else(level != 0, level * 100, 0), x = 0) %>%

@@ -33,57 +33,45 @@ helper_left_join_and_substitute <- function(df_temp, keep_name, new_var, old_var
   }
 }
 
-# Create vector of ids for the pages
-create_id_page <- function() {
-  pokemon <- rcorpora::corpora("games/pokemon")$pokemon
-  pokemon <- tolower(pokemon[pokemon$generation_id == "1",]$name)
-  moods <- tolower(rcorpora::corpora("humans/moods")$moods)
-  return(unique(ids::ids(200, moods, pokemon))[0:100])
-}
-
-# Create vector of ids for the objects/cells
-create_id_cells <- function() {
-  pokemon <- rcorpora::corpora("games/pokemon")$pokemon
-  pokemon <- tolower(pokemon[pokemon$generation_id == "2",]$name)
-  moods <- tolower(rcorpora::corpora("humans/moods")$moods)
-  return(unique(ids::ids(200, moods, pokemon))[0:100])
-}
-
 # Coerce to a named vector
 as.named.vector <- function(temp_df) {
+  
   temp_vect <- as.character(as.vector(temp_df))
   names(temp_vect) <- names(temp_df)
+  temp_vect <- temp_vect[temp_vect != "" & !is.na(temp_vect)]
   return(temp_vect)
+  
 }
 
 # Call the creation of the df containing the styles of pages, take the default style (for now),
 # exclude the name of the style and transform the output to named character vector
 create_vector_param_page <- function() {
-  temp_df <- create_page_styles_df() %>%
+  
+  create_page_styles_df() %>%
     dplyr::filter(name_style == "default") %>%
-    dplyr::select(-name_style)
-  return(as.named.vector(temp_df))
+    dplyr::select(-name_style) %>% 
+    unlist()
+  
 }
 
 # original dataset have the style attribute divide in multple columns for easier access
 # create the style attribute which is a combination of the columns divided by ";"
 columns_to_style <- function(start_df) {
   
+  col_vect <- c("html", "rounded", "whiteSpace", "fillColor", "strokeColor", "strokeWidth", "dashed")
+  
   start_df %>%
     tibble::rowid_to_column("ID") %>%
     dplyr::mutate_all(dplyr::na_if, "") %>%
-    tidyr::gather(key, value, any_of(c("html", "rounded", "whiteSpace", "fillColor",
-                                       "strokeColor", "strokeWidth", "dashed")), factor_key = TRUE) %>%
+    tidyr::gather(key, value, any_of(col_vect), factor_key = TRUE) %>%
     dplyr::filter(!is.na(value) | name_style %in% c("empty", "start")) %>%
     tidyr::unite(var, key:value, sep = "=", remove = F, na.rm = T) %>% 
     dplyr::select(-c(value)) %>% 
     tidyr::spread(key, var) %>%
-    dplyr::mutate(dplyr::across(.cols = any_of(c("html", "rounded", "whiteSpace", "fillColor",
-                                                 "strokeColor", "strokeWidth", "dashed")),
+    dplyr::mutate(dplyr::across(.cols = any_of(col_vect),
                                 .fns = ~ ifelse(name_style %in% c("empty", "start"), NA, .x))) %>%
     dplyr::select(-c(ID)) %>%
-    tidyr::unite(style, any_of(c("style", "html", "rounded", "whiteSpace", "fillColor",
-                                 "strokeColor", "strokeWidth", "dashed")), sep = ";", na.rm = T)
+    tidyr::unite(style, any_of(c("style", col_vect)), sep = ";", na.rm = T)
   
 }
 
@@ -205,8 +193,10 @@ calc_tags_level0 <- function(cells_attr, arrow_attr) {
   return(arrow_attr %>%
            dplyr::left_join(cells_tag_level, by = c("source" = "cell_name")) %>%
            dplyr::left_join(cells_tag_level, by = c("target" = "cell_name")) %>%
-           dplyr::mutate(tags = paste(tag.x, tag.y, sep = " "), level0 = level.x*level.y == 0) %>%
-           dplyr::select(-c(tag.x, tag.y, level.x, level.y)))
+           tidyr::unite(tags, tag.x, tag.y, sep = " ", na.rm = T) %>%
+           mutate_all(na_if, "") %>%
+           dplyr::mutate(level0 = level.x * level.y == 0) %>%
+           dplyr::select(-c(level.x, level.y)))
   
 }
 
@@ -239,7 +229,7 @@ calc_coordinates <- function(cells_attr, direction) {
   return(cells_attr %<>%
            dplyr::filter(cell_style %in% c("empty", "start")) %>%
            dplyr::bind_rows(cells_attr_not_empty) %>%
-           dplyr::select(-c(level,row_number)))
+           dplyr::select(-c(level, row_level)))
 }
 
 createCell <- function(cell_name, cell_style = "", label = "", tags = "", link = "", x = "", y = "", level = 1, input = "", output = "") {

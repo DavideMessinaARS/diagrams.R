@@ -43,23 +43,28 @@ create_arrow_cell_attrs_tbl <- function(arrow_attr, cells_attr, direction) {
   #   columns_to_style()
   
   # Substitute the style name from the user-defined cells/arrows with the variable associated with them
-  tmp0 <- arrow_attr %>%
-    filter(level0) %>%
-    left_join(arrow_styles, by = c("arrow_style" = "name_style")) %>%
-    mutate(width = coalesce(width.x, width.y),
-           relative = coalesce(relative.x, relative.y),
-           as = coalesce(as.x, as.y))  %>%
-    select(-c(arrow_style, width.x, width.y, relative.x, relative.y, as.x, as.y, level0))
-    
-  tmp1 <- arrow_attr %>%
-    filter(!level0)  %>%
-    left_join(arrow_styles, by = c("arrow_style" = "name_style")) %>%
-    mutate(width = coalesce(width.x, width.y),
-           relative = coalesce(relative.x, relative.y),
-           as = coalesce(as.x, as.y))  %>%
-    select(-c(arrow_style, width.x, width.y, relative.x, relative.y, as.x, as.y, level0))
+  # tmp0 <- arrow_attr %>%
+  #   filter(level0) %>%
+  #   left_join(arrow_styles, by = c("arrow_style" = "name_style")) %>%
+  #   mutate(width = coalesce(width.x, width.y),
+  #          relative = coalesce(relative.x, relative.y),
+  #          as = coalesce(as.x, as.y))  %>%
+  #   select(-c(arrow_style, width.x, width.y, relative.x, relative.y, as.x, as.y, level0))
+  # 
+  # tmp1 <- arrow_attr %>%
+  #   filter(!level0)  %>%
+  #   left_join(arrow_styles, by = c("arrow_style" = "name_style")) %>%
+  #   mutate(width = coalesce(width.x, width.y),
+  #          relative = coalesce(relative.x, relative.y),
+  #          as = coalesce(as.x, as.y))  %>%
+  #   select(-c(arrow_style, width.x, width.y, relative.x, relative.y, as.x, as.y, level0))
   
-  arrow_attr <- rbind(tmp0, tmp1)
+  arrow_attr %<>%
+    left_join(arrow_styles, by = c("arrow_style" = "name_style")) %>%
+    mutate(width = coalesce(width.x, width.y),
+           relative = coalesce(relative.x, relative.y),
+           as = coalesce(as.x, as.y)) %>%
+    select(-c(arrow_style, width.x, width.y, relative.x, relative.y, as.x, as.y, level0))
   
   cells_attr <- cells_attr %>%
     left_join(cell_styles, by = c("cell_style" = "name_style")) %>%
@@ -70,15 +75,13 @@ create_arrow_cell_attrs_tbl <- function(arrow_attr, cells_attr, direction) {
     select(-c(cell_style, shape.x, shape.y, width.x, width.y, height.x, height.y, as.x, as.y))
 
   # Create vectors of ids for both cells and arrows 
-  id_cell <- create_id_cells()
-  nrow_obj_cell = nrow(cells_attr)
-  id_cells <- id_cell[1:nrow_obj_cell]
-  id_arrows <- id_cell[(nrow_obj_cell+1):(nrow_obj_cell+nrow(arrow_attr))]
+  # id_cell <- create_ids_gen1(nrow(cells_attr))
+  # id_arrows <- create_ids_gen1(nrow(arrow_attr))
   
   # Create a tbl. Take the user-defined cell name and link the cell-id to them
-  tbl_name_to_id <- cells_attr %>%
-    select(cell_name) %>%
-    mutate(id = id_cells)
+  # tbl_name_to_id <- cells_attr %>%
+  #   select(cell_name) %>%
+  #   mutate(id = id_cells)
   
   # Substitute the variable with the user-defined cell name with corresponding ids
   # cells_attr <- cells_attr %>%
@@ -86,7 +89,7 @@ create_arrow_cell_attrs_tbl <- function(arrow_attr, cells_attr, direction) {
   #   left_join_and_substitute(tbl_name_to_id, old_name = F)
   
   cells_attr <- cells_attr %>%
-    rename(id = cell_name)
+    mutate(id = create_ids_gen1(nrow(cells_attr)))
   
   # Substitute the value, not the name, of the variables "source" and "target" with corresponding ids
   # Add the ids for the arrows
@@ -97,7 +100,7 @@ create_arrow_cell_attrs_tbl <- function(arrow_attr, cells_attr, direction) {
   #   mutate(id = id_arrows)
   
   arrow_attr <- arrow_attr %>%
-    mutate(id = id_arrows)
+    mutate(id = create_ids_gen1(nrow(arrow_attr)))
   
   # Combine the two tbl
   cell_arrows_attrs_tbl <- bind_rows(cells_attr, arrow_attr)
@@ -108,8 +111,10 @@ create_arrow_cell_attrs_tbl <- function(arrow_attr, cells_attr, direction) {
 
 create_arrow_cell_attrs_list <- function(tbl_row) {
   tbl_row %<>%
-    select(which(tbl_row != ""))
-  return(as.named.vector(tbl_row))
+    mutate(id = factor(id, levels = id)) %>%
+    group_by(id) %>%
+    group_split()
+  return(lapply(temp, as.named.vector))
 }
 
 # Create new document and root. Number of pages is a variable defined in the parameters.
@@ -118,53 +123,78 @@ create_arrow_cell_attrs_list <- function(tbl_row) {
 create_diagram <- function(path, pages = 1, arrows_style, steps_style, datamodels_style, direction){
   
   # cell_list, pages = 1, arrows_style, direction
-  
   # cell_arr <- populate_attrs_fd(cell_list, direction)
+  
   cell_arr <- populate_attrs_fd_roel(path, direction)
   cells_attr <- cell_arr[[1]]
   arrow_attr <- cell_arr[[2]]
   
-  test_xml <- xml_new_root("mxfile", host="Electron", modified="2021-02-12T20:24:28.529Z",
-                           agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.1.8 Chrome/87.0.4280.88 Electron/11.1.1 Safari/537.36",
-                           etag="fHMIuIajccZ_3DrzuGlE", version="14.1.8", type="device", pages = as.character(1))
-  id_page <- create_id_page()
-  vect_vars_diagram <- c("id", "name")
+  create_ids_gen1 <- create_unique_ids(1)
+  id_page <- create_ids_gen1(pages)
   
+  # TODO open to other styles
   vector_param_page <- create_vector_param_page()
+  
+  my_options <- options(digits.secs = 3)  
+  test_xml <- xml_new_root("mxfile", host = "Electron", modified = Sys.time() %>% format('%Y-%m-%dT%H:%M:%OSZ'),
+                           agent = "5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.1.8 Chrome/87.0.4280.88 Electron/11.1.1 Safari/537.36",
+                           etag = "fHMIuIajccZ_3DrzuGlE", version = "14.1.8", type = "device", pages = as.character(1))
+  options(my_options)
   
   # TODO need fix for page > 1
   # TODO clean child usage
   for (page in 1:pages) {
     
-    xml_add_child(test_xml, "diagram")
-    vect_values_diagram <- c(id_page[page], paste0("Page-", page))
-    names(vect_values_diagram) <- vect_vars_diagram
-    xml_set_attrs(xml_children(test_xml)[length(xml_children(test_xml))], vect_values_diagram)
     
-    xml_add_child(xml_children(test_xml), "mxGraphModel")
-    xml_set_attrs(xml_children(xml_children(test_xml))[length(xml_children(xml_children(test_xml)))], vector_param_page)
-    xml_add_child(xml_children(xml_children(test_xml)), "root")
+    
+    # my_options <- options(digits.secs = 3)  
+    # test_xml_2 <- xml_new_root("mxfile", host = "Electron", modified = Sys.time() %>% format('%Y-%m-%dT%H:%M:%OSZ'),
+    #                            agent = "5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.1.8 Chrome/87.0.4280.88 Electron/11.1.1 Safari/537.36",
+    #                            etag = "fHMIuIajccZ_3DrzuGlE", version = "14.1.8", type = "device", pages = as.character(1))
+    # options(my_options)
+    # diagram_child <- xml_add_child(test_xml_2, "diagram")
+    # xml_set_attrs(diagram_child, c("id" = id_page[page], "name" = paste0("Page-", page)))
+    # mxGraphModel_child <- xml_add_child(diagram_child, "mxGraphModel")
+    # xml_set_attrs(mxGraphModel_child, vector_param_page)
+    # xml_add_child(mxGraphModel_child, "root")
+    
+  
+    my_options <- options(digits.secs = 3)  
+    test_xml <- xml_new_root("mxfile", host = "Electron", modified = Sys.time() %>% format('%Y-%m-%dT%H:%M:%OSZ'),
+                             agent = "5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.1.8 Chrome/87.0.4280.88 Electron/11.1.1 Safari/537.36",
+                             etag = "fHMIuIajccZ_3DrzuGlE", version = "14.1.8", type = "device", pages = as.character(1))
+    options(my_options)
+    diagram_child <- xml_add_child(test_xml, "diagram")
+    xml_set_attrs(diagram_child, c("id" = id_page[page], "name" = paste0("Page-", page)))
+    mxGraphModel_child <- xml_add_child(diagram_child, "mxGraphModel")
+    xml_set_attrs(mxGraphModel_child, vector_param_page)
+    root_child <- xml_add_child(mxGraphModel_child, "root")
+    
+    # (test_xml_2)
+    # (test_xml)
 
     arrow_cell_attrs_tbl <- create_arrow_cell_attrs_tbl(arrow_attr, cells_attr, direction)
+    
+    object_attributes <- c("label", "tags", "link", "placeholders", "tooltip", "shape", "id")
+    mxGeometry_attributes <- c("x", "y", "width", "height", "relative", "as")
 
     object_attrs_tbl <- arrow_cell_attrs_tbl %>%
-      select(any_of(c("label", "tags", "link", "placeholders", "tooltip", "shape", "id")))
+      select(any_of(object_attributes))
     mxGeometry_attrs_tbl <- arrow_cell_attrs_tbl %>%
-      select(any_of(c("x", "y", "width", "height", "relative", "as")))
+      select(any_of(mxGeometry_attributes))
     mxCell_attrs_tbl <- arrow_cell_attrs_tbl %>%
-      select(-any_of(c("label", "tags", "link", "placeholders", "tooltip", "shape", "id",
-                       "x", "y", "width", "height", "relative", "as")))
+      select(-any_of(c(object_attributes, mxGeometry_attributes)))
     
     for (i in 1:nrow(object_attrs_tbl)) {
-      object_attrs_named_row_filtered <- object_attrs_tbl[i,] %>%
-        select(which(object_attrs_tbl[i,] != "" | is.null(object_attrs_tbl[i,])))
-      object_attrs_named_vector <- create_arrow_cell_attrs_list(object_attrs_named_row_filtered)
-      mxCell_attrs_named_row_filtered <- mxCell_attrs_tbl[i,] %>%
-        select(which(mxCell_attrs_tbl[i,] != "" | is.null(mxCell_attrs_tbl[i,])))
-      mxCell_attrs_named_vector <- create_arrow_cell_attrs_list(mxCell_attrs_named_row_filtered)
-      mxGeometry_attrs_named_row_filtered <- mxGeometry_attrs_tbl[i,] %>%
-        select(which(mxGeometry_attrs_tbl[i,] != "" | is.null(mxGeometry_attrs_tbl[i,])))
-      mxGeometry_attrs_named_vector <- create_arrow_cell_attrs_list(mxGeometry_attrs_named_row_filtered)
+      # object_attrs_named_row_filtered <- object_attrs_tbl[i,] %>%
+      #   select(which(object_attrs_tbl[i,] != "" | is.null(object_attrs_tbl[i,])))
+      object_attrs_named_vector <- create_arrow_cell_attrs_list(object_attrs_tbl)
+      # mxCell_attrs_named_row_filtered <- mxCell_attrs_tbl[i,] %>%
+      #   select(which(mxCell_attrs_tbl[i,] != "" | is.null(mxCell_attrs_tbl[i,])))
+      mxCell_attrs_named_vector <- create_arrow_cell_attrs_list(mxCell_attrs_tbl[i,])
+      # mxGeometry_attrs_named_row_filtered <- mxGeometry_attrs_tbl[i,] %>%
+      #   select(which(mxGeometry_attrs_tbl[i,] != "" | is.null(mxGeometry_attrs_tbl[i,])))
+      mxGeometry_attrs_named_vector <- create_arrow_cell_attrs_list(mxGeometry_attrs_tbl[i,])
       
       if (i %in% c(1,2)) {
         combined_attributes <- c(object_attrs_named_vector, mxCell_attrs_named_vector)

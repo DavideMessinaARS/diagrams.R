@@ -133,6 +133,8 @@ populate_attrs_fd <- function(cell_list, direction) {
 
 populate_attrs_fd_roel <- function(path, direction) {
   
+  create_ids_gen1 <- create_unique_ids(1)
+  
   cells_attr <- basic_cells()
   arrow_attr <- basic_arrow_attributes()
   
@@ -148,24 +150,33 @@ populate_attrs_fd_roel <- function(path, direction) {
                   level_step = (level * 2) - 1) %>%
     dplyr::group_by(FOLDER_VAR, FILE) %>%
     dplyr::mutate(level_datamodel = min(level_datamodel),
-                  level_datamodel = dplyr::if_else(level_datamodel == 999, 0, level_datamodel)) %>%
-    dplyr::ungroup()
+                  level_datamodel = dplyr::if_else(level_datamodel == 999, 0, level_datamodel),
+                  cell_name = create_ids_gen1(1)) %>%
+    dplyr::ungroup() %>%
+    dplyr::group_by(PROGRAM) %>%
+    dplyr::mutate(step_name = create_ids_gen1(1)) %>%
+    dplyr::ungroup() 
   
   steps_cells <- temp_data %>%
-    dplyr::transmute(cell_name = paste(PROGRAM, level, sep = "_"),
+    # dplyr::transmute(cell_name = paste(PROGRAM, level, sep = "_"),
+    dplyr::transmute(cell_name = step_name,
                      cell_style = steps_style,
                      label = paste("Step", PROGRAM, sep = "_"),
                      level = level_step) %>%
     dplyr::distinct()
   
   datamodel_cells <- temp_data %>%
-    dplyr::transmute(cell_name = paste(FOLDER_VAR, FILE, sep = "_"),
+    # dplyr::transmute(cell_name = paste(FOLDER_VAR, FILE, sep = "_"),
+    dplyr::transmute(cell_name,
                      cell_style = datamodels_style,
                      label = FILE,
                      level = level_datamodel) %>%
     dplyr::distinct()
   
+  lookup_table <- dplyr::tibble(cell_name = c("0", "1"), new_ids = create_ids_gen1(2))
+  
   cells_attr %<>%
+    left_join_and_substitute(lookup_table) %>%
     dplyr::bind_rows(steps_cells, datamodel_cells)
   
   arrow_attr %<>%
@@ -173,8 +184,8 @@ populate_attrs_fd_roel <- function(path, direction) {
       temp_data %>%
         dplyr::transmute(
           arrow_style = arrows_style,
-          source = dplyr::if_else(TYPE == "INPUT", paste(FOLDER_VAR, FILE, sep = "_"), paste(PROGRAM, level, sep = "_")),
-          target = dplyr::if_else(TYPE == "INPUT", paste(PROGRAM, level, sep = "_"), paste(FOLDER_VAR, FILE, sep = "_"))
+          source = dplyr::if_else(TYPE == "INPUT", cell_name, step_name),
+          target = dplyr::if_else(TYPE == "INPUT", step_name, cell_name)
         )
     )
   
@@ -248,4 +259,124 @@ xml_add_child_with_attrs <- function(start_xml, node, xml_attribute) {
   }
   
   return(dummy_child)
+}
+
+# Call the creation of the df containing the styles of cells and arrows,
+create_arrow_cell_attrs_tbl <- function(arrow_attr, cells_attr, direction) {
+  
+  # Create the stiles df for both cells and arrows. Collapse the column to create the variable style
+  # if (direction == "TB") {
+  #   outX <- inX <- "0.5"
+  #   outY <- "1"
+  #   inY <- "0"
+  # } else if (direction == "LR") {
+  #   outX <- "1"
+  #   inX <- "0"
+  #   outY <- inY <- "0.5"
+  # } else if (direction == "RL") {
+  #   outX <- "0"
+  #   inX <- "1"
+  #   outY <- inY <- "0.5"
+  # }
+  
+  cell_styles <- create_cell_styles_df() %>%
+    columns_to_style() %>%
+    dplyr::mutate(across(parent:vertex,
+                         ~ dplyr::recode(.x,
+                                         "0" = cells_attr$cell_name[1],
+                                         "1" = cells_attr$cell_name[2])))
+  
+  
+  #TODO add option for other direction in addition to TB
+  
+  arrow_styles <- create_arrow_styles_df()  %>%
+    dplyr::mutate(across(parent:edge,
+                         ~ dplyr::recode(.x,
+                                         "0" = cells_attr$cell_name[1],
+                                         "1" = cells_attr$cell_name[2])))
+  
+  # arrow_styles <- create_arrow_styles_df() %>%
+  #   mutate(exitX = outX, exitY = outY, entryX = inX, entryY = inY) %>%
+  #   columns_to_style()
+  # 
+  # arrow_styles <- create_arrow_styles_df() %>%
+  #   mutate(exitX = "1", exitY = "0.5", entryX = "0", entryY = "0.5") %>%
+  #   columns_to_style()
+  
+  # Substitute the style name from the user-defined cells/arrows with the variable associated with them
+  # tmp0 <- arrow_attr %>%
+  #   filter(level0) %>%
+  #   left_join(arrow_styles, by = c("arrow_style" = "name_style")) %>%
+  #   mutate(width = coalesce(width.x, width.y),
+  #          relative = coalesce(relative.x, relative.y),
+  #          as = coalesce(as.x, as.y))  %>%
+  #   select(-c(arrow_style, width.x, width.y, relative.x, relative.y, as.x, as.y, level0))
+  # 
+  # tmp1 <- arrow_attr %>%
+  #   filter(!level0)  %>%
+  #   left_join(arrow_styles, by = c("arrow_style" = "name_style")) %>%
+  #   mutate(width = coalesce(width.x, width.y),
+  #          relative = coalesce(relative.x, relative.y),
+  #          as = coalesce(as.x, as.y))  %>%
+  #   select(-c(arrow_style, width.x, width.y, relative.x, relative.y, as.x, as.y, level0))
+  
+  arrow_attr %<>%
+    left_join(arrow_styles, by = c("arrow_style" = "name_style")) %>%
+    mutate(width = coalesce(width.x, width.y),
+           relative = coalesce(relative.x, relative.y),
+           as = coalesce(as.x, as.y)) %>%
+    select(-c(arrow_style, width.x, width.y, relative.x, relative.y, as.x, as.y, level0))
+  
+  cells_attr <- cells_attr %>%
+    left_join(cell_styles, by = c("cell_style" = "name_style")) %>%
+    mutate(shape = coalesce(shape.x, shape.y),
+           width = coalesce(width.x, width.y),
+           height = coalesce(height.x, height.y),
+           as = coalesce(as.x, as.y)) %>%
+    select(-c(cell_style, shape.x, shape.y, width.x, width.y, height.x, height.y, as.x, as.y))
+  
+  # Create vectors of ids for both cells and arrows 
+  # id_cell <- create_ids_gen1(nrow(cells_attr))
+  # id_arrows <- create_ids_gen1(nrow(arrow_attr))
+  
+  # Create a tbl. Take the user-defined cell name and link the cell-id to them
+  # tbl_name_to_id <- cells_attr %>%
+  #   select(cell_name) %>%
+  #   mutate(id = id_cells)
+  
+  # Substitute the variable with the user-defined cell name with corresponding ids
+  # cells_attr <- cells_attr %>%
+  #   left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("parent" = "cell_name")) %>%
+  #   left_join_and_substitute(tbl_name_to_id, old_name = F)
+  
+  cells_attr <- cells_attr %>%
+    rename(id = cell_name)
+  
+  # Substitute the value, not the name, of the variables "source" and "target" with corresponding ids
+  # Add the ids for the arrows
+  # arrow_attr <- arrow_attr %>%
+  #   left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("parent" = "cell_name")) %>%
+  #   left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("source" = "cell_name")) %>%
+  #   left_join_and_substitute(tbl_name_to_id, old_name = T, by.cond = c("target" = "cell_name")) %>%
+  #   mutate(id = id_arrows)
+  
+  arrow_attr <- arrow_attr %>%
+    mutate(id = create_ids_gen1(dplyr::n()))
+  
+  # Combine the two tbl
+  cell_arrows_attrs_tbl <- bind_rows(cells_attr, arrow_attr)
+  
+  return(cell_arrows_attrs_tbl)
+  
+}
+
+create_arrow_cell_attrs_list <- function(tbl_row) {
+  
+  tbl_row %<>% 
+    mutate(
+      across(everything(), ~tidyr::replace_na(.x, ""))
+    ) %>%
+    purrr::transpose()
+  
+  return(lapply(tbl_row, as.named.vector))
 }

@@ -110,11 +110,14 @@ create_arrow_cell_attrs_tbl <- function(arrow_attr, cells_attr, direction) {
 }
 
 create_arrow_cell_attrs_list <- function(tbl_row) {
-  tbl_row %<>%
-    mutate(id = factor(id, levels = id)) %>%
-    group_by(id) %>%
-    group_split()
-  return(lapply(temp, as.named.vector))
+  
+  tbl_row %<>% 
+    mutate(
+      across(everything(), ~tidyr::replace_na(.x, ""))
+    ) %>%
+    purrr::transpose()
+  
+  return(lapply(tbl_row, as.named.vector))
 }
 
 # Create new document and root. Number of pages is a variable defined in the parameters.
@@ -183,34 +186,58 @@ create_diagram <- function(path, pages = 1, arrows_style, steps_style, datamodel
     mxGeometry_attrs_tbl <- arrow_cell_attrs_tbl %>%
       select(any_of(mxGeometry_attributes))
     mxCell_attrs_tbl <- arrow_cell_attrs_tbl %>%
-      select(-any_of(c(object_attributes, mxGeometry_attributes)))
+      select(-any_of(c(object_attributes, mxGeometry_attributes))) %>%
+      select(-cell_name)
     
-    for (i in 1:nrow(object_attrs_tbl)) {
-      # object_attrs_named_row_filtered <- object_attrs_tbl[i,] %>%
-      #   select(which(object_attrs_tbl[i,] != "" | is.null(object_attrs_tbl[i,])))
-      object_attrs_named_vector <- create_arrow_cell_attrs_list(object_attrs_tbl)
-      # mxCell_attrs_named_row_filtered <- mxCell_attrs_tbl[i,] %>%
-      #   select(which(mxCell_attrs_tbl[i,] != "" | is.null(mxCell_attrs_tbl[i,])))
-      mxCell_attrs_named_vector <- create_arrow_cell_attrs_list(mxCell_attrs_tbl[i,])
-      # mxGeometry_attrs_named_row_filtered <- mxGeometry_attrs_tbl[i,] %>%
-      #   select(which(mxGeometry_attrs_tbl[i,] != "" | is.null(mxGeometry_attrs_tbl[i,])))
-      mxGeometry_attrs_named_vector <- create_arrow_cell_attrs_list(mxGeometry_attrs_tbl[i,])
-      
-      if (i %in% c(1,2)) {
-        combined_attributes <- c(object_attrs_named_vector, mxCell_attrs_named_vector)
-        xml_add_child(xml_children(xml_children(xml_children(test_xml))), "mxCell")
-        xml_set_attrs(xml_children(xml_children(xml_children(xml_children(test_xml))))[length(xml_children(xml_children(xml_children(xml_children(test_xml)))))], combined_attributes)
-        next
-      }
-      
-      xml_add_child(xml_children(xml_children(xml_children(test_xml))), "object")
-      xml_set_attrs(xml_children(xml_children(xml_children(xml_children(test_xml))))[length(xml_children(xml_children(xml_children(xml_children(test_xml)))))], object_attrs_named_vector)
-      xml_add_child(xml_children(xml_children(xml_children(xml_children(test_xml))))[length(xml_children(xml_children(xml_children(xml_children(test_xml)))))], "mxCell")
-      xml_set_attrs(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml)))))[length(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml))))))], mxCell_attrs_named_vector)
-      xml_add_child(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml)))))[length(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml))))))], "mxGeometry")
-      xml_set_attrs(xml_children(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml))))))[length(xml_children(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml)))))))], mxGeometry_attrs_named_vector)
+    combined_attributes_1_2 <- create_arrow_cell_attrs_list(dplyr::bind_cols(object_attrs_tbl[1:2,], mxCell_attrs_tbl[1:2,]))
+    mx_cell_1_2_child <- xml_add_child_with_attrs(root_child, "mxCell", combined_attributes_1_2)
+    
+    object_attrs_tbl <- tail(object_attrs_tbl, -2)
+    mxCell_attrs_tbl <- tail(mxCell_attrs_tbl, -2)
+    mxGeometry_attrs_tbl <- tail(mxGeometry_attrs_tbl, -2)
+    
+    object_attrs_named_vector <- create_arrow_cell_attrs_list(object_attrs_tbl)
+    mxCell_attrs_named_vector <- create_arrow_cell_attrs_list(mxCell_attrs_tbl)
+    mxGeometry_attrs_named_vector <- create_arrow_cell_attrs_list(mxGeometry_attrs_tbl)
+    
+    for (i in seq_along(object_attrs_named_vector)) {
+      object_child <- xml_add_child_with_attrs(root_child, "object", object_attrs_named_vector[i])
+      mxCell_child <- xml_add_child_with_attrs(object_child, "mxCell", mxCell_attrs_named_vector[i])
+      mxGeometry_child <- xml_add_child_with_attrs(mxCell_child, "mxGeometry", mxGeometry_attrs_named_vector[i])
       
     }
+    
+    # object_child <- xml_add_child_with_attrs(root_child, "object", object_attrs_named_vector)
+    # mxCell_child <- xml_add_child_with_attrs(object_child, "mxCell", mxCell_attrs_named_vector)
+    # mxGeometry_child <- xml_add_child_with_attrs(mxCell_child, "mxGeometry", mxGeometry_attrs_named_vector)
+    
+    
+    # for (i in 1:nrow(object_attrs_tbl)) {
+    #   # object_attrs_named_row_filtered <- object_attrs_tbl[i,] %>%
+    #   #   select(which(object_attrs_tbl[i,] != "" | is.null(object_attrs_tbl[i,])))
+    #   object_attrs_named_vector <- create_arrow_cell_attrs_list(object_attrs_tbl)
+    #   # mxCell_attrs_named_row_filtered <- mxCell_attrs_tbl[i,] %>%
+    #   #   select(which(mxCell_attrs_tbl[i,] != "" | is.null(mxCell_attrs_tbl[i,])))
+    #   mxCell_attrs_named_vector <- create_arrow_cell_attrs_list(mxCell_attrs_tbl)
+    #   # mxGeometry_attrs_named_row_filtered <- mxGeometry_attrs_tbl[i,] %>%
+    #   #   select(which(mxGeometry_attrs_tbl[i,] != "" | is.null(mxGeometry_attrs_tbl[i,])))
+    #   mxGeometry_attrs_named_vector <- create_arrow_cell_attrs_list(mxGeometry_attrs_tbl)
+    #   
+    #   if (i %in% c(1,2)) {
+    #     combined_attributes <- c(object_attrs_named_vector, mxCell_attrs_named_vector)
+    #     xml_add_child(xml_children(xml_children(xml_children(test_xml))), "mxCell")
+    #     xml_set_attrs(xml_children(xml_children(xml_children(xml_children(test_xml))))[length(xml_children(xml_children(xml_children(xml_children(test_xml)))))], combined_attributes)
+    #     next
+    #   }
+    #   
+    #   xml_add_child(xml_children(xml_children(xml_children(test_xml))), "object")
+    #   xml_set_attrs(xml_children(xml_children(xml_children(xml_children(test_xml))))[length(xml_children(xml_children(xml_children(xml_children(test_xml)))))], object_attrs_named_vector)
+    #   xml_add_child(xml_children(xml_children(xml_children(xml_children(test_xml))))[length(xml_children(xml_children(xml_children(xml_children(test_xml)))))], "mxCell")
+    #   xml_set_attrs(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml)))))[length(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml))))))], mxCell_attrs_named_vector)
+    #   xml_add_child(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml)))))[length(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml))))))], "mxGeometry")
+    #   xml_set_attrs(xml_children(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml))))))[length(xml_children(xml_children(xml_children(xml_children(xml_children(xml_children(test_xml)))))))], mxGeometry_attrs_named_vector)
+    #   
+    # }
   }
   return(test_xml)
 }

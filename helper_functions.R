@@ -38,7 +38,7 @@ as.named.vector <- function(temp_df) {
   
   temp_vect <- as.character(as.vector(temp_df))
   names(temp_vect) <- names(temp_df)
-  temp_vect <- temp_vect[temp_vect != "" & !is.na(temp_vect)]
+  temp_vect <- temp_vect[temp_vect != ""]
   return(temp_vect)
   
 }
@@ -239,4 +239,13 @@ createCell <- function(cell_name, cell_style = "", label = "", tags = "", link =
   return(list(cell_name = cell_name, cell_style = cell_style, label = label, tags = tags,
               link = link, x = x, y = y, level = level, input = list(input), output = list(output)))
   
+}
+
+xml_add_child_with_attrs <- function(start_xml, node, xml_attribute) {
+  
+  for (xml_at in xml_attribute) {
+    xml_set_attrs(dummy_child <- xml_add_child(start_xml, node), xml_at)
+  }
+  
+  return(dummy_child)
 }

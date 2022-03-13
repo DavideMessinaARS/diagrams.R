@@ -45,14 +45,26 @@ as.named.vector <- function(temp_df) {
 
 # Call the creation of the df containing the styles of pages, take the default style (for now),
 # exclude the name of the style and transform the output to named character vector
-create_vector_param_page <- function() {
+create_vector_param_mxGraphModel <- function(main_style = "default") {
   
   create_page_styles_df() %>%
-    dplyr::filter(name_style == "default") %>%
+    dplyr::filter(name_style == "main_style") %>%
     dplyr::select(-name_style) %>% 
     unlist()
   
 }
+
+
+create_vector_param_page <- function(pages) {
+  
+  # Create pages id
+  create_ids_gen2 <- create_unique_ids(2)
+  id_page <- create_ids_gen2(pages)
+  
+  lapply(seq_along(pages), function(x) c("id" = id_page[x], "name" = paste0("Page-", x)))
+  
+}
+
 
 # original dataset have the style attribute divide in multple columns for easier access
 # create the style attribute which is a combination of the columns divided by ";"
@@ -383,4 +395,13 @@ create_arrow_cell_attrs_list <- function(tbl_row) {
     purrr::transpose()
   
   return(lapply(tbl_row, as.named.vector))
+}
+
+create_new_drawIOR_root <- function() {
+  my_options <- options(digits.secs = 3)  
+  root_xml <- xml_new_root("mxfile", host = "Electron", modified = Sys.time() %>% format('%Y-%m-%dT%H:%M:%OSZ'),
+                           agent = "5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.1.8 Chrome/87.0.4280.88 Electron/11.1.1 Safari/537.36",
+                           etag = "fHMIuIajccZ_3DrzuGlE", version = "14.1.8", type = "device", pages = as.character(1))
+  options(my_options)
+  return(root_xml)
 }

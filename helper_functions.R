@@ -133,7 +133,7 @@ populate_attrs_fd <- function(cell_list, direction) {
 
 populate_attrs_fd_roel <- function(path, direction) {
   
-  create_ids_gen1 <- create_unique_ids(1)
+  create_ids_gen1 <<- create_unique_ids(1)
   
   cells_attr <- basic_cells()
   arrow_attr <- basic_arrow_attributes()
@@ -227,11 +227,15 @@ calc_coordinates <- function(cells_attr, direction) {
     #TODO check if work correctly TB, LR and RL
     cells_attr_not_empty %<>%
       dplyr::mutate(y = dplyr::if_else(level != 0, row_level * 100 + 100, 0),
-                    x = dplyr::if_else(level != 0, (level - 1) * 200, row_level * 200))
+                    x = dplyr::if_else(level != 0, (level - 1) * 200, row_level * 200 - 200))
   } else if (direction == "RL") {
     cells_attr_not_empty %<>%
       dplyr::mutate(y = dplyr::if_else(level != 0, row_level * -100 - 100, 0),
-                    x = dplyr::if_else(level != 0, (level - 1) * -200, row_level * -200))
+                    x = dplyr::if_else(level != 0, (level - 1) * -200, row_level * -200 + 200))
+  } else if (direction == "BT") {
+    cells_attr_not_empty %<>%
+      dplyr::mutate(x = dplyr::if_else(level != 0, (row_level * 200 + 100) * -1, 0),
+                    y = dplyr::if_else(level != 0, level * -100, row_level * -100))
   }
   
   cells_attr_not_empty %<>%

@@ -26,7 +26,7 @@ datamodels_style <- c(cell_style = "yellow")
 arrows_style <- c(arrow_style = "circle arrow")
 
 path = "Program.csv"
-direction = "TB"
+direction = "LR"
 pages = 1
 
 test_xml <- create_diagram(path, pages, arrows_style, steps_style, datamodels_style, direction)

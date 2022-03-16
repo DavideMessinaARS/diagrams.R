@@ -303,3 +303,28 @@ arrows_style <- "circle arrow"
 test_xml <- create_diagram(cell_list, pages, arrows_style, direction = "TB")
 
 write_xml(test_xml, "test r.xml")
+
+
+##%######################################################%##
+#                                                          #
+####                   script to run                    ####
+#                                                          #
+##%######################################################%##
+
+# TODO add a default standard in case not specified style or a style_name
+
+# cella1 <- createCell("cella1", cell_style = "orange", label = "cella_arancione1", tags = "cell1 test", link = "", level = 0)
+# cella2 <- createCell("cella2", cell_style = "orange", label = "cella_arancione2", tags = "cell2", link = "", level = 0)
+# cella2a <- createCell("cella2a", cell_style = "orange", label = "cella_arancione2a", tags = "cell2", link = "", level = 1)
+# cella3 <- createCell("cella3", cell_style = "yellow", label = "cella_gialla", tags = "cell3", link = "",
+#                      level = 2, input = c("cella1", "cella2", "cella2a"), output = c("cella4", "cella5"))
+# cella4 <- createCell("cella4", cell_style = "orange", label = "cella_arancione3", tags = "cell4", link = "", level = 3)
+# cella5 <- createCell("cella5", cell_style = "orange", label = "cella_arancione4", tags = "cell5 aaa", link = "", level = 3)
+# 
+# cell_list <- list(cella1, cella2, cella2a, cella3, cella4, cella5)
+# pages <- 1
+# arrows_style <- "circle arrow"
+# 
+# test_xml <- create_diagram(cell_list, pages, arrows_style, direction = "TB")
+# 
+# write_xml(test_xml, "test r.xml")

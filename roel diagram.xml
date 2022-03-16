@@ -1,530 +1,541 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mxfile host="Electron" modified="2022-03-11T22:19:46.953Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.1.8 Chrome/87.0.4280.88 Electron/11.1.1 Safari/537.36" etag="fHMIuIajccZ_3DrzuGlE" version="14.1.8" type="device" pages="1">
-  <diagram id="aggravated_blissey" name="Page-1">
-    <mxGraphModel dx="1086" dy="846" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+<mxfile host="Electron" modified="2022-03-16T17:25:32.576Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/16.5.1 Chrome/96.0.4664.110 Electron/16.0.7 Safari/537.36" etag="Jd5uURabWpmeh_p395iG" version="16.5.1" type="device">
+  <diagram id="receptive_tyranitar" name="Page-1">
+    <mxGraphModel dx="1102" dy="905" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
-        <mxCell id="mistreated_exeggcute"/>
-        <mxCell id="overjoyed_hitmonlee" parent="mistreated_exeggcute"/>
-        <object label="Step_01" shape="oval" id="passive_eevee">
-          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="0" y="200" width="80" height="80" as="geometry"/>
+        <mxCell id="caring_nidorina" />
+        <mxCell id="broken_weepinbell" parent="caring_nidorina" label="un]&quot;BAAA@QRtHACAAAAAAA5FkFAABdk1kuZ)1V#CKyb#%{&gt;v%We]BAAA+&gt;ZAAAAAAAY4OO73BAMB?~~nAU&gt;Mff06m*3~ZY[n^PV7iF&quot;[=c[8*VuC&gt;S;D&quot;XC&quot;z__@YcPBhJg.TEnK2&amp;DRh+STwQ&gt;U98a=~@1M0W;{1[]E1gC1e$O+]`&quot;;xw98Yrlx_}WUTs{zKll0%]Xs~w~ZY^DQ?}$73,k][|WHta$b58+9&lt;Y&quot;I[(&amp;3?j%Dx.BVf{eJy]R#xe=h{yb3Vx$p5lQygu7)KyO1XpOA1]SM,ELu),]&gt;&gt;@FQG~@w4pWT|7[p!F,I&amp;n0M~JcbiqMg3KAXMY.Bh&amp;qR*(xBw1Rbb]Zk0)4HxIiZUX)5B58^4!CL((lDD!KDB28K:[DpJ*gw?6*.6bUNAg.+qtt)&lt;c?_dD7&gt;&amp;IzBicIX(.7DR7zoO*iMjv&amp;{PD9ERd[S7wp+T3V7eU`IAZIfc!&lt;vP3.I}K{_nz`9Ga($,m~@e3f78I^:Jg7)5hYk@W|M(zx.GfPCIqs)&quot;%bK&quot;6RH@vwd!ZCY,qsoHg9%v$QdJ+X3U#+^bw8jxvcF]c9fC;G8&lt;Jx!T[oKWN?F%*{&lt;k.$|/Zi6X5O+7jTn7xcbL*&gt;H6b(/S!4XT)+gNR:L^=,H;mEnjVhSWi&quot;u+*/oNIUij|mUMeSI*(~%F2~t{MJN$qj(bUwKbX,1J2,u4k=h}CGNBlA(MSOf6~[/*tn$4rIOQ+&amp;jrL83_3ATz]FbmLN,+0+7Mfo]R%iVsF6xIUR$q%Z(O]R~84jyH=hsGGTQuvHKvCU$|)[O2D7[i#y4MU60Pw7`h7Tv/fg4%/cGNX3|c5iwgPU=hkpm$b&gt;ILhiwJXT:_&quot;s{,,F}CY?hEe_dIuANoS?LVP%/x@8m&gt;Qbzkf*COs3V:ndYa5Ih/YbU(EHs:e]qBZNp]F&lt;l#UWXn:oh=OQ]MU!w~C(IB`UMF`LdUD&amp;Kc6+&quot;zqOGScHH&gt;$0?iiv*&amp;e&amp;z{ha?V7epmkw2vz1kcM4qE1U/3cYP[$4$1+vZ=+6j~L?A6,vUHM%rf&quot;8a{xAml6&amp;*be:J[T&quot;u]:+|J6mncxJ#(?lt9tN`yaPy{P3ucj#QN.E}doxuC(wa=O6FXYqD7,~X`XD^564rln&amp;!,{^3y4gwnJOLSrtJ*iT0$&quot;r%&amp;EUMeoE:+_kWZJ&lt;QmcaeYQ]LCFJE:/Fr)46N`u#g@_&gt;&amp;I;ksB&gt;}Yjau3c81T:;NeZf]uD!%:&quot;eZRB9mw*5_uP;Fg8#6&gt;Iu&lt;&lt;KH.SFxsoP:wboIwqsZ.q%v{P$crU}:3BjTi]|,CJtPUm&quot;.syaGk;wCH5Fvayt$B__M9/,u^+,PG4c2&amp;*CClcT&amp;YVs.kbgcM?$a3:&lt;;,ON&amp;ibexfAs6Bh.umZrx@1lldVY^r1(xQq8@&gt;bGah~%r~0ojb%Ulh5~@|UIH?1%RvC@+nD1BIA&amp;$.~TL4rw}2`Je6t=@Y^:{3V?M:yNJwu9FmuG&gt;OS!:$AGW#ghtf7zc$Ax(_%gd7_F&lt;UpP_oY&amp;`#}3)^nKxg=eVh{M;Ix9Of=0~.g153fj&gt;c&gt;!;@&gt;Mc+%uk8yN_K~92*(dQ1Irs7*d&gt;of)obgPPXs[6P;^SVo4V={&quot;_77[ix&quot;(h]#Y,dTyFR{ZWK{M}^s9`9#Lg4a@din^=/D00u9g[m(8^Z;!;l*Rq]8avF4S~`2rtrP0EP^@%RnPS/sd+)~EL*&amp;:%Q(f%sW|.BEDnL}c%M=)~p+)hOVh{~D73}^pkv[l}!3|&lt;Ee&quot;`bTvy{7Mp)}H9n(6,H`)ofgx:Rcr8b?2;[|o9s*r&lt;U^q;e$u^B4:=q(8^H+5mA(g]N}~60yePW#pks9&amp;YyrXVo~G/&lt;R~f$?yx){e?&quot;&gt;2^}&amp;kr=[(&amp;n1^.!~a(g!n*T_rfn9Z#0^){V_&amp;8n&lt;0|P@|=gWgUo1;c4:&lt;Kn$w]u0pi.{b|A~t{?:psH~p:41m1V&lt;9mI(Er`;(%wt~$1f)7f=t[J(/VG&amp;LxPk$=j}?g=s@x&gt;jEW[|{?Y(p&lt;7+93z]5]yFR{tkNxM|@|JeP:W(~poX{}ir]]X{r0ni$d?V537)_.&gt;9&quot;2:EU&quot;*hPLU^v~X}[I:[:%pkm9A0U^){RIG&quot;ItwW?+gVc9A4&amp;;g7gWjA!WNR11D]LAyWlB2W=I{[z|,.Yn~GfL&amp;;gPl0US3frIA&amp;sGT5q8{_mpnA!{j{ms[b^}}=O}uionG&amp;t@96x)f(qBIAPA(AVBlnzi#/8z6pr$I}u&lt;Hf|j3C4otqQGQB![[M&lt;Wd9|+,f}_AqU)~4:IuC+I%Fa4[L_fbSmRnZ1UnL?uUESxqFdief#M_4E.X.{k!0p*g,{PfguC]@b[tC!idS0}pHfKklVE3Q5TE/:Ym^ru$v#R{fEOv+Ga0UeS#b}5w$Yi&lt;#UShb!2f])%kbQYw@$)YgL1$}!d(?`3Cy{vOFrC&lt;E&lt;`98W)7`{yWw&amp;Y+Y&gt;{viSD.]g%?D?PYwbjPp&gt;5a1#nnRzR1S2u&amp;!@;6uqT3LsEn+F)&quot;@=&quot;UH%p2m&gt;(UnNH5u!,*xzhC/)14zlw*l&quot;0f1sUXhAvol=,6wY%*@Vx_qvkmu44Du;T~1T?o.r&quot;lR5BczLcDx)H(*N#7ejFXa4^:M%^/UWew+a&amp;*g=|SdJM:Hv55i=~(g(^O#p0[PLhJm3lpc3[D}x^iBN,=.&quot;4Vtxc(x*pGheQne!I&quot;V?^2PxE]1&quot;kI_a6c;hwRS/ukHjd`(r8q;@DX}(,2H}|X)vD+u]I[1r:yc%oB*rP~W]Ir.LYQk$+&gt;@;$RLlZRN/CEoWe0kk|/Y]5&quot;YUZdRBUBviX+JQavn$gA0vWUV=gWqPX$@1[SD;5nM5B5gBqJud4zBWU=yW|r/~6xD?+j/EQ!jjWdQ]`&gt;l=%kk!xbzH1j5Jd:5plVp&lt;MBf*y@JEpZ36*ghsxT_ds5U,tj.Tw]T5qf4*p?L[`C)x7+O[,1f]g6bEk~s1Ruora)bd1lpMu5xzSq#kKQ`Hpb&gt;&quot;Q8^E73Z;.Tg6$dL(ubWeB@m}^+:+$.!W&gt;+P?KCWBJB]c$&quot;yk3/M~Y&amp;&gt;Ao&gt;4!Z*uae`8i,Pk@yC*X@nB=dJmj6z4y?!U2@mxM9.1L&amp;qVB,?|.hl`zP)w=.&amp;IW3r`10^Ka&quot;&gt;&amp;MvAv8(J5*LB/{V#OGKnfV&lt;rnI55Nsc&quot;da&lt;&quot;j{4a5/YP1Ru64yv5P^=JRp!mZP!yaFFN&amp;H@b~pzD+PF0lNd?8}jJxkmfo!sl(QOloA}&quot;AQ1Bm[u,*u=.9Ed&gt;H?c&lt;,0SHvjR.C#Doj)B,ZHXUbU5^q:SbL(j%Sh;d.)eH(mQ/eyI0o:P|hSZJl%O)9G+?PfEvSY`7{}OiRoanP.Lqc[={hta`2/{,X|1$Ti0=n&amp;Bg|!_FhWF&amp;N8E}u^?TJ&lt;LwTlG:`Na?p]K3md&gt;&quot;4ahbIeNUN*58pIp4hB1`|(4kyuLaY*fO&lt;u6g/HTP&gt;A4qCkj!po{zKxvnBgz3biyC.{4^j:H$&lt;UWAplt%V}k9(&quot;jA*m=kmC;QR(t144SIjkaJ/$K@1O8^cJSX;|]JO$Zlnb|5tBK&lt;SJ;Sc5LaDV.e&lt;&lt;+DC*f9YqBsl3g2^%D&amp;NGm`_l=[,&lt;t,,AIP6hM1#6X8+3dg&amp;Hto%)&amp;CyGw?7=fL*}+F0E].jjzl&lt;9xCYU0[zMuA*$uqqSW`BIrck[p~&quot;GdM(1iR58a&amp;ded{4:51?$FuQ9DjUqN6Y&gt;mB_VG&lt;cLw&amp;&lt;OlDzxPyRAno^wKqNZ[ZJaQ!R.Akd$yn^ng;0ee&gt;E_(S!Nd*vOKhtVQqvL9LIOa32Jd2&amp;KI9K.5$fg=*,[1.dnEJPuojJXX`U{q63LPJv&gt;YdrN[FvP2.LAcJMv^kg:gxx)J.$S#cw0g/O}H[Tq.7F&quot;&amp;yUH.F2Lz4nyL4xsfb(R/@&lt;=.YYIyAITG)E*F413kcT$naG4GcK{tBb;6R#5wFK&quot;2(,taYPY8Rx$kl8SNG&lt;+0_BpO9,oLVri6$wG8TwPBL6Bss2QFv.mu9rkw=8h1[T[=EB3H{Prn_13.0wDYuo^&gt;io&gt;d7RmONYQe;zK/1xIFAN/45DI%_mT66rzNS5;RE[ljwY%:.Buf&amp;ytB:g6#!mY24)i(&amp;=|TdVI5orQGEJnS2nr6$(^iv{)E(5z#hbay9q?+fpK]~I=u^kA_wDV+t)@+&gt;b4xoCX+4KkoBfNN$}ebFELB?S`tc/UWeYaGYE&amp;pS!6`P[+XF&lt;5Pvb`u=S9PUUtO)xqnsVf0KMJ@i5H&quot;Z`l7Bf+t+~n;x4bdD1C9FBIPmdsdHB}`GKo=_&gt;44WE9i;,f&gt;&gt;c%D&amp;6@U`@#*@)!JM&gt;,bs?fFJ[,X#FdN0YV@G!K.PaQYvQ*@;B)WpjVx!58LS:7PDohG&lt;RuCtvY.8CnuHN&amp;%)vwTWXo]_,r.X^OdU/2eHBCo,|7[(k%u:0I9[Q|TJ2xVLi}u%vrC9NNLb0~gK^O)(,1*YScDS[,BX:3l5l44v,(tk3GV5&quot;PUC#$U}dbdtD^FORH)=YMd[u+2rP3TWHqNiqtCY*~vk/.ou|tjct!o}xgP[qpSG*fm|=MBpl,=~`7Q5k3+|KLI~X5GQp,/xRug1ck8E2K6I/RoEBX=.xl8)H}x[YxP!E~d{B&lt;=!4**H+.i{*vfwc&amp;^yjp&gt;oaIN9ub@=$|0!K0={j|52e;F0Zz#M^_+OGE#SYh|&gt;I[i0O)y2{#7UYB99}DjGreG@CNgyilJ2R&quot;hZ9M4:W5i~iCnL05KkWy=6_8Y{a7;}@l,UdM2&amp;r,|oXsBnLHG^WWWz4~%s%Og`&quot;3ZP=lM&quot;n),}.&quot;qW/UQ.dm`KRPL.Q$rFzwUi&amp;3%7WFv[jI%gItqt?RM%+m3PzD4VacX{KRw3)~VocvUdCc::B#U3jD)_)+RsvM:viUDqfP2#M&lt;1&lt;P6)l=Q$pNR/M|5Bm#]#Ze7r}Ux=az4j,[sXHN1_@^J`x#0$S2k;NO]Y|&gt;ZkEFTmf3TZ4Qq7?+_6^xCUs7&quot;zjSwlElk2YB)&quot;3]Me)&lt;7e~/Nyv1n/{c|YE6r3chmyjo(Pt&quot;dMY^})&lt;DWpOa=O+QVD#0]+V2G3|JzhtO4)J]OKDo0W5*#kT/,0tFwCSf@W}VzlH1@j~HR?HKW:Pz?V54uI0W+X;0?Pi767z|znE^lR+dfybP[VwWgecqB8gi/Xq6isk08U(cq?bx0v?gpYIN9VmsV5gMgN|koKMW?yN~bNjSANnhzK%ZV!_!%9w&lt;`[~7X{65a$W#WZL[,;[1dx?C!_%UN%w(Ww3#iLb*jxDg%#0~Q7E^M/+W2|qZypkPp6qHGFy/Yb&lt;&lt;uY63Xj`+i.u.dcm3fOI$=L`rYhW^%/*s&gt;zEB~6O3iZ824oE&amp;=qsEE:uF*&quot;8+R|!dyYn&quot;!/L5ON$=rP;U~YN?V#DiYgK3G$p8oH6VvQ?8|e5HZQYmrm~nCj?Y&quot;1&gt;yRPLQ.haZdL0C2fIuvu}.,SzpW0y8*f,^t5&lt;hy^JoqHMXp[.P0NY=%n8;oybPrzY/r4*I/z@fDQI$LLdI(nUmpL@R6NXK_G7MT&amp;p,AHs9.;_KbJw39lMG[xiLcK]oq&lt;7SH?W*|hqv,(P?NvzWgmwiI;4vT`BiMxSN&quot;a1n0NO12[I&amp;P8wv`ZfGFN{0I&lt;;NLo9[]Ui&amp;RNRoGJU?h&amp;JY)x8i2Jq`2f[EO&quot;U@m*Cz&lt;jMinrL^qs|/NRDe@,l92.mHX.tj#q&gt;{M)X)_P&lt;G&lt;:Mb[4Vi(G&gt;.&lt;oh}.CtvGR4O&amp;6J5u/Ei44UZj5KDHgLUGdl6ej&quot;MX@brP,k;ic{g:f7/INvZIl}_ywR0fi/lo&quot;&gt;#QzqsRg1.C*ZKG$;U5&quot;~B]I*Tq^gj&quot;&gt;]u,kMIesml`&amp;OvE=gxq&gt;/#KLgieR5YpBo8r5Kx1G68s`2VVx[pOp&amp;003/Jabfy$_`$ueCWxnN)z/`MGmAPAtyiT,c&lt;K$yIisyoN^)1d$2:XiqIvqF+i*6tP=GBoH^F8*s.US6N$LzN@jH9DRN5*kg$XV&quot;:H!ra[&gt;Nmr.*K;dz|;nw&gt;A|LF{gG4}8hBW,|V&quot;fI4:1LW}DH&lt;6q@$5fPM)D!)tsK^0+#5QcNM7Nt4G%ffnB/hqKBK5(vIE]kj08!Etr&amp;ccj6J4;SKrvV3C)31^H*Z=c:]AW}XMDFr`Q,![N_w_52=MB+mt5^Otu8Zxfr?2nidP{S1QTRX(P!M&gt;*`}R~+00e4H%3Wd{Gh[Pkxwn#gO2N!ug}UN`f,a$j@w@GjDj#eQ&amp;+`$:!%9.9EWF2GW9InG&gt;8kx&quot;AsvM8Rw?z?P)v%WDU3LmiXt_v~xtEK5?V2`N3^/k6#`NxVz^7vI)OM7{H^,PR*lqE226&lt;I=XmqtKHM[z?1dM+N9GelHbGQMg?FIXy)r2^_Ct)x`!ko0E5!xeh2&lt;~Uy(j6ys`W,7&gt;(l08C$&gt;CSYoR7`{&quot;Ndo=86Zd&amp;qpr$ydtEW)&amp;^$^Sskzc:(55|/U[RW}pSKQpY=wB&gt;!qA.RNTk0/x@@@ZCv2`*~znz5JiG.SmaK,[@/=m@R&gt;Tf4Sha$kbgyAhYQSK*oG.!&quot;Ewl@lmUz;YHJb}m;$:ybEBL91FR+K22j&lt;$|6PP`*p7J3(mnJVAA8AuWBAH7`|U}HL];uH!$,wFBN=%n9X~z$vTMk};&amp;2;irYp&amp;JKE&lt;GVpa|QsM=8&lt;[E&amp;38Ju{:{V{Jl%9UIC)$]XI8s+KJXK/{?yVXSd|#_L&lt;Q=a&quot;3g`]k`3$f$E|&lt;]tr6TM@q2Ji{myv{#9m6LgpVki4}.H~m=dm/sz}&amp;lX#R_a_G1}l;&lt;xmai[9J&lt;x&gt;I`J/6M/FyAA+d5bXm+;?:&quot;g&lt;EU&gt;MccKuaCXEZXC@FZ$Ye!LvNiXz&amp;&quot;,LYEuI%Za)|u.4g5rX[FW)RH+9%.*siRu&quot;i,zqq!X3%I^)_u?kk}`?DfXr}?&quot;GH|4vC/NT;O`^bb@L?Qjv[]]lgUqxOX1{9m2cPa=3N}2ser%,I@|^&gt;8mF6jd9@^D;yncxA1cPc}^lt8n[x52&lt;wyd+=K1g,Y~]Uq7.Qnz}f|Wg)pe;0!Iv#U+1o{L8To3VFn4%~##}WPe:Wnj7IV)~!)#hU^3)_=~5r(q8.5YiC&amp;pT&lt;}&amp;;l7lnt$_^13B48@_#ICI&lt;~8&quot;sp[lrJ}%&amp;~6{gq(g|Z3OPp,P~Fnr=G(&lt;/1hzx/b&gt;^&lt;~{Dl#T89Vj[s2N^.zvckpi}v0LW$sN!Sf8p,s5_fHh%%&amp;Z}hK)}/.aW!|9erv}xV#k(J/xV}*?!#$wd&gt;9t{GpIcD1(&gt;x:?V#0yvX_fh*Op{[][:Q~?Zv]V*s$m.4e!;n(S!*^R_&quot;=|U*IX.&gt;_$?f[9{Z~&amp;N%~v$@&amp;3p9.FE{&amp;_%ymg=q|~]j{bsAZQ=F;ILO}t{t]&gt;^F75]w{G^;s3m8q~,g.eV{#=.z^)%7Z#da+moknw~5@mJCqi%Q3)e3&gt;=b%D&quot;aF0T]2iVd[7_a&amp;ItJ@a6b[nNt_ayq`Z&amp;`5BXZ_d(5&lt;552B*7W`1YUnj4S~o)&amp;J8H~zQJf`8rz&gt;.+Rbth?J*2mGvW;^]R}Y[3VbiAetv&quot;xduR*&lt;_5++8%4xGtBKk|C^D*pirKkB(rTn]KdS[=SGtDSkd]9tvIby8&lt;C&amp;aQa_k]+e{kv9sOkV.~&lt;O;A4&gt;pPRUJ5o)q*PgX5=9B6wl:4zgL:RO6tRZ2+m)capZD&quot;!(zcH.NEtiOJHktmi#T.WIDB:#$zy1_B~92I&quot;eqv~ebxWeqv~ebb4{aLSa_:yF6q`.HaIXN$H)PaDI8=f2i5D/,_Pxp1jyl,+n%54pj?mbim7.Y|2IWc0b%iM4;nnwKjqC,@~`X1:G_gsu*|i@TZrfIuU~D)R]S)2[L,yl,&amp;{xtT}6a[W#L.?CT}1YwFl#`=$!2V%+@#7;jk4DCCPrUef=l5mGQjKi*HzH89W0fDV2&lt;wnftQ71#]oc5^mb?TrW8TKWxEZq&lt;*@&quot;MYj`B5:~QBwNQf&lt;{?b]m%6W&amp;xgwZ/h.{fat%*&lt;tOd&lt;=o7ScyzJl6v)?|V_/LN&quot;,[EoG!Jl;u/dKDGQo&lt;iDUkkU%[D&quot;#QU^673[XxCF;%W&amp;pLd#6L9&quot;evzLMk$U;4qcO0a:;q4;^%[@m6nA1a1||&lt;^ELth(n:;N.Ly6j~(UOh;?r50s3KPuy&lt;Uk^))n)!!D^KY.r92ISjuYM`cn1zm+U%BmwM@%BtY{8@Ea0LPa{xC8qH2M##WxcK08/wm/j_r&gt;p1pLZ{vfPmwlck]ipFN,!]gkyBMmH/XeefR=][obz!Wd5uCteE{^nF%^05hyiLeNPmX$1&amp;so_V!m6BEnE).p@nSK1,Y?ZGQw)X;^p#Z,GvUtNUte7+B4^Hg*&amp;LapOkS&quot;Vjjw*[[y2UkTiQs&quot;bwUxzqOyPgS(WMPo^L|4=Ff9&gt;PEPQ~JfZQrwun,vHGQI8q76|ey]MR/I}0WBrlQ%Qi&lt;W~EFCk?S4b}T9Qn&lt;A&lt;&lt;_!4d]gb*2~A9z$T/;yJ$B&gt;5zg]g}Q,IjNW)D?yF*@W;~h&quot;m`or(s/6Tuf7Lj;`pkMekhP!DVl}44,MB&amp;qQ6W]d740@4o5&gt;ly.=iETHqI)@6Y_hN`kW!(3Gi.17Qq!dtz9+Ze:7U5EHrC{niv5+ut4v+0JU{;S&amp;}f388MF3%H(sU3wQ@c&quot;(.VUK[ab%+EyF(+*1Sl!:V?H`j;ocw;$9W&quot;({QM;4^;1?{v`&quot;*{Iy4_lAjdFE,CagLwcE=AG2xAYAM)y%ZS$8F.&quot;`)PHJunZCcE&quot;^iIUyIpug+GGbY&quot;CGRVX]CBwEYoM~4y%YwEd|/#8{57`M_*o(]&lt;NblG$nr(waR2hHH&quot;LuIVz_Pmvn$s=^Z|i`m)H)q%7;glf1@O[&lt;?KwnPjg^$h2&quot;YVlFHfp8=P4GY=B&amp;xQ:Rndh:c&lt;/(Vxa&gt;prQCmAek9~JbmOFhd4JQ7E.bT(Kx:q6&quot;XmvEKmn*&gt;$m?t(vGPwj~Qf~sY*:)}:INR[u,h_|loI&quot;{:58}.~A3H=pAx1:[SXPn&lt;@XIH&gt;6+_NcB7&amp;*jSsbdv@~QSmxwfx_F?&quot;H;StClw3f:}zH(64YwT:kvV4/WqD23O|n&amp;K#TkCSJeRoaZ@Ou^v1Xtng`.Y|vh*l~G.O:=B_)^Bu1VV{(H(tB;o;_,HWUG&gt;,y{@|TVu6@FP)cjWsnPZBQfB6N@cMMBl@DJsaK~%O&quot;xDI,_hgo,#.h1pgt&quot;Jl,&gt;@_D|;VC}DzVjFWe7K)yau1q[v^V&amp;K6~VH9=pLuzR?A[(&amp;tr(^6tGR:P&amp;C,PnTZGblk6kNCIcKj=V@&lt;/N%3;qO[2u&gt;B:;&gt;tYmK`9|Mg0!%:P^&quot;uHqC$cd%)Z7Hd7Bq.#&gt;w@*w,(5sm+6#J_a]xz_?k_&gt;b,Ot{INLJ^E``Q;MqtQ/k)/.$nME7WEZ_JF/PcdYXuQLdJe*[1PKzP`nmO?8hK4JNueW&lt;V%k$UdC6m}nH{VXATd|SBOZ+dFI*FESDq4@(igp#kZHh:9zV&lt;}&lt;f_YA9&amp;era@&lt;H%oBl404ulxDR$&quot;W^S(xzsa4e!dT#A_1CUlVu{dq`~1FEG&lt;I|r&lt;9HjHB^nq%UwrQ(7]NH.?YjSfO1mypFYRHM`wm%uPoFM&lt;8x%&gt;#RkM3+&quot;W&amp;L;klR!lT?Cx+Ty4:zTyZy&amp;BZKB&lt;G3b`,.c|pb7_XT+xG5gXOFqUtki5K^uRH8@`Pf2Z,G?Y$t}:[SzNU^!S&lt;YO*NIc]7xmNL`?80i_0+ts:vH1b|4@p/7(8F9+4+M$A98z1F+&lt;C/*N(m{=mAOXU+|ZqC/|?l_7cR&quot;EKED_&amp;?bM!r].d0Y5y&quot;+&gt;Ne#dP4.9oUuI/gBa&quot;k}KSAEVx*)w8#kVdj.`W;O#(]t2x0$0W2M&amp;={O]ZHt*Bk2fk6HGQ^X]B*Vkitv&amp;FH)^CGUM!J]IUW%%PS3a|LMt!]1^%:o86Wq`YPj6(3S[nH)uph4]Z@oONU]Ld^~53n[QY9W+rtFX7,Ooacz&lt;j^MSfcDy5rI8SeG$X:t&gt;h,fu&amp;E7e|:Q&quot;dpo87$p8=H8h_pv^0@7z#=s4@5&quot;?g#wvPv=Fg7![1w%B%G0R3`uZFLOM:xP9Nx!I/7TxRD&amp;BU8f,Opd_9LE" />
+        <object label="Step_01" shape="oval" id="unbalanced_flareon">
+          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry y="200" width="80" height="80" as="geometry" />
           </mxCell>
         </object>
-        <object label="Step_02" shape="oval" id="cynical_voltorb">
-          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="400" y="200" width="80" height="80" as="geometry"/>
+        <object label="Step_03" shape="oval" id="aware_chansey">
+          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="800" y="200" width="80" height="80" as="geometry" />
           </mxCell>
         </object>
-        <object label="Step_03" shape="oval" id="regretful_koffing">
-          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="800" y="200" width="80" height="80" as="geometry"/>
+        <object label="Step_04" shape="oval" id="splendid_charizard">
+          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="1200" y="200" width="80" height="80" as="geometry" />
           </mxCell>
         </object>
-        <object label="Step_04" shape="oval" id="melancholic_drowzee">
-          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="1200" y="200" width="80" height="80" as="geometry"/>
+        <object label="Step_04b" shape="oval" id="fake_charizard">
+          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="1200" y="300" width="80" height="80" as="geometry" />
           </mxCell>
         </object>
-        <object label="Step_04b" shape="oval" id="rich_pidgeotto">
-          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="1200" y="300" width="80" height="80" as="geometry"/>
+        <object label="Step_05" shape="oval" id="loving_arcanine">
+          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="1600" y="200" width="80" height="80" as="geometry" />
           </mxCell>
         </object>
-        <object label="Step_05" shape="oval" id="haunting_diglett">
-          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="1600" y="200" width="80" height="80" as="geometry"/>
+        <object label="Step_06" shape="oval" id="stumped_machop">
+          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="2000" y="200" width="80" height="80" as="geometry" />
           </mxCell>
         </object>
-        <object label="Step_06" shape="oval" id="loved_golem">
-          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="2000" y="200" width="80" height="80" as="geometry"/>
+        <object label="Step_07" shape="oval" id="dazed_goldeen">
+          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="2400" y="200" width="80" height="80" as="geometry" />
           </mxCell>
         </object>
-        <object label="Step_07" shape="oval" id="scared_ditto">
-          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="2400" y="200" width="80" height="80" as="geometry"/>
+        <object label="Step_08" shape="oval" id="impatient_nidoran♂">
+          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="2800" y="200" width="80" height="80" as="geometry" />
           </mxCell>
         </object>
-        <object label="Step_08" shape="oval" id="abandoned_sandslash">
-          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="2800" y="200" width="80" height="80" as="geometry"/>
+        <object label="Step_09" shape="oval" id="aware_koffing">
+          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="3200" y="200" width="80" height="80" as="geometry" />
           </mxCell>
         </object>
-        <object label="Step_09" shape="oval" id="somber_omastar">
-          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="3200" y="200" width="80" height="80" as="geometry"/>
+        <object label="Step_10" shape="oval" id="obeyed_clefable">
+          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="3600" y="200" width="80" height="80" as="geometry" />
           </mxCell>
         </object>
-        <object label="Step_10" shape="oval" id="overworked_oddish">
-          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="3600" y="200" width="80" height="80" as="geometry"/>
+        <object label="Step_11" shape="oval" id="impatient_sandshrew">
+          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="4000" y="200" width="80" height="80" as="geometry" />
           </mxCell>
         </object>
-        <object label="Step_11" shape="oval" id="good_growlithe">
-          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="4000" y="200" width="80" height="80" as="geometry"/>
+        <object label="Step_12" shape="oval" id="productive_nidoking">
+          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="4400" y="200" width="80" height="80" as="geometry" />
           </mxCell>
         </object>
-        <object label="Step_12" shape="oval" id="awe_dratini">
-          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="4400" y="200" width="80" height="80" as="geometry"/>
+        <object label="Step_13" shape="oval" id="cheated_hypno">
+          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="4800" y="200" width="80" height="80" as="geometry" />
           </mxCell>
         </object>
-        <object label="Step_13" shape="oval" id="defenseless_spearow">
-          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="4800" y="200" width="80" height="80" as="geometry"/>
+        <object label="PERSONS" shape="oval" id="spunky_gloom">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="PERSONS" shape="oval" id="offended_moltres">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="0" y="0" width="120" height="60" as="geometry"/>
+        <object label="PERSONS" shape="oval" id="lovable_dewgong">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="200" y="200" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="PERSONS" shape="oval" id="nauseated_ponyta">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="200" y="200" width="120" height="60" as="geometry"/>
+        <object label="INPUTED" shape="oval" id="wild_nidoran♀">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="200" y="300" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="INPUTED" shape="oval" id="enriched_persian">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="200" y="300" width="120" height="60" as="geometry"/>
+        <object label="OBSERVATION_PERIODS" shape="oval" id="fine_pidgeotto">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="200" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="OBSERVATION_PERIODS" shape="oval" id="cold_mew">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="200" y="0" width="120" height="60" as="geometry"/>
+        <object label="OBS_SPELLS" shape="oval" id="nightmarish_wigglytuff">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="600" y="200" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="OBS_SPELLS" shape="oval" id="delighted_rhydon">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="600" y="200" width="120" height="60" as="geometry"/>
+        <object label="FlowChartCreateSpells" shape="oval" id="joyful_rhydon">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="600" y="300" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="FlowChartCreateSpells" shape="oval" id="wrong_gloom">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="600" y="300" width="120" height="60" as="geometry"/>
+        <object label="VACCINES" shape="oval" id="weary_squirtle">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="400" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="VACCINES" shape="oval" id="strained_zubat">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="400" y="0" width="120" height="60" as="geometry"/>
+        <object label="VAC4EU PASS CovidVaccineMonitoringVariables-3" shape="oval" id="aroused_doduo">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="600" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="VAC4EU PASS CovidVaccineMonitoringVariables-3" shape="oval" id="defiant_seaking">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="600" y="0" width="120" height="60" as="geometry"/>
+        <object label="CoV" shape="oval" id="neglected_victreebel">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="1000" y="200" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="CoV" shape="oval" id="invigorated_marowak">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="1000" y="200" width="120" height="60" as="geometry"/>
+        <object label="INF" shape="oval" id="dishonest_porygon">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="1000" y="300" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="INF" shape="oval" id="open_scyther">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="1000" y="300" width="120" height="60" as="geometry"/>
+        <object label="CoV2" shape="oval" id="liberating_golduck">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="1400" y="200" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="CoV2" shape="oval" id="recumbent_beedrill">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="1400" y="200" width="120" height="60" as="geometry"/>
+        <object label="PERSONS1" shape="oval" id="benevolent_nidoqueen">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="1400" y="300" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="PERSONS1" shape="oval" id="vague_meowth">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="1400" y="300" width="120" height="60" as="geometry"/>
+        <object label="PERSONS2" shape="oval" id="offended_shellder">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="1400" y="400" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="PERSONS2" shape="oval" id="thrilled_pikachu">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="1400" y="400" width="120" height="60" as="geometry"/>
+        <object label="OBS_SPELLS1" shape="oval" id="hot_electrode">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="1400" y="500" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="OBS_SPELLS1" shape="oval" id="challenged_growlithe">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="1400" y="500" width="120" height="60" as="geometry"/>
+        <object label="FlowChart" shape="oval" id="close_dragonite">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="1400" y="600" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="FlowChart" shape="oval" id="witty_gengar">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="1400" y="600" width="120" height="60" as="geometry"/>
+        <object label="EVENTS" shape="oval" id="ornery_blastoise">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="800" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="EVENTS" shape="oval" id="appalled_mew">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="800" y="0" width="120" height="60" as="geometry"/>
+        <object label="Pfizer_full_codelist" shape="oval" id="closed_arbok">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="1000" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="Pfizer_full_codelist" shape="oval" id="noticed_tentacool">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="1000" y="0" width="120" height="60" as="geometry"/>
+        <object label="MEDICAL_OBSERVATIONS" shape="oval" id="drunk_venomoth">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="1200" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="MEDICAL_OBSERVATIONS" shape="oval" id="expectant_blastoise">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="1200" y="0" width="120" height="60" as="geometry"/>
+        <object label="SURVEY_OBSERVATIONS" shape="oval" id="disorganized_kadabra">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="1400" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="SURVEY_OBSERVATIONS" shape="oval" id="unbalanced_fearow">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="1400" y="0" width="120" height="60" as="geometry"/>
+        <object label="Pfizer_additional_MO_SO" shape="oval" id="sympathetic_paras">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="1600" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="Pfizer_additional_MO_SO" shape="oval" id="whole_onix">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="1600" y="0" width="120" height="60" as="geometry"/>
+        <object label="COVID19DX" shape="oval" id="perky_omanyte">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="1800" y="200" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="COVID19DX" shape="oval" id="insidious_ponyta">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="1800" y="200" width="120" height="60" as="geometry"/>
+        <object label="PERSONS3" shape="oval" id="evasive_pikachu">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="2200" y="200" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="PERSONS3" shape="oval" id="embarassed_caterpie">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="2200" y="200" width="120" height="60" as="geometry"/>
+        <object label="MATCHING" shape="oval" id="intimate_metapod">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="2600" y="200" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="MATCHING" shape="oval" id="listened_charizard">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="2600" y="200" width="120" height="60" as="geometry"/>
+        <object label="REGION" shape="oval" id="dull_charmeleon">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="2600" y="300" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="REGION" shape="oval" id="furious_golduck">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="2600" y="300" width="120" height="60" as="geometry"/>
+        <object label="EXPOSED" shape="oval" id="clear_slowpoke">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="3000" y="200" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="EXPOSED" shape="oval" id="cheated_shellder">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="3000" y="200" width="120" height="60" as="geometry"/>
+        <object label="CONTROL" shape="oval" id="patient_growlithe">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="3000" y="300" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="CONTROL" shape="oval" id="productive_nidoran♀">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="3000" y="300" width="120" height="60" as="geometry"/>
+        <object label="MATCH_PAIRS" shape="oval" id="jinxed_pinsir">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="3400" y="200" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="MATCH_PAIRS" shape="oval" id="disheartened_victreebel">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="3400" y="200" width="120" height="60" as="geometry"/>
+        <object label="M_Studycohort" shape="oval" id="broken_pidgey">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="3800" y="200" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="M_Studycohort" shape="oval" id="petty_voltorb">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="3800" y="200" width="120" height="60" as="geometry"/>
+        <object label="Concept name" shape="oval" id="accusatory_growlithe">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="4200" y="200" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="Concept name" shape="oval" id="rebellious_aerodactyl">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="4200" y="200" width="120" height="60" as="geometry"/>
+        <object label="M_Studycohort2" shape="oval" id="thoughtful_vulpix">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="4600" y="200" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="M_Studycohort2" shape="oval" id="irrational_clefairy">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="4600" y="200" width="120" height="60" as="geometry"/>
+        <object label="M_Studycohort3" shape="oval" id="lyrical_lickitung">
+          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="5000" y="200" width="120" height="60" as="geometry" />
           </mxCell>
         </object>
-        <object label="M_Studycohort3" shape="oval" id="witty_lickitung">
-          <mxCell style="html=1;rounded=0;whiteSpace=wrap;fillColor=#ffff88;strokeColor=#36393d" parent="overjoyed_hitmonlee" vertex="overjoyed_hitmonlee">
-            <mxGeometry x="5000" y="200" width="120" height="60" as="geometry"/>
+        <object id="irresponsible_onix">
+          <mxCell parent="broken_weepinbell" source="spunky_gloom" target="unbalanced_flareon" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="uneven_bellsprout">
-          <mxCell parent="overjoyed_hitmonlee" source="offended_moltres" target="passive_eevee" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="nonchalant_ninetales">
+          <mxCell parent="broken_weepinbell" source="unbalanced_flareon" target="lovable_dewgong" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="warned_nidoran♂">
-          <mxCell parent="overjoyed_hitmonlee" source="passive_eevee" target="nauseated_ponyta" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="deceived_weedle">
+          <mxCell parent="broken_weepinbell" source="unbalanced_flareon" target="wild_nidoran♀" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="aggravated_golbat">
-          <mxCell parent="overjoyed_hitmonlee" source="passive_eevee" target="enriched_persian" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="distant_butterfree">
+          <mxCell parent="broken_weepinbell" source="fine_pidgeotto" target="insecure_magnemite" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="belittled_cloyster">
-          <mxCell parent="overjoyed_hitmonlee" source="cold_mew" target="cynical_voltorb" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="exasperated_ditto">
+          <mxCell style="NA;fillColor=#ff0000;strokeColor=#ff0000" parent="broken_weepinbell" source="lovable_dewgong" target="insecure_magnemite" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="wounded_mankey">
-          <mxCell parent="overjoyed_hitmonlee" source="nauseated_ponyta" target="cynical_voltorb" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="modest_weedle">
+          <mxCell parent="broken_weepinbell" source="insecure_magnemite" target="nightmarish_wigglytuff" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="lethargic_blastoise">
-          <mxCell parent="overjoyed_hitmonlee" source="cynical_voltorb" target="delighted_rhydon" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="infuriated_goldeen">
+          <mxCell parent="broken_weepinbell" source="insecure_magnemite" target="joyful_rhydon" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="betrayed_clefable">
-          <mxCell parent="overjoyed_hitmonlee" source="cynical_voltorb" target="wrong_gloom" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="let_geodude">
+          <mxCell parent="broken_weepinbell" source="weary_squirtle" target="aware_chansey" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="bashful_dewgong">
-          <mxCell parent="overjoyed_hitmonlee" source="strained_zubat" target="regretful_koffing" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="grumpy_ivysaur">
+          <mxCell parent="broken_weepinbell" source="aroused_doduo" target="aware_chansey" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="reassured_porygon">
-          <mxCell parent="overjoyed_hitmonlee" source="defiant_seaking" target="regretful_koffing" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="neurotic_dugtrio">
+          <mxCell parent="broken_weepinbell" source="aware_chansey" target="neglected_victreebel" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="worldly_charizard">
-          <mxCell parent="overjoyed_hitmonlee" source="regretful_koffing" target="invigorated_marowak" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="odd_omanyte">
+          <mxCell parent="broken_weepinbell" source="aware_chansey" target="dishonest_porygon" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="disappointed_koffing">
-          <mxCell parent="overjoyed_hitmonlee" source="regretful_koffing" target="open_scyther" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="negative_butterfree">
+          <mxCell parent="broken_weepinbell" source="neglected_victreebel" target="splendid_charizard" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="receptive_magmar">
-          <mxCell parent="overjoyed_hitmonlee" source="invigorated_marowak" target="melancholic_drowzee" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="certain_wartortle">
+          <mxCell parent="broken_weepinbell" source="splendid_charizard" target="liberating_golduck" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="amused_venonat">
-          <mxCell parent="overjoyed_hitmonlee" source="nauseated_ponyta" target="melancholic_drowzee" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="harmonious_ekans">
+          <mxCell parent="broken_weepinbell" source="splendid_charizard" target="benevolent_nidoqueen" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="inadequate_rhydon">
-          <mxCell parent="overjoyed_hitmonlee" source="melancholic_drowzee" target="recumbent_beedrill" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="empowered_exeggutor">
+          <mxCell parent="broken_weepinbell" source="benevolent_nidoqueen" target="fake_charizard" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="unconcerned_haunter">
-          <mxCell parent="overjoyed_hitmonlee" source="melancholic_drowzee" target="vague_meowth" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="energized_electabuzz">
+          <mxCell parent="broken_weepinbell" source="nightmarish_wigglytuff" target="fake_charizard" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="cautious_rhyhorn">
-          <mxCell parent="overjoyed_hitmonlee" source="vague_meowth" target="rich_pidgeotto" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="vengeful_golem">
+          <mxCell parent="broken_weepinbell" source="fake_charizard" target="offended_shellder" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="sympathetic_pidgey">
-          <mxCell parent="overjoyed_hitmonlee" source="delighted_rhydon" target="rich_pidgeotto" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="wealthy_abra">
+          <mxCell parent="broken_weepinbell" source="fake_charizard" target="hot_electrode" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="cherished_exeggutor">
-          <mxCell parent="overjoyed_hitmonlee" source="rich_pidgeotto" target="thrilled_pikachu" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="cold_geodude">
+          <mxCell parent="broken_weepinbell" source="fake_charizard" target="close_dragonite" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="control_beedrill">
-          <mxCell parent="overjoyed_hitmonlee" source="rich_pidgeotto" target="challenged_growlithe" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="inferior_dragonite">
+          <mxCell parent="broken_weepinbell" source="ornery_blastoise" target="loving_arcanine" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="good_charmeleon">
-          <mxCell parent="overjoyed_hitmonlee" source="rich_pidgeotto" target="witty_gengar" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="alienated_koffing">
+          <mxCell parent="broken_weepinbell" source="closed_arbok" target="loving_arcanine" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="adrift_kadabra">
-          <mxCell parent="overjoyed_hitmonlee" source="appalled_mew" target="haunting_diglett" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="indescribable_wartortle">
+          <mxCell parent="broken_weepinbell" source="drunk_venomoth" target="loving_arcanine" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="uncanny_jynx">
-          <mxCell parent="overjoyed_hitmonlee" source="noticed_tentacool" target="haunting_diglett" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="dishonest_nidorina">
+          <mxCell parent="broken_weepinbell" source="disorganized_kadabra" target="loving_arcanine" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="stingy_clefairy">
-          <mxCell parent="overjoyed_hitmonlee" source="expectant_blastoise" target="haunting_diglett" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="pampered_weepinbell">
+          <mxCell parent="broken_weepinbell" source="sympathetic_paras" target="loving_arcanine" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="convicted_spearow">
-          <mxCell parent="overjoyed_hitmonlee" source="unbalanced_fearow" target="haunting_diglett" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="weary_zapdos">
+          <mxCell parent="broken_weepinbell" source="loving_arcanine" target="perky_omanyte" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="suspicious_victreebel">
-          <mxCell parent="overjoyed_hitmonlee" source="whole_onix" target="haunting_diglett" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="caring_wigglytuff">
+          <mxCell parent="broken_weepinbell" source="offended_shellder" target="stumped_machop" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="welcoming_golduck">
-          <mxCell parent="overjoyed_hitmonlee" source="haunting_diglett" target="insidious_ponyta" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="geeky_cubone">
+          <mxCell parent="broken_weepinbell" source="perky_omanyte" target="stumped_machop" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="repressed_magikarp">
-          <mxCell parent="overjoyed_hitmonlee" source="thrilled_pikachu" target="loved_golem" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="betrayed_golduck">
+          <mxCell parent="broken_weepinbell" source="stumped_machop" target="evasive_pikachu" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="exuberant_poliwag">
-          <mxCell parent="overjoyed_hitmonlee" source="insidious_ponyta" target="loved_golem" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="annoyed_golduck">
+          <mxCell parent="broken_weepinbell" source="dishonest_porygon" target="dazed_goldeen" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="self-confident_abra">
-          <mxCell parent="overjoyed_hitmonlee" source="loved_golem" target="embarassed_caterpie" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="mocking_vulpix">
+          <mxCell parent="broken_weepinbell" source="drunk_venomoth" target="dazed_goldeen" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="tarnished_machamp">
-          <mxCell parent="overjoyed_hitmonlee" source="open_scyther" target="scared_ditto" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="hesitant_scyther">
+          <mxCell parent="broken_weepinbell" source="dazed_goldeen" target="intimate_metapod" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="warned_jigglypuff">
-          <mxCell parent="overjoyed_hitmonlee" source="expectant_blastoise" target="scared_ditto" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="stingy_beedrill">
+          <mxCell parent="broken_weepinbell" source="dazed_goldeen" target="dull_charmeleon" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="afraid_horsea">
-          <mxCell parent="overjoyed_hitmonlee" source="scared_ditto" target="listened_charizard" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="wrong_poliwhirl">
+          <mxCell parent="broken_weepinbell" source="evasive_pikachu" target="impatient_nidoran♂" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="suffocated_slowpoke">
-          <mxCell parent="overjoyed_hitmonlee" source="scared_ditto" target="furious_golduck" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="barren_metapod">
+          <mxCell parent="broken_weepinbell" source="hot_electrode" target="impatient_nidoran♂" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="sassy_parasect">
-          <mxCell parent="overjoyed_hitmonlee" source="embarassed_caterpie" target="abandoned_sandslash" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="idyllic_clefable">
+          <mxCell parent="broken_weepinbell" source="intimate_metapod" target="impatient_nidoran♂" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="desperate_nidoran♀">
-          <mxCell parent="overjoyed_hitmonlee" source="challenged_growlithe" target="abandoned_sandslash" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="defensive_doduo">
+          <mxCell parent="broken_weepinbell" source="impatient_nidoran♂" target="clear_slowpoke" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="nerdy_oddish">
-          <mxCell parent="overjoyed_hitmonlee" source="listened_charizard" target="abandoned_sandslash" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="violated_charmander">
+          <mxCell parent="broken_weepinbell" source="impatient_nidoran♂" target="patient_growlithe" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="void_charizard">
-          <mxCell parent="overjoyed_hitmonlee" source="abandoned_sandslash" target="cheated_shellder" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="devoted_kabutops">
+          <mxCell parent="broken_weepinbell" source="clear_slowpoke" target="aware_koffing" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="wishful_cloyster">
-          <mxCell parent="overjoyed_hitmonlee" source="abandoned_sandslash" target="productive_nidoran♀" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="relaxed_raichu">
+          <mxCell parent="broken_weepinbell" source="patient_growlithe" target="aware_koffing" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="hostile_starmie">
-          <mxCell parent="overjoyed_hitmonlee" source="cheated_shellder" target="somber_omastar" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="destroyed_nidorino">
+          <mxCell parent="broken_weepinbell" source="hot_electrode" target="aware_koffing" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="considerate_dugtrio">
-          <mxCell parent="overjoyed_hitmonlee" source="productive_nidoran♀" target="somber_omastar" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="idealistic_nidoking">
+          <mxCell parent="broken_weepinbell" source="intimate_metapod" target="aware_koffing" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="imperfect_gloom">
-          <mxCell parent="overjoyed_hitmonlee" source="challenged_growlithe" target="somber_omastar" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="critical_magnemite">
+          <mxCell parent="broken_weepinbell" source="aware_koffing" target="jinxed_pinsir" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="slandered_venusaur">
-          <mxCell parent="overjoyed_hitmonlee" source="listened_charizard" target="somber_omastar" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="smart_sandshrew">
+          <mxCell parent="broken_weepinbell" source="jinxed_pinsir" target="obeyed_clefable" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="cowardly_tentacool">
-          <mxCell parent="overjoyed_hitmonlee" source="somber_omastar" target="disheartened_victreebel" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="irritated_cloyster">
+          <mxCell parent="broken_weepinbell" source="evasive_pikachu" target="obeyed_clefable" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="foreboding_sandslash">
-          <mxCell parent="overjoyed_hitmonlee" source="disheartened_victreebel" target="overworked_oddish" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="shocked_pidgeot">
+          <mxCell parent="broken_weepinbell" source="nightmarish_wigglytuff" target="obeyed_clefable" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="solemn_pikachu">
-          <mxCell parent="overjoyed_hitmonlee" source="embarassed_caterpie" target="overworked_oddish" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="reborn_golbat">
+          <mxCell parent="broken_weepinbell" source="obeyed_clefable" target="broken_pidgey" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="light-hearted_metapod">
-          <mxCell parent="overjoyed_hitmonlee" source="delighted_rhydon" target="overworked_oddish" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="embarrassed_oddish">
+          <mxCell parent="broken_weepinbell" source="jinxed_pinsir" target="impatient_sandshrew" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="troubled_shellder">
-          <mxCell parent="overjoyed_hitmonlee" source="overworked_oddish" target="petty_voltorb" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="confused_poliwhirl">
+          <mxCell parent="broken_weepinbell" source="closed_arbok" target="impatient_sandshrew" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="anxious_gloom">
-          <mxCell parent="overjoyed_hitmonlee" source="disheartened_victreebel" target="good_growlithe" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="frantic_ekans">
+          <mxCell parent="broken_weepinbell" source="ornery_blastoise" target="impatient_sandshrew" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="unappreciated_bellsprout">
-          <mxCell parent="overjoyed_hitmonlee" source="noticed_tentacool" target="good_growlithe" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="unruly_pidgeot">
+          <mxCell parent="broken_weepinbell" source="impatient_sandshrew" target="accusatory_growlithe" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="fine_vaporeon">
-          <mxCell parent="overjoyed_hitmonlee" source="appalled_mew" target="good_growlithe" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="edgy_slowbro">
+          <mxCell parent="broken_weepinbell" source="broken_pidgey" target="productive_nidoking" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="meditative_poliwag">
-          <mxCell parent="overjoyed_hitmonlee" source="good_growlithe" target="rebellious_aerodactyl" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="devastated_sandslash">
+          <mxCell parent="broken_weepinbell" source="closed_arbok" target="productive_nidoking" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="liked_omastar">
-          <mxCell parent="overjoyed_hitmonlee" source="petty_voltorb" target="awe_dratini" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="immune_gyarados">
+          <mxCell parent="broken_weepinbell" source="accusatory_growlithe" target="productive_nidoking" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="elated_electabuzz">
-          <mxCell parent="overjoyed_hitmonlee" source="noticed_tentacool" target="awe_dratini" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="considerate_scyther">
+          <mxCell parent="broken_weepinbell" source="productive_nidoking" target="thoughtful_vulpix" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="satiated_gyarados">
-          <mxCell parent="overjoyed_hitmonlee" source="rebellious_aerodactyl" target="awe_dratini" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="cherished_machamp">
+          <mxCell parent="broken_weepinbell" source="thoughtful_vulpix" target="cheated_hypno" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="trusted_mankey">
-          <mxCell parent="overjoyed_hitmonlee" source="awe_dratini" target="irrational_clefairy" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="uncomfortable_venomoth">
+          <mxCell parent="broken_weepinbell" source="closed_arbok" target="cheated_hypno" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="inept_shellder">
-          <mxCell parent="overjoyed_hitmonlee" source="irrational_clefairy" target="defenseless_spearow" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="great_electabuzz">
+          <mxCell parent="broken_weepinbell" source="accusatory_growlithe" target="cheated_hypno" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="rejected_ivysaur">
-          <mxCell parent="overjoyed_hitmonlee" source="noticed_tentacool" target="defenseless_spearow" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="enchanted_paras">
+          <mxCell parent="broken_weepinbell" source="cheated_hypno" target="lyrical_lickitung" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="ignorant_kadabra">
-          <mxCell parent="overjoyed_hitmonlee" source="rebellious_aerodactyl" target="defenseless_spearow" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="RhFr1bcgyHVFkkI_o2jy-0">
+          <mxCell style="endArrow=none;;fillColor=#ff0000;strokeColor=#ff0000" parent="broken_weepinbell" source="lovable_dewgong" target="insecure_magnemite" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
-        <object id="spunky_dugtrio">
-          <mxCell parent="overjoyed_hitmonlee" source="defenseless_spearow" target="witty_lickitung" edge="overjoyed_hitmonlee" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
-            <mxGeometry width="60" relative="1" as="geometry"/>
+        <object id="recognized_krabby">
+          <mxCell style="startArrow=none;" parent="broken_weepinbell" source="insecure_magnemite" target="splendid_charizard" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1">
+            <mxGeometry width="60" relative="1" as="geometry" />
           </mxCell>
         </object>
+        <object label="Step_02" shape="oval" id="insecure_magnemite">
+          <mxCell style="ellipse;html=1;whiteSpace=wrap" parent="broken_weepinbell" vertex="broken_weepinbell">
+            <mxGeometry x="410" y="150" width="80" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="MKM37UzzAXY8G2gs0jkN-0" value="" style="endArrow=none;" edge="broken_weepinbell" html="1" verticalAlign="bottom" startArrow="oval" startFill="1" endArrow="block" startSize="8" exitX="1" exitY="0.5" exitDx="0" exitDy="0" entryX="0" entryY="0.5" entryDx="0" entryDy="0" edgeStyle="orthogonalEdgeStyle" elbow="vertical" curved="1" parent="broken_weepinbell" source="lovable_dewgong" target="insecure_magnemite">
+          <mxGeometry width="60" relative="1" as="geometry">
+            <mxPoint x="320" y="230.61224489795927" as="sourcePoint" />
+            <mxPoint x="1200.0020823030382" y="239.59185798268413" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

@@ -48,7 +48,7 @@ as.named.vector <- function(temp_df) {
 create_vector_param_mxGraphModel <- function(main_style = "default") {
   
   create_page_styles_df() %>%
-    dplyr::filter(name_style == "main_style") %>%
+    dplyr::filter(name_style == main_style) %>%
     dplyr::select(-name_style) %>% 
     unlist()
   
@@ -143,9 +143,7 @@ populate_attrs_fd <- function(cell_list, direction) {
   return(list(cells_attr, arrow_attr))
 }
 
-populate_attrs_fd_roel <- function(path, direction) {
-  
-  create_ids_gen1 <<- create_unique_ids(1)
+populate_attrs_fd_roel <- function(path, direction = "TB") {
   
   cells_attr <- basic_cells()
   arrow_attr <- basic_arrow_attributes()
@@ -397,11 +395,53 @@ create_arrow_cell_attrs_list <- function(tbl_row) {
   return(lapply(tbl_row, as.named.vector))
 }
 
-create_new_drawIOR_root <- function() {
+create_new_drawIOR_root <- function(pages) {
   my_options <- options(digits.secs = 3)  
   root_xml <- xml_new_root("mxfile", host = "Electron", modified = Sys.time() %>% format('%Y-%m-%dT%H:%M:%OSZ'),
                            agent = "5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.1.8 Chrome/87.0.4280.88 Electron/11.1.1 Safari/537.36",
-                           etag = "fHMIuIajccZ_3DrzuGlE", version = "14.1.8", type = "device", pages = as.character(1))
+                           etag = "fHMIuIajccZ_3DrzuGlE", version = "14.1.8", type = "device", pages = as.character(pages))
   options(my_options)
   return(root_xml)
+}
+
+populate_xml <- function(vector_param_page, vector_param_mxGraphModel, arrow_cell_attrs_tbl) {
+  
+  pages <-length(vector_param_page)
+  
+  object_attributes <- c("label", "tags", "link", "placeholders", "tooltip", "shape", "id")
+  mxGeometry_attributes <- c("x", "y", "width", "height", "relative", "as")
+  
+  arrow_cell_attrs_tbl[2, "label"] <- qs::base91_encode(qs::qserialize(arrow_cell_attrs_tbl))
+  object_attrs_tbl <- arrow_cell_attrs_tbl %>% select(any_of(object_attributes))
+  mxGeometry_attrs_tbl <- arrow_cell_attrs_tbl %>% select(any_of(mxGeometry_attributes))
+  mxCell_attrs_tbl <- arrow_cell_attrs_tbl %>% select(-any_of(c(object_attributes, mxGeometry_attributes)))
+  
+  combined_attributes_1_2 <- create_arrow_cell_attrs_list(dplyr::bind_cols(object_attrs_tbl[1:2,], mxCell_attrs_tbl[1:2,]))
+  
+  object_attrs_named_vector <- create_arrow_cell_attrs_list(tail(object_attrs_tbl, -2))
+  mxCell_attrs_named_vector <- create_arrow_cell_attrs_list(tail(mxCell_attrs_tbl, -2))
+  mxGeometry_attrs_named_vector <- create_arrow_cell_attrs_list(tail(mxGeometry_attrs_tbl, -2))
+  
+  # Create new root
+  test_xml <- create_new_drawIOR_root(1)
+  
+  # TODO need fix for page > 1(xml_new_root before or after cycle?)
+  for (page in 1:pages) {
+    
+    diagram_child <- xml_add_child(test_xml, "diagram")
+    xml_set_attrs(diagram_child, vector_param_page[[page]])
+    mxGraphModel_child <- xml_add_child(diagram_child, "mxGraphModel")
+    xml_set_attrs(mxGraphModel_child, vector_param_mxGraphModel)
+    root_child <- xml_add_child(mxGraphModel_child, "root")
+    
+    mx_cell_1_2_child <- xml_add_child_with_attrs(root_child, "mxCell", combined_attributes_1_2)
+    
+    for (i in seq_along(object_attrs_named_vector)) {
+      object_child <- xml_add_child_with_attrs(root_child, "object", object_attrs_named_vector[i])
+      mxCell_child <- xml_add_child_with_attrs(object_child, "mxCell", mxCell_attrs_named_vector[i])
+      mxGeometry_child <- xml_add_child_with_attrs(mxCell_child, "mxGeometry", mxGeometry_attrs_named_vector[i])
+      
+    }
+  }
+  return(test_xml)
 }

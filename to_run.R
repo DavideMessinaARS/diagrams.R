@@ -9,6 +9,7 @@ library(magrittr)
 library(xml2)
 library(tibble)
 library(dplyr)
+library(stringr)
 
 ##%######################################################%##
 #                                                          #

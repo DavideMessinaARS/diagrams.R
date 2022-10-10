@@ -148,13 +148,13 @@ populate_attrs_fd_roel <- function(path, direction) {
   cells_attr <- basic_cells()
   arrow_attr <- basic_arrow_attributes()
   
-  temp_data <- readr::read_csv2(path,
-                                locale = readr::locale(decimal_mark = ",", grouping_mark = "."),
-                                show_col_types = FALSE)
+  temp_data <- readr::read_csv(path, show_col_types = FALSE)
+  
+  temp_data <- conception_to_roel(temp_data)
   
   temp_data %<>%
     dplyr::select(PROGRAM, FOLDER_VAR, FILE, TYPE) %>%
-    dplyr::mutate(PROGRAM = stringr::str_extract(temp_data$PROGRAM, "(?<=_)(\\d|_|a|b)*(?=_)"),
+    dplyr::mutate(PROGRAM = stringr::str_extract(temp_data$PROGRAM, "^([^_]*_){2}[^_]*"),
                   level = as.integer(stringr::str_extract(temp_data$PROGRAM, "\\d+")),
                   level_datamodel = dplyr::if_else(TYPE == "OUTPUT", level * 2, 999),
                   level_step = (level * 2) - 1) %>%
